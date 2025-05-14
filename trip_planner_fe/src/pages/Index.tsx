@@ -1,4 +1,3 @@
-// src/pages/Index.tsx
 import NavBar from '../components/navbar';
 
 function Index() {
