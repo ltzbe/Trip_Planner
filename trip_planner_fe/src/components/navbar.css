@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 0 20px;
   height: 60px;
-  background-color: #181818;
+  background-color: transparent;
 
   position: fixed;
   top: 0;
@@ -28,31 +28,49 @@
 
 .navbar-center {
   position: absolute;
-  left: 50%;
+  right: 20px;
   transform: translateX(-50%);
   display: flex;
+  font-size: 20px;
   gap: 20px;
 }
 
-.navbar-center a {
+.navbar-right a {
+  position: relative;
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.navbar-center a:hover {
+.navbar-right a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: #54bfb3;
+  transition: width 0.3s ease;
+}
+
+.navbar-right a:hover::after {
+  width: 100%;
+}
+
+.navbar-right a:hover {
   color: #54bfb3;
-  transition: color 0.3s ease;
 }
 
 .navbar-right {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 2rem;
 }
 
 .login-btn {
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   text-decoration: none;
   border-radius: 8px;
@@ -70,10 +88,10 @@
 
 .register-btn {
   padding: 8px 16px;
-  background-color: #58b4a9;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 8px;
+  border: 2px solid #54bfb3;
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none;
