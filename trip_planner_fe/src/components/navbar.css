@@ -1,45 +1,84 @@
-/* Gesamte Navbar */
 .navbar {
   display: flex;
-  position: fixed;
-  width: 100%;
-  height: 50px;
-  padding: 0.5rem 1rem;
-  background-color: #1e1e2f;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background-color: #181818;
+
+  position: fixed;
   top: 0;
   left: 0;
-
-/* Links in der Mitte */
-.navbar_links {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
+  right: 0;
+  z-index: 1000;
 }
 
-/* Link-Styling */
-.navbar_links a {
+.navbar-left {
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  border-radius: 50%;
+}
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-center a {
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   font-weight: 500;
+}
+
+.navbar-center a:hover {
+  color: #54bfb3;
   transition: color 0.3s ease;
 }
 
-.navbar_links a:hover {
-  color: #00bfa6;
+.navbar-right {
+  display: flex;
+  gap: 10px;
 }
 
-.navbar_logo {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem; 
+.login-btn {
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
 }
 
-.navbar_logo img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+.login-btn:hover {
+  color: #54bfb3;
+  background-color: #545656;
+  transition: 0.3s ease;
+}
+
+.register-btn {
+  padding: 8px 16px;
+  background-color: #58b4a9;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.register-btn:hover {
+  background-color: #54bfb3;
 }
