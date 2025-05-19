@@ -1,0 +1,43 @@
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.login-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.email-input,
+.password-input {
+  width: 300px;
+  padding: 13px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: white;
+  color: black;
+}
+
+.login-buttons {
+    display: flex;
+    margin: 20px;
+    gap: 1rem;
+}
+
+.login-buttons button {
+  padding: 8px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+}
+
