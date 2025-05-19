@@ -1,5 +1,5 @@
-### Test POST /user
-POST http://localhost:8080/user
+### Test POST /signup
+POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
