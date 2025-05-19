@@ -5,8 +5,9 @@
   font-size: 20px;
 
   color-scheme: light dark;
+  background-color: rgba(168, 145, 145, 0.87);
   color: rgba(0, 0, 0, 0.87);
-  background-color: #a155e4;
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

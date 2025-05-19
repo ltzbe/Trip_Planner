@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
+  const location = useLocation();
+  const showAuthButtons = location.pathname !== "/dashboard";
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -15,12 +18,17 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-right">
-        <Link className="navbar-login-btn" to="/login">
-          Login
-        </Link>
-        <Link className="navbar-register-btn" to="/register">
-          Register
-        </Link>
+        {showAuthButtons ? (
+          <>
+            <Link className="navbar-login-btn" to="/login">
+              Login
+            </Link>
+          </>
+        ) : (
+          <Link className="navbar-logout-btn" to="/login">
+            Logout
+          </Link>
+        )}
       </div>
     </nav>
   );
