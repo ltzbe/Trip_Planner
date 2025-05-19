@@ -66,7 +66,8 @@
   gap: 2rem;
 }
 
-.navbar-login-btn {
+.navbar-login-btn,
+.navbar-logout-btn {
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -76,25 +77,12 @@
   align-items: center;
   justify-content: center;
   padding: 4px 8px;
+  border: 2px solid var(--primary-color);
 }
 
-.navbar-login-btn:hover {
+.navbar-login-btn:hover,
+.navbar-logout-btn:hover {
   color: #54bfb3;
   background-color: #545656;
   transition: 0.3s ease;
-}
-
-.navbar-register-btn {
-  padding: 8px 16px;
-  color: white;
-  font-size: 20px;
-  border-radius: 8px;
-  border: 2px solid #54bfb3;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-}
-
-.navbar-register-btn:hover {
-  background-color: #54bfb3;
 }
