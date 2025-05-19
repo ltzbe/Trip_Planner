@@ -1,15 +1,9 @@
 package de.dhbwravensburgwebeng.trip_planner_be.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.apache.coyote.BadRequestException;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.util.ArrayList;
+import lombok.Data;
+import lombok.Generated;
 import java.util.Date;
-import java.util.List;
+
 
 @Data
 public class User {
