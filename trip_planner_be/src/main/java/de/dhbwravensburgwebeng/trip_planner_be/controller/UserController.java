@@ -16,9 +16,9 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/user")
+    @PostMapping("/signup")
     public UserEntity createUser(@RequestBody @Validated UserEntity user) {
-        user.setPassword(HelpFunctions.toHash(user.getPassword()));
+        user.setPassword(HelpFunctions.hash(user.getPassword()));
         userRepository.save(user);
         return user;
     }
