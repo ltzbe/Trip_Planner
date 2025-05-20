@@ -15,8 +15,9 @@ function App() {
   const hideNavbarAndFooter = location.pathname === "/login";
 
   return (
-    <>
-      {!hideNavbarAndFooter && <Navbar />}
+    <div className="app-wrapper">
+      {location.pathname === "/" && <div className="home-background-image" />}    {/* Show background image only on home page */}
+      {!hideNavbarAndFooter && <Navbar />}                                        {/* Only show Navbar if not on login page */}
       <main className="page-content">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -27,11 +28,10 @@ function App() {
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
-} />
+          } />
         </Routes>
       </main>
-      {/* {!hideNavbarAndFooter && <Footer />} */}
-    </>
+    </div>
   );
 }
 

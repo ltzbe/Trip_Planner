@@ -4,9 +4,10 @@
   justify-content: space-between;
   padding: 0 20px;
   height: 60px;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.2);
 
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -17,7 +18,7 @@
   height: 40px;
   width: auto;
   border-radius: 50%;
-  margin-top: 10px;
+  margin-top: 0;
   margin-right: 20px;
 }
 
@@ -36,7 +37,7 @@
 .navbar-left a {
   position: relative;
   text-decoration: none;
-  color: #ffffff;
+  color: black;
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -57,32 +58,34 @@
 }
 
 .navbar-left a:hover {
-  color: #54bfb3;
+  color: var(--accent-color);
 }
 
 .navbar-links {
   display: flex;
+  position: relative;
+  left: 100%;
   align-items: center;
   gap: 2rem;
 }
 
 .navbar-login-btn,
 .navbar-logout-btn {
+  background-color: rgba(188, 188, 188, 0.741);
   color: white;
   font-size: 20px;
-  cursor: pointer;
   text-decoration: none;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px 8px;
-  border: 2px solid var(--primary-color);
+  border: none;
 }
 
 .navbar-login-btn:hover,
 .navbar-logout-btn:hover {
-  color: #54bfb3;
+  color: #3c4a48;
   background-color: #545656;
   transition: 0.3s ease;
 }

@@ -1,6 +1,6 @@
 :root {
   --primary-color: #34d8f9;
-  --accent-color: #364745;
+  --accent-color: rgb(81, 218, 233);
   --text-light: white;
   --danger-color: red;
 }
