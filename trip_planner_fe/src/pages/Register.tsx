@@ -1,5 +1,5 @@
 import NavBar from "../components/navbar";
-import "./home.css";
+import "../css/login.css";
 
 function Register() {
   return (

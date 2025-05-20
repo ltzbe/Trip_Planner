@@ -1,5 +1,5 @@
-import './App.css';
-import './styles/variables.css';
+import './css/App.css';
+import './css/variables.css';
 import Navbar from "./components/navbar";
 // import Footer from "./components/footer";
 import Home from "./pages/Home";
