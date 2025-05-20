@@ -3,7 +3,6 @@ package de.dhbwravensburgwebeng.trip_planner_be.controller;
 import de.dhbwravensburgwebeng.trip_planner_be.model.HelpFunctions;
 import de.dhbwravensburgwebeng.trip_planner_be.model.UserEntity;
 import de.dhbwravensburgwebeng.trip_planner_be.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -53,13 +52,18 @@ public class UserController {
     }
 
     @DeleteMapping("/user/id")
-    public void deleteUser(@RequestParam Long id) {
-        userRepository.deleteById(id);
+    public ResponseEntity<UserEntity> deleteUser(@RequestParam Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/user/id")
     public UserEntity updateUser(@RequestParam Long id, @RequestBody @Validated UserEntity user) {
         user.setId(id);
+        user.setTimestamp(new Date().getTime());
         userRepository.save(user);
         return user;
     }
@@ -67,14 +71,11 @@ public class UserController {
     @GetMapping("/user/id")
     public ResponseEntity<UserEntity> getUserById(@RequestParam Long id) {
         return userRepository.findById(id)
-                .map(user -> {
-                    System.out.println("Found user: " + user); // Should print user details
-                    return ResponseEntity.ok(user);
-                })
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/users")
+    @GetMapping("/user")
     public List<UserEntity> getAll() {
         return userRepository.findAll();
     }

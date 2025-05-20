@@ -37,8 +37,8 @@ GET http://localhost:8080/user/id?id=1
 Accept: application/json
 
 
-### Test GET /users
-GET http://localhost:8080/users
+### Test GET /user
+GET http://localhost:8080/user
 Accept: application/json
 
 ### Test PUT /user/id

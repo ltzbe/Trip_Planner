@@ -21,6 +21,7 @@ public class UserEntity {
     private int age;
     @NotNull
     @Email
+    @Column(unique = true)
     private String email;
     @NotNull
     private String password;
