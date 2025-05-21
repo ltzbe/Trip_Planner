@@ -35,15 +35,19 @@ function Home() {
           </div>
         </div>
         <div className="feature-card-wrapper">
-          <div className="feature-cards">
+          <div className="feature-cards card-1">
             <h2>Entdecke neue Orte</h2>
             <p>Finde die besten Reiseziele und versteckten Schätze.</p>
           </div>
-          <div className="feature-cards">
+          <div className="feature-cards card-2">
             <h2>Entdecke neue Orte</h2>
             <p>Finde die besten Reiseziele und versteckten Schätze.</p>
           </div>
-          <div className="feature-cards">
+          <div className="feature-cards card-3">
+            <h2>Entdecke neue Orte</h2>
+            <p>Finde die besten Reiseziele und versteckten Schätze.</p>
+          </div>
+          <div className="feature-cards card-4">
             <h2>Entdecke neue Orte</h2>
             <p>Finde die besten Reiseziele und versteckten Schätze.</p>
           </div>

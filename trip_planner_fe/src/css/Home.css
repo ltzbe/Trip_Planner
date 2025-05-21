@@ -1,4 +1,5 @@
 .hero {
+  display: grid;
   width: 100vw;
   height: 95vh;
   overflow: hidden;
@@ -7,46 +8,31 @@
   overflow-x: hidden;
 }
 
-.hero-icon {
-  position: absolute;
-  height: 700px;
-  top: 14%;
-  right: 0%;
-  /* background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.1)), url('../assets/van-background-img.jpg'); */
-  /* background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
-  z-index: -1;
-  overflow: hidden;
-}
-
-.hero-text{
+.hero-text {
   position: absolute;
   top: 20%;
   left: 10%;
+  width: 33vw;
+  min-width: 500px;
+  padding: 2vw;
   text-align: center;
-  width: 33%;
-  padding: 20px;
-  /* border: 3px solid white; */
-  border-radius: 10px;
   color: black;
-  /* backdrop-filter: blur(6px); */
-  /* background-color: rgba(0, 0, 0, 0.1); */
-  /* box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2); */
+  box-sizing: border-box;
+  font-size: 5vw;
 }
 
 .hero h1 {
   font-size: 3rem;
-  margin-bottom: 1rem;
+
 }
 
 .hero p {
   font-size: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .hero-button {
-  background-color: rgb(81, 218, 233);
+  background-color: var(--accent-color);
   color: #2b2b2b;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -57,29 +43,67 @@
   transition: background-color 0.3s ease;
 }
 
+.hero-icon {
+  position: absolute;
+  width: 40vw;
+  top: 14%;
+  right: 0%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.hero-icon img {
+  width: 100%;
+}
+
 .hero-button:hover {
   background-color: #f0f0f0;
 }
 
 .feature-card-wrapper {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  padding: 2rem 0;
-  position: relative;
-  /* top: -70px; */
-  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+    width: 50%;
 }
 
 .feature-cards {
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 0 1rem;
-  border: 2px solid #387b73;
-  padding: 1rem;
-  width: 20%;
-  height: 320px;
-  min-height: 300px;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 20px rgba(255, 0, 150, 0.2);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.feature-cards:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(255, 0, 150, 0.4);
+}
+
+.feature-cards.large {
+  grid-column: span 2;
+}
+
+.feature-cards h2,
+.feature-cards h3 {
+  margin: 0 0 1rem;
+  color: black;
+}
+
+.feature-cards p {
+  margin: 0.5rem 0;
+  color: black;
+}
+
+.card-1 {
+  width: 250px;
+  height: 100px;
+}
+
+.card-2 {
+  width: 170px;
+  height: 170px;
 }
