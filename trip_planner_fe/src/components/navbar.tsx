@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import "./navbar.css";
+import "../css/navbar.css";
+import Logo from "../assets/tripplanr-logo.png";
 
 const Navbar = () => {
   const location = useLocation();
@@ -8,13 +9,15 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-          <img src="/assets/logotest.png" alt="Logo" className="navbar-logo" />
-        <div className="navbar-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/contact">Contact</Link>
-        </div>
+        <img src={Logo} alt="Logo" className="navbar-logo" />
+
+      </div>
+
+      <div className="navbar-center">
+          <Link className="navbar-links" to="/">Home</Link>
+          <Link className="navbar-links" to="/about">About</Link>
+          <Link className="navbar-links" to="/services">Services</Link>
+          <Link className="navbar-links" to="/contact">Contact</Link>
       </div>
 
       <div className="navbar-right">

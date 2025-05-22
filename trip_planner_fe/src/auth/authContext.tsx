@@ -8,7 +8,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType>(null!);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthProvider = ({ children }: { children: React.JSX.Element }) => {
   const [token, setToken] = useState<string | null>(() =>
     localStorage.getItem("token")
   );

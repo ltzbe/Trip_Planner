@@ -1,0 +1,111 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.2);
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Left part of the navbar (Logo) */
+
+.navbar-logo {
+  height: 140px;
+  width: auto;
+  margin-top: 4px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+
+/* Centered part of the navbar (Login-Button) */
+
+/* .navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+} */
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+
+.navbar-links {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  margin: 20px;
+}
+
+.navbar-links:hover {
+  color: var(--accent-color)
+}
+
+.navbar-links::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  color: var(--accent-color);
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.navbar-links:hover::after {
+  transform: scaleX(1);
+}
+
+/* Right part of the navbar (Login-Button) */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Navbar Buttons */
+
+.navbar-login-btn,
+.navbar-logout-btn {
+  background-color: var(--button-color);
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border: none;
+}
+
+.navbar-login-btn:hover,
+.navbar-logout-btn:hover {
+  /* color: #3c4a48; */
+  background-color: var(--accent-color);
+  transition: 0.3s ease;
+}

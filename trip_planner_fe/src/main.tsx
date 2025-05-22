@@ -1,4 +1,5 @@
-import '@fontsource/source-sans-pro/600.css';
+import '@fontsource/arvo/400.css'
+import '@fontsource/arvo/700.css';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'

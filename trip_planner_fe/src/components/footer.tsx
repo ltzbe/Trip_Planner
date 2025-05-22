@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './footer.css';
+import '../css/footer.css';
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-right">
-          <p>&copy; 2023 Your Company. All rights reserved.</p>
+          <p>&copy; 2025 TRIPPLANR. All rights reserved.</p>
         </div>
       </div>
     </footer>

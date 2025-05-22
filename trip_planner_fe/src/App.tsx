@@ -1,6 +1,7 @@
-import './App.css';
-import './styles/variables.css';
+import './css/App.css';
+import './css/variables.css';
 import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 // import Footer from "./components/footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -15,8 +16,8 @@ function App() {
   const hideNavbarAndFooter = location.pathname === "/login";
 
   return (
-    <>
-      {!hideNavbarAndFooter && <Navbar />}
+    <div className="app-wrapper">
+      {!hideNavbarAndFooter && <Navbar />}                                        {/* Only show Navbar if not on login page */}
       <main className="page-content">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -27,11 +28,11 @@ function App() {
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
-} />
+          } />
         </Routes>
+        {!hideNavbarAndFooter && <Footer />}
       </main>
-      {/* {!hideNavbarAndFooter && <Footer />} */}
-    </>
+    </div>
   );
 }
 

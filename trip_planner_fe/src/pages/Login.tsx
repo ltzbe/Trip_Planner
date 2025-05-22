@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../auth/authContext";
-import "./login.css";
+import "../css/login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -20,11 +20,12 @@ function Login() {
     if (response.ok) {
       const data = await response.json();
       login(data.token);
-      navigate("/dashboard"); // nach erfolgreichem Login weiterleiten
+      navigate("/dashboard");
     } else {
       alert("Login fehlgeschlagen");
     }
   };
+
 
   return (
     <div>
@@ -36,18 +37,21 @@ function Login() {
           </div>
           <form onSubmit={handleLogin}>
             <div className="login-fields">
+              <label htmlFor="email" className="input-labels">E-Mail</label>
               <input
                 type="email"
                 className="email-input"
-                placeholder="E-Mail"
+                placeholder="E-Mail eingeben" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+
+              <label htmlFor="password" className="input-labels">Passwort</label>
               <input
                 type="password"
                 className="password-input"
-                placeholder="Passwort"
+                placeholder="Passwort eingeben"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

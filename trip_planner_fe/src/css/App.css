@@ -1,0 +1,12 @@
+.home-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.1)), url('../assets/van-background-img.jpg'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
