@@ -74,6 +74,7 @@ input {
     border-radius: 8px;
     border: 1px solid var(--accent-color);
     background-color: #EEEEEE;
+    color: black;
 }
 
 .signin-button {
@@ -81,9 +82,9 @@ input {
     margin-top: 40px;
 }
 
-.signin-button a {
+.signin-button button {
     padding: 12px;
-    width: 70%;
+    width: 100%;
     font-size: 16px;
     border: none;
     border-radius: 8px;

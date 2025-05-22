@@ -9,9 +9,12 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>(null!);
 
 export const AuthProvider = ({ children }: { children: React.JSX.Element }) => {
-  const [token, setToken] = useState<string | null>(() =>
-    localStorage.getItem("token")
-  );
+  const getTokenFromCookie = () => {
+    const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  };
+
+  const [token, setToken] = useState<string | null>(() => getTokenFromCookie());
 
   const login = (newToken: string) => {
     localStorage.setItem("token", newToken);
