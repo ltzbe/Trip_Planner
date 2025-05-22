@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../css/Home.css";
 import HeroIcon from "../assets/hero-icon.png";
 import RouteIcon from "../assets/route-icon.png";
@@ -18,7 +19,7 @@ function Home() {
             <p>
               Finde die schönsten und interresantesten Orte auf deinem Trip!
             </p>
-            <button className="hero-button">Jetzt loslegen</button>
+            <Link to="/login" className="hero-button">Jetzt loslegen</Link>
           </div>
         </div>
         
