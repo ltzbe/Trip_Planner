@@ -60,6 +60,10 @@
   margin: 20px;
 }
 
+.navbar-links.active {
+  color: var(--accent-color);
+}
+
 .navbar-links:hover {
   color: var(--accent-color)
 }

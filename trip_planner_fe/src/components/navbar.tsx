@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "../css/navbar.css";
 import Logo from "../assets/tripplanr-logo.png";
 
@@ -16,10 +16,10 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center">
-          <Link className="navbar-links" to="/">Home</Link>
-          <Link className="navbar-links" to="/about">About</Link>
-          <Link className="navbar-links" to="/services">Services</Link>
-          <Link className="navbar-links" to="/contact">Contact</Link>
+          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/">Home</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/about">About</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/services">Services</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/contact">Contact</NavLink>
       </div>
 
       <div className="navbar-right">
