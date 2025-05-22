@@ -1,13 +1,11 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../auth/authContext";
-import '../css/LoginCard.css';
+import "../css/LoginCard.css";
 
 const LoginCard = () => {
-
   const location = useLocation();
   const isRegister = location.pathname === "/register";
-
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +15,7 @@ const LoginCard = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/api/login", {
+    const response = await fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -26,6 +24,27 @@ const LoginCard = () => {
     if (response.ok) {
       const data = await response.json();
       login(data.token);
+      document.cookie = `token=${data.token}; path=/;`;
+      navigate("/dashboard");
+    } else {
+      alert("Login fehlgeschlagen");
+    }
+  };
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = await fetch("/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Data:" + data);
+      login(data.token);
+      console.log
+      document.cookie = `token=${data.token}; path=/;`;
       navigate("/dashboard");
     } else {
       alert("Login fehlgeschlagen");
@@ -33,18 +52,25 @@ const LoginCard = () => {
   };
 
   return (
-
     <div className="login-page-centered">
-        <Link to="/" className="login-button-back">Zurück zu Startseite</Link>
+      <Link to="/" className="login-button-back">
+        Zurück zu Startseite
+      </Link>
       <div className="login-card">
         <div className="login-left">
           <div className="login-form-container">
-            <h1 className="login-title">{isRegister ? "Sign up" : "Sign in"}</h1>
+            <h1 className="login-title">
+              {isRegister ? "Sign up" : "Sign in"}
+            </h1>
             <p>
-              {isRegister ? "Already have an account? " : "Don’t have an account? "}<Link to={isRegister ? "/login" : "/register"}>{isRegister ? "Sign in" : "Create Now"}</Link>
+              {isRegister
+                ? "Already have an account? "
+                : "Don’t have an account? "}
+              <Link to={isRegister ? "/login" : "/register"}>
+                {isRegister ? "Sign in" : "Create Now"}
+              </Link>
             </p>
-            <form onSubmit={handleLogin}>
-
+            <form onSubmit={isRegister ? handleSignup : handleLogin}>
               {isRegister && (
                 <>
                   <label>Name</label>
@@ -84,7 +110,9 @@ const LoginCard = () => {
               </div>
 
               <div className="signin-button">
-                <Link to="/">Sign in</Link>
+                <button type="submit">
+                  {isRegister ? "Sign up" : "Sign in"}
+                </button>
               </div>
             </form>
           </div>
@@ -94,7 +122,9 @@ const LoginCard = () => {
           <div className="features">
             <h2>Lorem Ipsum</h2>
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et
             </p>
           </div>
         </div>
