@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/arvo": "^5.2.5",
     "@fontsource/bentham": "^5.2.5",
+    "@fontsource/league-spartan": "^5.2.5",
     "@fontsource/poppins": "^5.2.6",
     "@fontsource/source-sans-pro": "^5.2.5",
     "react": "^19.1.0",

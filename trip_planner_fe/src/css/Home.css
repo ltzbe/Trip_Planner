@@ -1,109 +1,224 @@
-.hero {
-  display: grid;
-  width: 100vw;
-  height: 95vh;
-  overflow: hidden;
-  text-align: center;
-  color: white;
-  overflow-x: hidden;
-}
+/* Hero-Content */
+@media (max-width: 1920px) {
+  .hero {
+    display: flex;
+    width: 100vw;
+    height: 95vh;
+  }
 
-.hero-text {
-  position: absolute;
-  top: 20%;
-  left: 10%;
-  width: 33vw;
-  min-width: 500px;
-  padding: 2vw;
-  text-align: center;
-  color: black;
-  box-sizing: border-box;
-  font-size: 5vw;
-}
+  .hero-text {
+    position: absolute;
+    top: 30vh;
+    left: 5vw;
+    width: 33vw;
+    min-width: 700px;
+    padding: 2vw;
+    text-align: center;
+    color: black;
+    box-sizing: border-box;
+    height: 50vh;
+    font-weight: 600;
+  }
 
-.hero h1 {
-  font-size: 3rem;
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
 
-}
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
 
-.hero p {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
+  .hero-button {
+    background-color: var(--button-color);
+    color: #2b2b2b;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
-.hero-button {
-  background-color: var(--accent-color);
-  color: #2b2b2b;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+  .hero-button:hover {
+    background-color: var(--accent-color);
+  }
 
-.hero-icon {
-  position: absolute;
-  width: 40vw;
-  top: 14%;
-  right: 0%;
-  z-index: -1;
-  overflow: hidden;
-}
+  .hero-icon {
+    position: absolute;
+    width: 40vw;
+    top: 20vh;
+    right: 0%;
+    z-index: -1;
+    overflow: hidden;
+  }
 
-.hero-icon img {
+  .hero-icon img {
+    width: 100%;
+  }
+
+  .feature-card-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   width: 100%;
+  margin-top: 0;
 }
 
-.hero-button:hover {
-  background-color: #f0f0f0;
-}
-
-.feature-card-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-    width: 50%;
-}
+/* Feature-Cards */
 
 .feature-cards {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 0 20px rgba(255, 0, 150, 0.2);
-  border-radius: 20px;
-  padding: 1.5rem;
+  width: 20vw;
+  text-align: center;
+  font-size: 1.5rem;
   transition: transform 0.3s ease;
 }
 
 .feature-cards:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 30px rgba(255, 0, 150, 0.4);
+  transform: scale(1.03);
 }
 
-.feature-cards.large {
-  grid-column: span 2;
+.card-icons {
+  margin-bottom: 5vh;
 }
 
-.feature-cards h2,
-.feature-cards h3 {
-  margin: 0 0 1rem;
-  color: black;
+.route-icon {
+  width: 30%;
+  height: auto;
 }
 
-.feature-cards p {
-  margin: 0.5rem 0;
-  color: black;
+.bed-icon {
+  width: 30%;
+  height: auto;
 }
 
-.card-1 {
-  width: 250px;
-  height: 100px;
+.plate-icon {
+  width: 30%;
+  height: auto;
 }
 
-.card-2 {
-  width: 170px;
-  height: 170px;
+.gas-icon {
+  width: 30%;
+  height: auto;
+}
+
+}
+
+@media (max-width: 1200px) {
+  .hero {
+    display: flex;
+    width: 100vw;
+    height: 95vh;
+  }
+
+  .hero-text {
+    position: absolute;
+    top: 30vh;
+    left: 2vw;
+    width: 50vw;
+    min-width: 610px;
+    padding: 2vw;
+    text-align: left;
+    color: black;
+    box-sizing: border-box;
+    height: 50vh;
+    font-weight: 400;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-button {
+    background-color: var(--button-color);
+    color: #2b2b2b;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .hero-button:hover {
+    background-color: var(--accent-color);
+  }
+
+  .hero-icon {
+    position: absolute;
+    width: 40vw;
+    top: 20vh;
+    right: 0%;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .hero-icon img {
+    width: 100%;
+  }
+
+  /* Feature-Cards */
+
+  .feature-card-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0;
+}
+
+.feature-cards {
+  width: 45vw;
+  text-align: center;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+  margin-bottom: 6%;
+}
+
+.feature-card.text {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.feature-cards:hover {
+  transform: scale(1.03);
+}
+
+.card-icons {
+  margin-bottom: 5vh;
+}
+
+.route-icon {
+  width: 25%;
+  height: auto;
+}
+
+.bed-icon {
+  width: 25%;
+  height: auto;
+}
+
+.plate-icon {
+  width: 25%;
+  height: auto;
+}
+
+.gas-icon {
+  width: 25%;
+  height: auto;
+}
+
 }

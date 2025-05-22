@@ -17,33 +17,41 @@
 /* Left part of the navbar (Logo) */
 
 .navbar-logo {
-  height: 40px;
+  height: 140px;
   width: auto;
-  border-radius: 50%;
-  margin-top: 0;
+  margin-top: 4px;
 }
 
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  width: fit-content;
 }
 
 
 /* Centered part of the navbar (Login-Button) */
 
-.navbar-center {
+/* .navbar-center {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+} */
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
+
 
 .navbar-links {
   position: relative;
   display: inline-block;
   text-decoration: none;
   color: black;
+  font-size: 1.4rem;
   font-weight: 500;
   transition: color 0.3s ease;
   margin: 20px;
@@ -83,9 +91,9 @@
 
 .navbar-login-btn,
 .navbar-logout-btn {
-  background-color: rgba(245, 89, 89, 0.741);
+  background-color: var(--button-color);
   color: white;
-  font-size: 20px;
+  font-size: 1.2rem;
   text-decoration: none;
   border-radius: 8px;
   display: flex;
@@ -97,7 +105,7 @@
 
 .navbar-login-btn:hover,
 .navbar-logout-btn:hover {
-  color: #3c4a48;
+  /* color: #3c4a48; */
   background-color: var(--accent-color);
   transition: 0.3s ease;
 }

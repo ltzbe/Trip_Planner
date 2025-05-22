@@ -2,5 +2,6 @@
   --primary-color: #34d8f9;
   --accent-color: rgb(43, 157, 250);
   --text-light: white;
-  --danger-color: red;
+  --button-color: rgba(245, 89, 89, 0.741);
+  --accent-color-light: rgba(43, 157, 250, 0.2)
 }

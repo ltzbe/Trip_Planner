@@ -1,24 +1,11 @@
 import "../css/Home.css";
 import HeroIcon from "../assets/hero-icon.png";
+import RouteIcon from "../assets/route-icon.png";
+import BedIcon from "../assets/bed-icon.png";
+import PlateIcon from "../assets/plate-icon.png";
+import GasIcon from "../assets/gas-icon.png";
 
 function Home() {
-  // useEffect(() => {
-  //   document.body.style.backgroundImage = `url(${vanImg})`;
-  //   document.body.style.backgroundSize = 'cover';
-  //   document.body.style.backgroundPosition = 'center';
-  //   document.body.style.minHeight = '100vh';
-  //   document.body.style.backgroundRepeat = 'no-repeat';
-
-  //   return () => {
-  //     // Hintergrundbild beim Verlassen der Seite entfernen
-  //     document.body.style.backgroundImage = '';
-  //     document.body.style.backgroundSize = '';
-  //     document.body.style.backgroundPosition = '';
-  //     document.body.style.minHeight = '';
-  //     document.body.style.backgroundRepeat = '';
-  //   };
-  // }, []);
-
   return (
     <div>
       <main>
@@ -34,22 +21,58 @@ function Home() {
             <button className="hero-button">Jetzt loslegen</button>
           </div>
         </div>
+        
         <div className="feature-card-wrapper">
-          <div className="feature-cards card-1">
-            <h2>Entdecke neue Orte</h2>
-            <p>Finde die besten Reiseziele und versteckten Schätze.</p>
+          <div className="feature-cards">
+            <div className="feature-card icon">
+              <img
+                src={RouteIcon}
+                alt="Route-Icon"
+                className="card-icons route-icon"
+              />
+            </div>
+            <div className="feature-card text">
+              <p>Plane deinen unvergesslichen Trip</p>
+            </div>
           </div>
-          <div className="feature-cards card-2">
-            <h2>Entdecke neue Orte</h2>
-            <p>Finde die besten Reiseziele und versteckten Schätze.</p>
+
+          <div className="feature-cards">
+            <div className="feature-card icon">
+              <img
+                src={BedIcon}
+                alt="Route-Icon"
+                className="card-icons bed-icon"
+              />
+            </div>
+            <div className="feature-card text">
+              <p>Lasse dir Hotels auf deinem Weg anzeigen</p>
+            </div>
           </div>
-          <div className="feature-cards card-3">
-            <h2>Entdecke neue Orte</h2>
-            <p>Finde die besten Reiseziele und versteckten Schätze.</p>
+
+          <div className="feature-cards">
+            <div className="feature-card icon">
+              <img
+                src={PlateIcon}
+                alt="Route-Icon"
+                className="card-icons plate-icon"
+              />
+            </div>
+            <div className="feature-card text">
+              <p>Finde die besten Restaurants</p>
+            </div>
           </div>
-          <div className="feature-cards card-4">
-            <h2>Entdecke neue Orte</h2>
-            <p>Finde die besten Reiseziele und versteckten Schätze.</p>
+
+          <div className="feature-cards">
+            <div className="feature-card icon">
+              <img
+                src={GasIcon}
+                alt="Route-Icon"
+                className="card-icons gas-icon"
+              />
+            </div>
+            <div className="feature-card text">
+              <p>Lass deinen Tank niemals leer werden</p>
+            </div>
           </div>
         </div>
       </main>

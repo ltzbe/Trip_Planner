@@ -1,6 +1,7 @@
 import './css/App.css';
 import './css/variables.css';
 import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 // import Footer from "./components/footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -16,7 +17,6 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      {location.pathname === "/" && <div className="home-background-image" />}    {/* Show background image only on home page */}
       {!hideNavbarAndFooter && <Navbar />}                                        {/* Only show Navbar if not on login page */}
       <main className="page-content">
         <Routes>
@@ -30,6 +30,7 @@ function App() {
             </ProtectedRoute>
           } />
         </Routes>
+        {!hideNavbarAndFooter && <Footer />}
       </main>
     </div>
   );
