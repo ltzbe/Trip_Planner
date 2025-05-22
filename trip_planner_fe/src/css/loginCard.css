@@ -40,7 +40,14 @@
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     font-size: 1rem;
+    text-decoration: none;
+    color: white;
     background-color: var(--button-color);
+    transition: all 0.3s ease;
+}
+
+.login-button-back:hover {
+    background-color: var(--accent-color);
 }
 
 .login-button-back a {

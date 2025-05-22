@@ -33,11 +33,9 @@ const LoginCard = () => {
   };
 
   return (
-    
+
     <div className="login-page-centered">
-      <div className="login-button-back">
-              <Link to="/">Zurück zu Startseite</Link>
-            </div>
+        <Link to="/" className="login-button-back">Zurück zu Startseite</Link>
       <div className="login-card">
         <div className="login-left">
           <div className="login-form-container">
