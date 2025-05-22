@@ -17,9 +17,12 @@
 /* Left part of the navbar (Logo) */
 
 .navbar-logo {
-  height: 140px;
+  height: 35px;
   width: auto;
-  margin-top: 4px;
+}
+
+.navbar-logo-link {
+  cursor: pointer;
 }
 
 .navbar-left {
