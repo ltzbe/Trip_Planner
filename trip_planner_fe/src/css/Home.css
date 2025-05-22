@@ -1,4 +1,111 @@
-/* Hero-Content */
+.hero {
+    display: flex;
+    width: 100%;
+    height: 95vh;
+  }
+
+  .hero-text {
+    position: absolute;
+    top: 30vh;
+    left: 5vw;
+    width: 33vw;
+    min-width: 700px;
+    padding: 2vw;
+    text-align: center;
+    color: black;
+    box-sizing: border-box;
+    height: 50vh;
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero-button {
+    background-color: var(--button-color);
+    color: #2b2b2b;
+    border: none;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .hero-button:hover {
+    background-color: var(--accent-color);
+  }
+
+  .hero-icon {
+    position: absolute;
+    width: 40vw;
+    height: auto;
+    top: 20vh;
+    right: 0%;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .hero-icon img {
+    width: 100%;
+  }
+
+  .feature-card-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Feature-Cards */
+
+.feature-cards {
+  width: 20vw;
+  text-align: center;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.feature-cards:hover {
+  transform: scale(1.03);
+}
+
+.card-icons {
+  margin-bottom: 5vh;
+}
+
+.route-icon {
+  width: 30%;
+  height: auto;
+}
+
+.bed-icon {
+  width: 30%;
+  height: auto;
+}
+
+.plate-icon {
+  width: 30%;
+  height: auto;
+}
+
+.gas-icon {
+  width: 30%;
+  height: auto;
+}
+
+
 @media (max-width: 1920px) {
   .hero {
     display: flex;
@@ -68,7 +175,6 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   width: 100%;
-  margin-top: 200px;
 }
 
 /* Feature-Cards */
@@ -113,7 +219,7 @@
 @media (max-width: 1200px) {
   .hero {
     display: flex;
-    width: 100vw;
+    width: 100%;
     height: 95vh;
   }
 
@@ -180,7 +286,6 @@
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
-  margin-top: 0;
 }
 
 .feature-cards {

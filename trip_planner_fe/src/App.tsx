@@ -13,7 +13,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   const location = useLocation();
-  const hideNavbarAndFooter = location.pathname === "/login";
+  const hideNavbarAndFooter = location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <div className="app-wrapper">
