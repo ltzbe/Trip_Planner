@@ -15,7 +15,7 @@ const LoginCard = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/login", {
+    const response = await fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -33,7 +33,7 @@ const LoginCard = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/signup", {
+    const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
