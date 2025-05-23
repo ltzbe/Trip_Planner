@@ -1,30 +1,27 @@
 package de.dhbwravensburgwebeng.trip_planner_be.controller;
 
-import de.dhbwravensburgwebeng.trip_planner_be.config.JwtFilter;
 import de.dhbwravensburgwebeng.trip_planner_be.model.UserEntity;
+import de.dhbwravensburgwebeng.trip_planner_be.service.JWTService;
 import de.dhbwravensburgwebeng.trip_planner_be.service.UserService;
-import jakarta.annotation.security.RolesAllowed;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
 
 @RestController
 public class UserController {
 
     private final UserService userService;
+    private final JWTService jwtService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JWTService jwtService) {
         this.userService = userService;
+        this.jwtService = jwtService;
     }
 
     @PostMapping("/signup")
-    public UserEntity createUser(@RequestBody @Validated UserEntity user) {
-        return userService.signup(user);
+    public String createUser(@RequestBody @Validated UserEntity user) {
+        userService.signup(user);
+        return jwtService.generateToken(user.getName());
     }
 
     @PostMapping ("/login")
