@@ -7,13 +7,13 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ProtectedRoute from './components/protectedRoute';
+// import ProtectedRoute from './components/protectedRoute';
 import Dashboard from "./pages/Dashboard";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   const location = useLocation();
-  const hideNavbarAndFooter = location.pathname === "/login" || location.pathname === "/register";
+  const hideNavbarAndFooter = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/dashboard";
 
   return (
     <div className="app-wrapper">
@@ -25,9 +25,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Dashboard />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           } />
         </Routes>
         {!hideNavbarAndFooter && <Footer />}

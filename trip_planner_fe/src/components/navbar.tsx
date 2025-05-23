@@ -19,7 +19,7 @@ const Navbar = () => {
           <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/">Home</NavLink>
           <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/about">About</NavLink>
           <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/services">Services</NavLink>
-          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/contact">Contact</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/dashboard">Dash</NavLink>
       </div>
 
       <div className="navbar-right">
