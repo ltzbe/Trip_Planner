@@ -20,16 +20,11 @@ Content-Type: application/json
   "password": "123"
 }
 
-### Test POST /api/login
-POST http://localhost:8080/api/login
-Content-Type: application/json
+### Test GET /test
+GET http://localhost:8080/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbiIsImlhdCI6MTc0Nzk4NTk4NCwiZXhwIjoxNzQ3OTg3Nzg0fQ.zF_n4Rcipb2xB7gJ2eQ-f7RYltXSBv_lQXXkqP0U3Oo
+Accept: application/json
 
-{
-  "name": "Doe",
-  "age": 40,
-  "email": "john.doe@example.com",
-  "password": "123"
-}
 
 
 ### Test GET /user/id
