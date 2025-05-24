@@ -16,25 +16,20 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @Column(unique = true)
     private String name;
-    @NotNull
-    private int age;
     @NotNull
     @Email
     @Column(unique = true)
     private String email;
     @NotNull
     private String password;
-    private Long timestamp = new Date().getTime();
-
 
     public User toUser() {
         User user = new User();
         user.setName(this.name);
-        user.setAge(this.age);
         user.setEmail(this.email);
         user.setPassword(this.password);
-        user.setTimestamp(this.timestamp);
         return user;
     }
 }
