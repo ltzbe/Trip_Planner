@@ -1,5 +1,6 @@
 package de.dhbwravensburgwebeng.trip_planner_be.controller;
 
+import de.dhbwravensburgwebeng.trip_planner_be.dto.AuthResponse;
 import de.dhbwravensburgwebeng.trip_planner_be.model.UserEntity;
 import de.dhbwravensburgwebeng.trip_planner_be.service.JWTService;
 import de.dhbwravensburgwebeng.trip_planner_be.service.UserService;
@@ -19,14 +20,18 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String createUser(@RequestBody @Validated UserEntity user) {
+    public AuthResponse createUser(@RequestBody @Validated UserEntity user) {
         userService.signup(user);
-        return jwtService.generateToken(user.getName());
+        String username = user.getName();
+        String token = jwtService.generateToken(user.getName());
+        return new AuthResponse(token, username);
     }
 
     @PostMapping ("/login")
-    public String login(@RequestBody @Validated UserEntity user) {
-        return userService.verify(user);
+    public AuthResponse login(@RequestBody @Validated UserEntity user) {
+        String username = user.getName();
+        String token = userService.verify(user);
+        return new AuthResponse(token, username);
     }
 
     @GetMapping("/test")
