@@ -26,20 +26,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
   width: 200px;
   height: 100px;
-  padding: 1rem;
+  padding: 0.8rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
   background-color: white;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
+.overview-item-icon-container {
+  text-align: center;
+  padding: 1rem;
+  border-right: 2px solid #ccc;
+}
 
-.overview-item-icon img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
+.overview-item-icon {
+  width: 70px;
+}
+
+.overview-item-text {
+  text-align: left;
 }
 
 .overview-item-text p {

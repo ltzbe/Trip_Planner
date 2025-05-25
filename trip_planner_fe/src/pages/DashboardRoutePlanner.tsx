@@ -1,10 +1,10 @@
 import Sidebar from "../components/sidebar";
-import "../css/dashboard.css";
+import "../css/dashboardRoutePlanner.css";
 
-function Dashboard() {
+function DashboardOverview() {
 
   return (
-    <div className="dashboard-wrapper">
+    <div className="dashboard-wrappers">
       <Sidebar />
       <div className={"overview-container"}>
         <div className="overview-item-title">
@@ -52,4 +52,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DashboardOverview;

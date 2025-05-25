@@ -1,19 +1,19 @@
+import { Routes, Route, useLocation } from "react-router-dom";
 import './css/App.css';
 import './css/variables.css';
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
-// import Footer from "./components/footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 // import ProtectedRoute from './components/protectedRoute';
-import Dashboard from "./pages/Dashboard";
-import { Routes, Route, useLocation } from "react-router-dom";
+import DashboardOverview from "./pages/DashboardOverview";
+import DashboardRoutePlanner from "./pages/DashboardRoutePlanner";
 
 function App() {
   const location = useLocation();
-  const hideNavbarAndFooter = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/dashboard";
+  const hideNavbarAndFooter = ["/login", "/register", "/dashboard-overview", "/dashboard-route-planner"].includes(location.pathname);
 
   return (
     <div className="app-wrapper">
@@ -24,11 +24,12 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={
+          <Route path="/dashboard-overview" element={
             // <ProtectedRoute>
-              <Dashboard />
+              <DashboardOverview />
             // </ProtectedRoute>
           } />
+          <Route path="/dashboard-route-planner"element={<DashboardRoutePlanner />} />
         </Routes>
         {!hideNavbarAndFooter && <Footer />}
       </main>
