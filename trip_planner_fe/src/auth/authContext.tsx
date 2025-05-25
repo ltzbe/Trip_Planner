@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: { children: React.JSX.Element }) => {
   const [token, setToken] = useState<string | null>(() => getTokenFromCookie());
 
   const login = (newToken: string) => {
-    localStorage.setItem("token", newToken);
+    document.cookie = `token=${newToken}; path=/;`
     setToken(newToken);
   };
 
