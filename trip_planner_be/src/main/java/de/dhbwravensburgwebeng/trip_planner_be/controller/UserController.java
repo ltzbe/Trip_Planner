@@ -23,7 +23,7 @@ public class UserController {
     public AuthResponse createUser(@RequestBody @Validated UserEntity user) {
         userService.signup(user);
         String username = user.getName();
-        String token = jwtService.generateToken(user.getName());
+        String token = jwtService.generateToken(username);
         return new AuthResponse(token, username);
     }
 
@@ -35,8 +35,8 @@ public class UserController {
     }
 
     @GetMapping("/test")
-    public String test(){
-        return "test";
+    public AuthResponse test(){
+        return new AuthResponse("testtoken", "test");
     }
 
 //    @DeleteMapping("/user/id")
