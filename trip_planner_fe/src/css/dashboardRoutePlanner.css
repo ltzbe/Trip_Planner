@@ -1,0 +1,7 @@
+.route-overview-container {
+  display: flex;
+  padding: 2rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  flex-direction: column;
+}
