@@ -1,0 +1,15 @@
+.address-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 1rem auto;
+}
+
+.address-input-wrapper input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: white;
+  background-color: var(--accent-color);
+}

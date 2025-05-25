@@ -1,18 +1,20 @@
 import Sidebar from "../components/sidebar";
 import Map from "../components/map";
+import Input from "../components/mapInput";
+
 import "../css/dashboardRoutePlanner.css";
 
-function DashboardOverview() {
+export default function DashboardRoutePlanner() {
 
   return (
-    <div className="dashboard-wrappers">
+    <div className="route-planner-wrapper">
       <Sidebar />
-      <div className="overview-container">
+      <div className="route-overview-container">
+        <Input />
         <Map />
-          
       </div>
     </div>
   );
 }
 
-export default DashboardOverview;
+

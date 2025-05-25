@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
+import '../css/map.css';
+
 type MapProps = {
   center?: [number, number];
   zoom?: number;
@@ -26,6 +28,6 @@ export default function Map({ center = [11.5761, 48.1374], zoom = 10 }: MapProps
   }, [center, zoom]);
 
   return (
-    <div ref={mapContainer} style={{ width: '40%', height: '500px', left: '50%' }} />
+    <div ref={mapContainer} className="map-container"/>
   );
 }
