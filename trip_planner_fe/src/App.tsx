@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 // import ProtectedRoute from './components/protectedRoute';
 import DashboardOverview from "./pages/DashboardOverview";
 import DashboardRoutePlanner from "./pages/DashboardRoutePlanner";
+import {MapProvider} from "./api/geoapify/mapContext.tsx";
 
 function App() {
   const location = useLocation();
@@ -26,10 +27,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard-overview" element={
             // <ProtectedRoute>
-              <DashboardOverview />
+            <DashboardOverview />
             // </ProtectedRoute>
           } />
-          <Route path="/dashboard-route-planner"element={<DashboardRoutePlanner />} />
+           <Route path="/dashboard-route-planner"element={
+             <MapProvider>
+              <DashboardRoutePlanner />
+             </MapProvider>
+           } />
         </Routes>
         {!hideNavbarAndFooter && <Footer />}
       </main>
