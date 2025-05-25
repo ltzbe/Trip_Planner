@@ -18,7 +18,6 @@ public class UserEntity {
     @NotNull
     @Column(unique = true)
     private String name;
-    @NotNull
     @Email
     @Column(unique = true)
     private String email;
