@@ -32,10 +32,10 @@ public class UserService {
     }
 
     public String verify (UserEntity user) {
-        Authentication auth = manager.authenticate(new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
+        Authentication auth = manager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
         if(auth.isAuthenticated()) {
-            return jwtService.generateToken(user.getName());
+            return jwtService.generateToken(user.getUsername());
         }
         return "fail";
     }

@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../auth/authContext";
 import "../css/LoginCard.css";
@@ -7,7 +7,7 @@ const LoginCard = () => {
   const location = useLocation();
   const isRegister = location.pathname === "/register";
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
@@ -18,7 +18,7 @@ const LoginCard = () => {
     const response = await fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, password }),
     });
 
     if (response.ok) {
@@ -36,14 +36,14 @@ const LoginCard = () => {
     const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ username, email, password }),
     });
 
     if (response.ok) {
       const data = await response.json();
       console.log("Data:" + data);
       login(data.token);
-      console.log
+      console.log(data.token)
       document.cookie = `token=${data.token}; path=/;`;
       navigate("/dashboard-overview");
     } else {
@@ -71,27 +71,28 @@ const LoginCard = () => {
               </Link>
             </p>
             <form onSubmit={isRegister ? handleSignup : handleLogin}>
+
+              <label>Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Your name"
+                required
+              />
+
               {isRegister && (
                 <>
-                  <label>Name</label>
+                  <label>Email</label>
                   <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Your name"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="example@gmail.com"
                     required
                   />
                 </>
               )}
-
-              <label>Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="example@gmail.com"
-                required
-              />
 
               <label>Password</label>
               <input

@@ -22,14 +22,14 @@ public class UserController {
     @PostMapping("/signup")
     public AuthResponse createUser(@RequestBody @Validated UserEntity user) {
         userService.signup(user);
-        String username = user.getName();
+        String username = user.getUsername();
         String token = jwtService.generateToken(username);
         return new AuthResponse(token, username);
     }
 
     @PostMapping ("/login")
     public AuthResponse login(@RequestBody @Validated UserEntity user) {
-        String username = user.getName();
+        String username = user.getUsername();
         String token = userService.verify(user);
         return new AuthResponse(token, username);
     }
