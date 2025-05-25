@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -24,7 +23,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Query("SELECT u.id FROM UserEntity u WHERE u.email = :email")
     Long findIdByEmail(String email);
 
-    UserEntity findByName(@NotNull String name);
+    UserEntity findByUsername(@NotNull String name);
 
 }
 

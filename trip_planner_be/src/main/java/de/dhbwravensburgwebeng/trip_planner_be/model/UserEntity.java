@@ -5,9 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-
-import java.util.Date;
-
 @Data
 @Entity
 @Table(name = "USERS")
@@ -17,7 +14,7 @@ public class UserEntity {
     private Long id;
     @NotNull
     @Column(unique = true)
-    private String name;
+    private String username;
     @Email
     @Column(unique = true)
     private String email;
@@ -26,7 +23,7 @@ public class UserEntity {
 
     public User toUser() {
         User user = new User();
-        user.setName(this.name);
+        user.setUsername(this.username);
         user.setEmail(this.email);
         user.setPassword(this.password);
         return user;
