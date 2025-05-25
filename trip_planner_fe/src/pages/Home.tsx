@@ -11,7 +11,7 @@ function Home() {
     <div>
       <main>
         <div className="hero">
-          <div className="hero-icon-laptop">
+          <div className="hero-icon-container">
             <img src={HeroIcon} alt="Laptop-Icon" className="hero-icon" />
           </div>
           <div className="hero-text">

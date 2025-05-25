@@ -25,7 +25,7 @@ const LoginCard = () => {
       const data = await response.json();
       login(data.token);
       document.cookie = `token=${data.token}; path=/;`;
-      navigate("/dashboard");
+      navigate("/dashboard-overview");
     } else {
       alert("Login fehlgeschlagen");
     }
@@ -45,7 +45,7 @@ const LoginCard = () => {
       login(data.token);
       console.log
       document.cookie = `token=${data.token}; path=/;`;
-      navigate("/dashboard");
+      navigate("/dashboard-overview");
     } else {
       alert("Login fehlgeschlagen");
     }

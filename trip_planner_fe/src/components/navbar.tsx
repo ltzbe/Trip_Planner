@@ -4,7 +4,7 @@ import Logo from "../assets/tripplanr-logo.png";
 
 const Navbar = () => {
   const location = useLocation();
-  const showAuthButtons = location.pathname !== "/dashboard";
+  const showAuthButtons = location.pathname !== "/dashboard-overview";
 
   return (
     <nav className="navbar">
@@ -19,7 +19,7 @@ const Navbar = () => {
           <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/">Home</NavLink>
           <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/about">About</NavLink>
           <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/services">Services</NavLink>
-          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/dashboard">Dash</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "navbar-links active" : "navbar-links"} to="/dashboard-overview">Dash</NavLink>
       </div>
 
       <div className="navbar-right">

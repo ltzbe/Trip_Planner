@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 // import { useState } from "react";
 import "../css/sidebar.css";
@@ -28,7 +28,7 @@ const Sidebar = () => {
               <p className="sidebar-menu-title-opened">Your Routes</p>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard-overview"
                   className={({ isActive }) =>
                     isActive
                       ? "sidebar-links-opened active"
@@ -40,7 +40,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard-overview"
                   className={({ isActive }) =>
                     isActive
                       ? "sidebar-links-opened active"
@@ -52,7 +52,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard-overview"
                   className={({ isActive }) =>
                     isActive
                       ? "sidebar-links-opened active"
@@ -64,7 +64,7 @@ const Sidebar = () => {
               </li>
             </ul>
             <div className="sidebar-footer-opened">
-              <p className="sidebar-menu-title-opened">← Verlassen</p>
+              <Link to="/" className="sidebar-menu-title-opened">← Verlassen</Link>
             </div>
           </>
         )}
@@ -81,7 +81,7 @@ const Sidebar = () => {
               <p className="sidebar-menu-title-closed">Your Routes</p>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard-overview"
                   className={({ isActive }) =>
                     isActive
                       ? "sidebar-links-closed active"
@@ -93,7 +93,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard-overview"
                   className={({ isActive }) =>
                     isActive
                       ? "sidebar-links-closed active"
@@ -105,7 +105,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard-overview"
                   className={({ isActive }) =>
                     isActive
                       ? "sidebar-links-closed active"
@@ -117,7 +117,7 @@ const Sidebar = () => {
               </li>
             </ul>
             <div className="sidebar-footer-closed">
-              <p className="sidebar-menu-title-closed"><img src={ArrowIcon} alt="" /></p>
+              <Link to="/" className="sidebar-menu-title-closed"><img src={ArrowIcon} alt="" /></Link>
             </div>
           </>
         )}
