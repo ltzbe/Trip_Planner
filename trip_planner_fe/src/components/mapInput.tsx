@@ -7,11 +7,11 @@ import "../css/addressInput.css";
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1
 
 const App = () => {
-  function onPlaceSelect(value: any) {
+  function onPlaceSelect(value: GeoJSON.Feature) {
     console.log(value);
   }
 
-  function onSuggectionChange(value: any) {
+  function onSuggectionChange(value: GeoJSON.Feature) {
     console.log(value);
   }
 
