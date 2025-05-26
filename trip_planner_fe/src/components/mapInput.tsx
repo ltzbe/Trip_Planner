@@ -15,16 +15,15 @@ const App = () => {
 
   function onPlaceSelectStart(value: any) {
     setStartInput(value)
-    if(endInput && map){
+    if(endInput && map && value){
       handleGetRoute(map, value, endInput); //value since setStartInput is async and doesnt have value yet
     }
   }
 
   function onPlaceSelectEnd(value :any){
     setEndInput(value)
-    if(startInput && map){
-      handleGetRoute(map, startInput, value)
-    }
+    if(startInput && map && value){
+      handleGetRoute(map, startInput, value)}
   }
 
   function onSuggectionChange(value: any) {
