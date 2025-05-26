@@ -1,4 +1,4 @@
-import {Link, useNavigate, useLocation} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../auth/authContext";
 import "../css/LoginCard.css";
@@ -67,10 +67,10 @@ const LoginCard = () => {
               </Link>
             </p>
             <form onSubmit={isRegister ? handleSignup : handleLogin}>
-
               <label>Username</label>
               <input
                 type="text"
+                name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Your name"
@@ -82,6 +82,7 @@ const LoginCard = () => {
                   <label>Email</label>
                   <input
                     type="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="example@gmail.com"
@@ -93,6 +94,7 @@ const LoginCard = () => {
               <label>Password</label>
               <input
                 type="password"
+                name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
