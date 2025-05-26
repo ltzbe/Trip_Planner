@@ -7,6 +7,7 @@ import "../css/addressInput.css";
 import {useState} from "react";
 import {handleGetRoute} from "../api/geoapify/route.ts";
 import {useMap} from "../api/geoapify/mapContext.tsx";
+const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1
 
 const App = () => {
   const {map} = useMap()
@@ -20,18 +21,18 @@ const App = () => {
     }
   }
 
-  function onPlaceSelectEnd(value :any){
+  function onPlaceSelectEnd(value: any){
     setEndInput(value)
     if(startInput && map && value){
       handleGetRoute(map, startInput, value)}
   }
 
-  function onSuggectionChange(value: any) {
+  function onSuggectionChange(value: GeoJSON.Feature) {
     console.log(value);
   }
 
   return (
-    <GeoapifyContext apiKey="7263a7cafcc4410db5377fda5a87d544">
+    <GeoapifyContext apiKey={GEO_API_KEY}>
       <div className="address-input-wrapper">
         <h2>Start</h2>
         <GeoapifyGeocoderAutocomplete

@@ -16,14 +16,18 @@ function DashboardOverview() {
         <div className="overview-item-wrapper">
           <Link to="/dashboard-route-planner" className="overview-item">
             <div className="overview-item-icon-container">
-              <img src={RouteIcon} alt="placeholder" className="overview-item-icon" />
+              <img
+                src={RouteIcon}
+                alt="placeholder"
+                className="overview-item-icon"
+              />
             </div>
             <div className="overview-item-text">
               <p>Plane deinen nächsten Trip ganz unkompliziert!</p>
             </div>
           </Link>
 
-          <Link to="/" className="overview-item">
+          <Link to="/" className="overview-item coming-soon">
             <div className="overview-item-icon">
               <img src="#" alt="placeholder" />
             </div>
@@ -32,7 +36,7 @@ function DashboardOverview() {
             </div>
           </Link>
 
-          <Link to="/" className="overview-item">
+          <Link to="/" className="overview-item coming-soon">
             <div className="overview-item-icon">
               <img src="#" alt="placeholder" />
             </div>
@@ -41,7 +45,7 @@ function DashboardOverview() {
             </div>
           </Link>
 
-          <Link to="/" className="overview-item">
+          <Link to="/" className="overview-item coming-soon">
             <div className="overview-item-icon">
               <img src="#" alt="placeholder" />
             </div>
