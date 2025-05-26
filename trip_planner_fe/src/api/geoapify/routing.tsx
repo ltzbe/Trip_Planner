@@ -1,7 +1,7 @@
 // for routing
 import {useMap} from "./mapContext.tsx";
 
-const ROUTING_API_KEY = "7263a7cafcc4410db5377fda5a87d544"
+const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_3
 
 const start = {
     lat: 52.5200,
@@ -46,7 +46,7 @@ const Route = () => {
     }
 
     async function handleGetRoute() {
-        const response = await fetch(`https://api.geoapify.com/v1/routing?waypoints=${start.lat},${start.lon}|${end.lat},${end.lon}&mode=drive&apiKey=${ROUTING_API_KEY}`, {
+        const response = await fetch(`https://api.geoapify.com/v1/routing?waypoints=${start.lat},${start.lon}|${end.lat},${end.lon}&mode=drive&apiKey=${GEO_API_KEY}`, {
             method: "GET",
         })
         if (response.ok){

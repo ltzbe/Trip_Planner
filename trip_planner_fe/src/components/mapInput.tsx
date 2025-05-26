@@ -4,6 +4,7 @@ import {
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 import "../css/addressInput.css";
+const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1
 
 const App = () => {
   function onPlaceSelect(value: any) {
@@ -15,7 +16,7 @@ const App = () => {
   }
 
   return (
-    <GeoapifyContext apiKey="7263a7cafcc4410db5377fda5a87d544">
+    <GeoapifyContext apiKey={GEO_API_KEY}>
       <div className="address-input-wrapper">
         <h2>Start</h2>
         <GeoapifyGeocoderAutocomplete
