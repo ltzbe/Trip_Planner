@@ -6,11 +6,11 @@ import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 import "../css/addressInput.css";
 
 const App = () => {
-  function onPlaceSelect(value: any) {
+  function onPlaceSelect(value: GeoJSON.Feature) {
     console.log(value);
   }
 
-  function onSuggectionChange(value: any) {
+  function onSuggectionChange(value: GeoJSON.Feature) {
     console.log(value);
   }
 
