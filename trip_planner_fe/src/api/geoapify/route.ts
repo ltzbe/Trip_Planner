@@ -71,6 +71,7 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput, endInput)=
         const data = await response.json()
 
         displayRoute(map, data, start, end, startInput, endInput);
+        return data
 
     }
 }
