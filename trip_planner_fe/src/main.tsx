@@ -1,5 +1,6 @@
 import '@fontsource/arvo/400.css'
 import '@fontsource/arvo/700.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
