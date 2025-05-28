@@ -1,15 +1,28 @@
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: space-between;
+}
+
 .address-input-wrapper {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 30%;
   margin: 1rem auto;
 }
 
 .address-input-wrapper input {
-  width: 100%;
+  width: 94.5%;
   padding: 0.5rem;
-  border-radius: 4px;
+  border-radius: 15px;
   font-size: 1rem;
-  color: white;
-  background-color: var(--accent-color);
+  color: black;
+  background-color: white;
+  border-color: var(--accent-color);
+}
+
+.geocode.container {
+  margin: 0;
 }

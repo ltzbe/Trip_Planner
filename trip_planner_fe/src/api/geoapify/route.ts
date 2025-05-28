@@ -71,6 +71,8 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput, endInput)=
         const data = await response.json()
 
         displayRoute(map, data, start, end, startInput, endInput);
+        // map.jumpTo({center: [start[1], start[0]], zoom: 10})
+
         return data
 
     }

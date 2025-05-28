@@ -1,7 +1,13 @@
 .route-overview-container {
   display: flex;
   padding: 2rem;
-  margin-left: 10rem;
-  margin-right: 10rem;
+  margin-left: 220px;
+  margin-right: 50px;
   flex-direction: column;
 }
+
+.route-overview-container h1 {
+  align-self: center;
+  margin-bottom: 3rem;
+}
+
