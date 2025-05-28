@@ -51,11 +51,9 @@ const Navbar = () => {
 
       <div className="navbar-right">
         {!token ? (
-          <>
-            <Link className="navbar-login-btn" to="/login">
-              Login
-            </Link>
-          </>
+          <Link className="navbar-login-btn" to="/login">
+            Login
+          </Link>
         ) : (
           <Link className="navbar-logout-btn" onClick={logout} to="/login">
             Logout
