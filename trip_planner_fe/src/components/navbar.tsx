@@ -55,9 +55,9 @@ const Navbar = () => {
             Login
           </Link>
         ) : (
-          <Link className="navbar-logout-btn" onClick={logout} to="/login">
+          <button className="navbar-logout-btn" onClick={logout}>
             Logout
-          </Link>
+          </button>
         )}
       </div>
     </nav>
