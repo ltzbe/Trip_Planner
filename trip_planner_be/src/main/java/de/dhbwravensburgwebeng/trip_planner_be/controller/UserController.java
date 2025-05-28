@@ -4,11 +4,13 @@ import de.dhbwravensburgwebeng.trip_planner_be.dto.AuthResponse;
 import de.dhbwravensburgwebeng.trip_planner_be.model.UserEntity;
 import de.dhbwravensburgwebeng.trip_planner_be.service.JWTService;
 import de.dhbwravensburgwebeng.trip_planner_be.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@Tag(name = "User Management", description = "Operations related to creating and validating users")
 public class UserController {
 
     private final UserService userService;

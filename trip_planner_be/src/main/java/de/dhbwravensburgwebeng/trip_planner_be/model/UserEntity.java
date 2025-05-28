@@ -21,11 +21,4 @@ public class UserEntity {
     @NotNull
     private String password;
 
-    public User toUser() {
-        User user = new User();
-        user.setUsername(this.username);
-        user.setEmail(this.email);
-        user.setPassword(this.password);
-        return user;
-    }
 }
