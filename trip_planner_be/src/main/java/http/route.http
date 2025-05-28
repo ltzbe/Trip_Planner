@@ -3,6 +3,7 @@ POST http://localhost:8080/routes
 Content-Type: application/json
 
 {
-  "name": "Route in die Hölle",
-  "route": "asdfdasf"
+  "name": "Test-Route",
+  "route": "nur Route, kein Name"
 }
+

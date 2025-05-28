@@ -19,7 +19,8 @@ public class RouteController {
     }
 
     @PostMapping("/routes")
-    public ResponseEntity<Void> storeRoute(@RequestBody @Validated Route route) {
+    public ResponseEntity<Void> storeRoute(@RequestBody Route route) {
+        System.out.println("Test");
         routeService.createRoute(route);
         return ResponseEntity.ok().build();
     }
