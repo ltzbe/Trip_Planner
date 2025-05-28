@@ -4,18 +4,26 @@ import {
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 import "../css/addressInput.css";
-import {useState} from "react";
 import {handleGetRoute} from "../api/geoapify/route.ts";
 import {useMap} from "../api/geoapify/mapContext.tsx";
+import {RouteDetails} from "../types/routeDetails.ts";
+import React from "react";
+import {InputAutocomplete} from "../types/inputComplete.ts";
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1
 
-const App = ({setRouteDetails}) => {
-  const {map} = useMap()
-  const [startInput, setStartInput] = useState();
-  const [endInput, setEndInput] = useState();
+type Props = {
+  setRouteDetails: React.Dispatch<React.SetStateAction<RouteDetails | null>>;
+  startInput: InputAutocomplete | null;
+  setStartInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>;
+  endInput: InputAutocomplete | null;
+  setEndInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>
+};
 
-  async function onPlaceSelectStart(value: any) {
-    if(map){
+const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput} : Props) => {
+  const {map} = useMap()
+
+  async function onPlaceSelectStart(value: InputAutocomplete) {
+    if(map && value.properties.lon && value.properties.lat){
       map.jumpTo({center: [value.properties.lon, value.properties.lat], zoom: 10})
       setStartInput(value)
       if(endInput && value){
@@ -24,7 +32,7 @@ const App = ({setRouteDetails}) => {
     }
   }
 
-  async function onPlaceSelectEnd(value: any){
+  async function onPlaceSelectEnd(value: InputAutocomplete){
     setEndInput(value)
     if(startInput && map && value){
       setRouteDetails(await handleGetRoute(map, startInput, value))}
@@ -33,6 +41,7 @@ const App = ({setRouteDetails}) => {
   function onSuggectionChange(value: GeoJSON.Feature) {
     console.log(value);
   }
+
 
   return (
     <div className="input-container">
