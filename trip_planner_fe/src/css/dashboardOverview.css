@@ -1,3 +1,11 @@
+.overview-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 170px;
+  margin-right: auto;
+}
+
 .overview-item-title {
   display: flex;
   justify-content: center;
@@ -15,9 +23,9 @@
   gap: 1rem;
   padding: 2rem;
   margin-top: 2rem;
-  margin-left: 10rem;
-  margin-right: 10rem;
-  background-color: #f0f0f0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #eeeeee;
   justify-content: center;
   align-items: flex-start;
 }
@@ -28,6 +36,7 @@
   align-items: center;
   gap: 1rem;
   width: 200px;
+  min-width: 200px;
   height: 100px;
   padding: 0.8rem;
   text-decoration: none;
@@ -41,6 +50,7 @@
 .coming-soon {
   position: relative;
   overflow: hidden;
+  cursor: not-allowed;
 }
 
 .coming-soon * {
@@ -51,16 +61,12 @@
 .coming-soon::after {
   content: "Coming Soon";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-weight: bold;
   font-size: 1rem;
-  pointer-events: none;
 }
 
 .overview-item-icon-container {
