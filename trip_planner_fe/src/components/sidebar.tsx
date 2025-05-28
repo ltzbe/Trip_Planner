@@ -1,10 +1,13 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import "../css/sidebar.css";
 
 import Logo from "../assets/tripplanr-logo.png";
 // import UserIcon from "../assets/user.png";
 
 const Sidebar = () => {
+  const location = useLocation();
+  const backButtonTarget =
+    location.pathname === "/dashboard-overview" ? "/" : "/dashboard-overview";
   return (
     <nav className="sidebar">
       <div className="sidebar-header">
@@ -66,7 +69,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="sidebar-footer">
-        <Link to="/dashboard-overview" className="sidebar-footer-title">
+        <Link to={backButtonTarget} className="sidebar-footer-title">
           ← Verlassen
         </Link>
       </div>

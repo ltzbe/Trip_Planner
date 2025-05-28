@@ -10,19 +10,19 @@ const AuthContext = createContext<AuthContextType>(null!);
 
 export const AuthProvider = ({ children }: { children: React.JSX.Element }) => {
   const getTokenFromCookie = () => {
-    const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
+    const match = document.cookie.match(new RegExp("(^| )token=([^;]+)"));
     return match ? decodeURIComponent(match[2]) : null;
   };
 
   const [token, setToken] = useState<string | null>(() => getTokenFromCookie());
 
   const login = (newToken: string) => {
-    document.cookie = `token=${newToken}; path=/;`
+    document.cookie = `token=${newToken}; path=/;`;
     setToken(newToken);
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
     setToken(null);
   };
 

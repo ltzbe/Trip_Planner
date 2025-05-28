@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../auth/authContext";
 import "../css/Home.css";
+
 import HeroIcon from "../assets/hero-icon.png";
 import RouteIcon from "../assets/route-icon.png";
 import BedIcon from "../assets/bed-icon.png";
@@ -7,6 +9,8 @@ import PlateIcon from "../assets/plate-icon.png";
 import GasIcon from "../assets/gas-icon.png";
 
 function Home() {
+  const { token } = useAuth();
+
   return (
     <div>
       <main>
@@ -19,10 +23,18 @@ function Home() {
             <p>
               Finde die schönsten und interresantesten Orte auf deinem Trip!
             </p>
-            <Link to="/login" className="hero-button">Jetzt loslegen</Link>
+            {!token ? (
+              <Link to="/login" className="hero-button">
+                Jetzt loslegen
+              </Link>
+            ) : (
+              <Link to="/dashboard-overview" className="hero-button">
+                Zum Dashboard
+              </Link>
+            )}
           </div>
         </div>
-        
+
         <div className="feature-card-wrapper">
           <div className="feature-cards">
             <div className="feature-card icon">
