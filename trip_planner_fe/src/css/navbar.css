@@ -42,15 +42,6 @@
   width: fit-content;
 }
 
-/* Centered part of the navbar (Login-Button) */
-
-/* .navbar-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-} */
-
 .navbar-center {
   position: absolute;
   left: 50%;
@@ -111,17 +102,17 @@
   color: white;
   font-size: 1.2rem;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
+  padding: 0.65rem 1.35rem;
   border: none;
 }
 
 .navbar-login-btn:hover,
 .navbar-logout-btn:hover {
   /* color: #3c4a48; */
-  background-color: var(--accent-color);
+  background-color: var(--button-hover-color);
   transition: 0.3s ease;
 }

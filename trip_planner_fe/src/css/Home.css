@@ -39,13 +39,13 @@
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .hero-button:hover {
-  background-color: var(--accent-color);
+  background-color: var(--button-hover-color);
 }
 
 /* Feature-Cards */
@@ -115,19 +115,32 @@
 }
 
 .dashboard-preview-wrapper {
+  background-color: rgb(222, 222, 222);
+  display: flex;
+  align-items: flex-start;
+  padding: 2rem;
+  gap: 20rem;
+  height: 600px;
 }
 
 .iphone-icon {
   position: relative;
   left: -170px;
   top: -63px;
-  width: 90px;
+  width: 110px;
 }
 
 .dashboard-preview-text {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  text-align: right;
+  margin-top: 6rem;
   width: 370px;
-  position: relative;
-  top: -300px;
-  left: 70%;
+}
+
+.dashboard-preview-text h2 {
+  margin-bottom: 2rem;
+}
+
+.dashboard-preview-text-highlight {
+  color: var(--accent-color);
 }

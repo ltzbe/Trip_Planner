@@ -115,15 +115,13 @@ function Home() {
             <img src={iphone} alt="Phone" className="iphone-icon" />
           </div>
           <div className="dashboard-preview-text">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-              invidunt ut labore et dolore magna aliquyam
-            </p>
+            <h2>
+              Entdecken Sie unser{" "}
+              <span className="dashboard-preview-text-highlight">
+                Dashboard
+              </span>
+            </h2>
+            <p>So leicht war es noch nie!</p>
           </div>
         </div>
       </main>
