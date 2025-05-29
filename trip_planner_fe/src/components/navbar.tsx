@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "../css/navbar.css";
 import Logo from "../assets/tripplanr-logo.png";
 import { useAuth } from "../auth/authContext";
@@ -6,8 +7,19 @@ import { useAuth } from "../auth/authContext";
 const Navbar = () => {
   const { token, logout } = useAuth();
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-left">
         <Link to="/" className="navbar-logo-link">
           <img src={Logo} alt="Logo" className="navbar-logo" />
