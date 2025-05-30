@@ -11,3 +11,13 @@
   margin-bottom: 3rem;
 }
 
+.route-planner-submit-route-button {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+}
