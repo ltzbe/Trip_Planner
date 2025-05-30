@@ -11,7 +11,7 @@
 
 .hero-text {
   margin: auto;
-  margin-top: 35vh;
+  margin-top: 33vh;
   width: 33vw;
   min-width: 700px;
   text-align: center;
@@ -52,52 +52,17 @@
 
 .feature-cards-title {
   text-align: center;
-  margin-top: 5vh;
+  margin-top: 10vh;
   margin-bottom: 10vh;
 }
 
 .feature-card-wrapper {
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 1fr 2fr;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 1fr;
   gap: 4rem;
   justify-content: center;
-}
-
-.feature-cards {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 2px 2px 10px 0 var(--accent-color);
-  width: 350px;
-  height: 130px;
-  padding: 0.8rem;
-  border-radius: 8px;
-}
-
-.feature-card-icon {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.feature-card-icon img {
-  width: 110px;
-}
-
-.feature-card-text {
-  width: 50%;
-  font-size: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.feature-cards:hover {
-  transform: scale(1.03);
+  margin-bottom: 15rem;
 }
 
 .wave-divider {
@@ -143,4 +108,70 @@
 
 .dashboard-preview-text-highlight {
   color: var(--accent-color);
+}
+
+/* From Uiverse.io by suleymanlaarabidev */
+.feature-card {
+  width: 190px;
+  height: 254px;
+  background: var(--button-color);
+  transition: all 0.4s;
+  border-radius: 10px;
+  box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.4);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.feature-card:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.4);
+  background: var(--button-hover-color);
+}
+
+.feature-card .first-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  border-radius: 15px;
+  font-size: 1rem;
+}
+
+.feature-card .first-content span {
+  margin-top: 1.5rem;
+}
+
+.feature-card:hover .first-content {
+  height: 0px;
+  opacity: 0;
+}
+
+.feature-card .second-content {
+  height: 0%;
+  width: 100%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  transition: all 0.4s;
+  font-size: 0px;
+  transform: rotate(90deg) scale(-1);
+}
+
+.feature-card:hover .second-content {
+  opacity: 1;
+  height: 100%;
+  font-size: 1.8rem;
+  transform: rotate(0deg);
+}
+
+.gas-icon {
+  width: 70px;
 }

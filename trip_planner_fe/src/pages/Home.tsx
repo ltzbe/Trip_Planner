@@ -56,7 +56,7 @@ function Home() {
           <h1>Unsere Funktionen</h1>
         </div>
         <div className="feature-card-wrapper">
-          <div className="feature-cards">
+          {/* <div className="feature-cards">
             <div className="feature-card-icon">
               <img
                 src={RouteIcon}
@@ -105,6 +105,46 @@ function Home() {
             </div>
             <div className="feature-card-text">
               <p>Lass deinen Tank niemals leer werden</p>
+            </div>
+          </div> */}
+
+          <div className="feature-card">
+            <div className="first-content">
+              <img src={GasIcon} alt="Gas Icon" className="gas-icon" />
+              <span>Tankstellen finden!</span>
+            </div>
+            <div className="second-content">
+              <span>Second</span>
+            </div>
+          </div>
+
+          <div className="feature-card">
+            <div className="first-content">
+              <img src={PlateIcon} alt="Gas Icon" className="gas-icon" />
+              <span>Tankstellen finden!</span>
+            </div>
+            <div className="second-content">
+              <span>Second</span>
+            </div>
+          </div>
+
+          <div className="feature-card">
+            <div className="first-content">
+              <img src={RouteIcon} alt="Gas Icon" className="gas-icon" />
+              <span>Tankstellen finden!</span>
+            </div>
+            <div className="second-content">
+              <span>Second</span>
+            </div>
+          </div>
+
+          <div className="feature-card">
+            <div className="first-content">
+              <img src={BedIcon} alt="Gas Icon" className="gas-icon" />
+              <span>Tankstellen finden!</span>
+            </div>
+            <div className="second-content">
+              <span>Second</span>
             </div>
           </div>
         </div>
