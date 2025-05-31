@@ -1,20 +1,26 @@
 package de.dhbwravensburgwebeng.trip_planner_be.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
+@Getter
+@Setter
+@Entity
+@Table(name = "ROUTES")
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String startPoint;
-    private String endPoint;
-    private ArrayList<String> stops;
-    private int userID;
-    private int distance;
-    private int time;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id")
+    private UserEntity userID;
+
+    @NotNull
+    private String name;
+
+    @NotNull
+    private String route;
 }

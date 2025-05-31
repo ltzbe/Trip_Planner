@@ -1,13 +1,13 @@
 :root {
-  font-family: 'League Spartan', sans-serif;
+  font-family: "League Spartan", sans-serif;
   /* line-height: 1.5; */
   font-weight: 400;
   font-size: 1rem;
 
   color-scheme: light dark;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
+  /* background-image: url("./assets/abstract-background.png"); */
   color: rgba(0, 0, 0, 0.87);
-
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

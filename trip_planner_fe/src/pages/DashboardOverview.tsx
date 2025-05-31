@@ -40,23 +40,29 @@ function DashboardOverview() {
             </div>
           </Link>
 
-          <Link to="/" className="overview-item coming-soon">
+          <div
+            className="overview-item coming-soon"
+            onClick={(e) => e.preventDefault()}
+          >
             <div className="overview-item-icon">
               <img src="#" alt="placeholder" />
             </div>
             <div className="overview-item-text">
               <p>Hallo</p>
             </div>
-          </Link>
+          </div>
 
-          <Link to="/" className="overview-item coming-soon">
+          <div
+            className="overview-item coming-soon"
+            onClick={(e) => e.preventDefault()}
+          >
             <div className="overview-item-icon">
               <img src="#" alt="placeholder" />
             </div>
             <div className="overview-item-text">
               <p>Hallo</p>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

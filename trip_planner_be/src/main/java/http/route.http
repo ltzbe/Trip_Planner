@@ -1,0 +1,9 @@
+### Test POST /routes
+POST http://localhost:8080/routes
+Content-Type: application/json
+
+{
+  "name": "Test-Route",
+  "route": "nur Route, kein Name"
+}
+
