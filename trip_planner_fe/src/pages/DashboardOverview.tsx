@@ -27,7 +27,7 @@ function DashboardOverview() {
             </div>
           </Link>
 
-          <Link to="/" className="overview-item coming-soon">
+          <Link to="/places" className="overview-item">
             <div className="overview-item-icon">
               <img src="#" alt="placeholder" />
             </div>
