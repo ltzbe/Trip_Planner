@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./components/protectedRoute";
 import DashboardOverview from "./pages/DashboardOverview";
 import DashboardRoutePlanner from "./pages/DashboardRoutePlanner";
+import Places from "./pages/Places.tsx";
 import { MapProvider } from "./api/geoapify/mapContext.tsx";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     "/register",
     "/dashboard-overview",
     "/dashboard-route-planner",
+    "/places"
   ].includes(location.pathname);
 
   return (
@@ -47,6 +49,7 @@ function App() {
               </MapProvider>
             }
           />
+          <Route path="/places" element={<Places/>} />
         </Routes>
         {!hideNavbarAndFooter && <Footer />}
       </main>

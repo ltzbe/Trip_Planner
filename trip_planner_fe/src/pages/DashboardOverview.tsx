@@ -27,17 +27,18 @@ function DashboardOverview() {
             </div>
           </Link>
 
-          <div
-            className="overview-item coming-soon"
-            onClick={(e) => e.preventDefault()}
-          >
-            <div className="overview-item-icon">
-              <img src="#" alt="placeholder" />
+          <Link to="/places" className="overview-item">
+            <div className="overview-item-icon-container">
+              <img
+                src={RouteIcon}
+                alt="placeholder"
+                className="overview-item-icon"
+              />
             </div>
             <div className="overview-item-text">
-              <p>Hallo</p>
+              <p>Infos für jeden Ort</p>
             </div>
-          </div>
+          </Link>
 
           <div
             className="overview-item coming-soon"
