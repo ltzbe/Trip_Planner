@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../auth/authContext";
+import { useAuth } from "../context/auth/authContext";
 import "../css/Home.css";
 
 import RouteIcon from "../assets/route-icon.png";

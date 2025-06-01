@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../auth/authContext";
-import { useNotification } from "../auth/notificationContext.tsx";
+import { useAuth } from "../context/auth/authContext.tsx";
+import { useNotification } from "../context/notification/notificationContext.tsx";
 import "../css/LoginCard.css";
 
 const LoginCard = () => {
