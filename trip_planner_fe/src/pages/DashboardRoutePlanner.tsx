@@ -2,6 +2,7 @@ import Sidebar from "../components/sidebar";
 import Map from "../components/map";
 import Input from "../components/mapInput";
 import { useState } from "react";
+import { useNotification } from "../auth/notificationContext";
 import Details from "../components/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
 
@@ -13,6 +14,7 @@ export default function DashboardRoutePlanner() {
   const [routeDetails, setRouteDetails] = useState<RouteDetails | null>(null);
   const [startInput, setStartInput] = useState<InputAutocomplete | null>(null);
   const [endInput, setEndInput] = useState<InputAutocomplete | null>(null);
+  const { addNotification } = useNotification();
 
   return (
     <div className="route-planner-wrapper">
@@ -41,7 +43,7 @@ export default function DashboardRoutePlanner() {
         onClick={(e) => {
           e.preventDefault();
           if (!routeDetails) {
-            alert("Bitte zuerst eine Route berechnen.");
+            addNotification("Bitte zuerst eine Route berechnen.", "error");
             return;
           }
           submitRoute(routeDetails)

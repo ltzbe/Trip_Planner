@@ -1,9 +1,11 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../auth/authContext";
+import { useNotification } from "../auth/notificationContext.tsx";
 import "../css/LoginCard.css";
 
 const LoginCard = () => {
+  const { addNotification } = useNotification();
   const location = useLocation();
   const isRegister = location.pathname === "/register";
 
@@ -25,8 +27,9 @@ const LoginCard = () => {
       const data = await response.json();
       login(data.token);
       navigate("/dashboard-overview");
+      addNotification("Login erfolgreich", "success");
     } else {
-      alert("Login fehlgeschlagen");
+      addNotification("Login fehlgeschlagen", "error");
     }
   };
 
@@ -42,8 +45,9 @@ const LoginCard = () => {
       const data = await response.json();
       login(data.token);
       navigate("/dashboard-overview");
+      addNotification("Signup erfolgreich", "success");
     } else {
-      alert("Login fehlgeschlagen");
+      addNotification("Signup fehlgeschlagen", "error");
     }
   };
 

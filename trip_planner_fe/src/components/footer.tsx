@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import '../css/footer.css';
+import { Link } from "react-router-dom";
+import "../css/footer.css";
 
 const Footer = () => {
   return (
@@ -7,7 +7,11 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-left">
           <Link to="/">
-            <img src="/assets/logotest.png" alt="Logo" className='footer-logo'/>
+            <img
+              src="../assets/tripplanr-logo.png"
+              alt="Logo"
+              className="footer-logo"
+            />
           </Link>
         </div>
 
