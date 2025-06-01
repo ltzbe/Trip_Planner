@@ -80,6 +80,8 @@ input {
 .signin-button {
     align-self: center;
     margin-top: 40px;
+    min-width: 75px;
+    min-height: 45px;
 }
 
 .signin-button button {
@@ -93,6 +95,10 @@ input {
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .signin-button a:hover {

@@ -1,11 +1,13 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../auth/authContext";
-import "../css/LoginCard.css";
+import "../css/LoginCard.css"
+import "../css/loader.css"
 
 const LoginCard = () => {
   const location = useLocation();
   const isRegister = location.pathname === "/register";
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +17,7 @@ const LoginCard = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     const response = await fetch("http://localhost:8080/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,14 +27,17 @@ const LoginCard = () => {
     if (response.ok) {
       const data = await response.json();
       login(data.token);
+      setLoading(false)
       navigate("/dashboard-overview");
     } else {
+      setLoading(false)
       alert("Login fehlgeschlagen");
     }
   };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true)
     const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -41,8 +47,10 @@ const LoginCard = () => {
     if (response.ok) {
       const data = await response.json();
       login(data.token);
+      setLoading(false);
       navigate("/dashboard-overview");
     } else {
+      setLoading(false);
       alert("Login fehlgeschlagen");
     }
   };
@@ -109,8 +117,11 @@ const LoginCard = () => {
               </div>
 
               <div className="signin-button">
-                <button type="submit">
-                  {isRegister ? "Sign up" : "Sign in"}
+                <button type="submit"
+                  >
+                    {loading ? <div className="loader"></div> :
+                    isRegister ? "Sign up" :
+                    "Sign in"}
                 </button>
               </div>
             </form>
