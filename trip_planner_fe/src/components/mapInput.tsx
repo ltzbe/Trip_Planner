@@ -35,7 +35,10 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
   async function onPlaceSelectEnd(value: InputAutocomplete){
     setEndInput(value)
     if(startInput && map && value){
-      setRouteDetails(await handleGetRoute(map, startInput, value))}
+      const routeDet = await handleGetRoute(map, startInput, value)
+      setRouteDetails(routeDet)
+      console.log(routeDet.features[0])
+    }
   }
 
   function onSuggectionChange(value: GeoJSON.Feature) {
