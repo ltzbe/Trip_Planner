@@ -2,9 +2,6 @@
 import maplibregl from "maplibre-gl";
 import { InputAutocomplete } from "../../types/inputComplete.ts";
 import { RouteDetails } from "../../types/routeDetails.ts";
-import { useNotification } from "../../auth/notificationContext.tsx";
-
-let addNotification: ReturnType<typeof useNotification>["addNotification"];
 
 const ROUTING_API_KEY = "7263a7cafcc4410db5377fda5a87d544"
 
@@ -13,11 +10,6 @@ let markers: maplibregl.Marker[] = []
 const getTokenFromCookie = () => {
     const match = document.cookie.match(new RegExp("(^| )token=([^;]+)"));
     return match ? decodeURIComponent(match[2]) : null;
-};
-
-export const setNotificationHandler = (handler: typeof useNotification) => {
-    const ctx = handler();
-    addNotification = ctx.addNotification;
 };
 
 function displayMarker(map: maplibregl.Map, input: InputAutocomplete) {
@@ -87,18 +79,18 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
     }
 }
 
-export const submitRoute = async (routeDetails: RouteDetails) => {
-
+export const submitRoute = async (routeDetails: RouteDetails, routeName: string): Promise<"success" | "unauthenticated" | "error"> => {
     const token = getTokenFromCookie();
     if (!token) {
-        addNotification("Benutzer ist nicht angemeldet", "error");
-        throw new Error("User is not authenticated");
-    } else {
-        const body: { name: string; route: string } = {
-            name: "test",
-            route: JSON.stringify(routeDetails)
-        };
+        return "unauthenticated";
+    }
 
+    const body: { name: string; route: string } = {
+        name: routeName,
+        route: JSON.stringify(routeDetails)
+    };
+
+    try {
         const response = await fetch("http://localhost:8080/routes", {
             method: "POST",
             headers: {
@@ -109,10 +101,11 @@ export const submitRoute = async (routeDetails: RouteDetails) => {
         });
 
         if (!response.ok) {
-            addNotification("Route konnte nicht gespeichert werden", "error");
-            throw new Error("Failed to submit route");
+            return "error";
         }
-        addNotification("Route erfolgreich gespeichert", "success");
-        return await response;
+
+        return "success";
+    } catch {
+        return "error";
     }
-}
+};
