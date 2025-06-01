@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./components/protectedRoute";
 import DashboardOverview from "./pages/DashboardOverview";
 import DashboardRoutePlanner from "./pages/DashboardRoutePlanner";
+import NotificationCard from "./components/notificationCard.tsx";
 import { MapProvider } from "./api/geoapify/mapContext.tsx";
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
             }
           />
         </Routes>
+
+        <NotificationCard />
+
         {!hideNavbarAndFooter && <Footer />}
       </main>
     </div>

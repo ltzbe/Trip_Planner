@@ -2,6 +2,9 @@
 import maplibregl from "maplibre-gl";
 import { InputAutocomplete } from "../../types/inputComplete.ts";
 import { RouteDetails } from "../../types/routeDetails.ts";
+import { useNotification } from "../../auth/notificationContext.tsx";
+
+let addNotification: ReturnType<typeof useNotification>["addNotification"];
 
 const ROUTING_API_KEY = "7263a7cafcc4410db5377fda5a87d544"
 
@@ -12,6 +15,10 @@ const getTokenFromCookie = () => {
     return match ? decodeURIComponent(match[2]) : null;
 };
 
+export const setNotificationHandler = (handler: typeof useNotification) => {
+    const ctx = handler();
+    addNotification = ctx.addNotification;
+};
 
 function displayMarker(map: maplibregl.Map, input: InputAutocomplete) {
     const text = input.properties.address_line1 + " " + input.properties.address_line2
@@ -84,20 +91,28 @@ export const submitRoute = async (routeDetails: RouteDetails) => {
 
     const token = getTokenFromCookie();
     if (!token) {
+        addNotification("Benutzer ist nicht angemeldet", "error");
         throw new Error("User is not authenticated");
     } else {
-        const response = await fetch("http://localhost:8080/route", {
+        const body: { name: string; route: string } = {
+            name: "test",
+            route: JSON.stringify(routeDetails)
+        };
+
+        const response = await fetch("http://localhost:8080/routes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify(routeDetails)
+            body: JSON.stringify(body)
         });
 
         if (!response.ok) {
+            addNotification("Route konnte nicht gespeichert werden", "error");
             throw new Error("Failed to submit route");
         }
-        return await response.json();
+        addNotification("Route erfolgreich gespeichert", "success");
+        return await response;
     }
 }
