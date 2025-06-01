@@ -14,6 +14,8 @@
   align-items: center;
   justify-content: space-around;
   gap: 15px;
+  animation: notification-fadein 0.3s ease;
+  z-index: 1001;
 }
 .notification-card-wave-success {
   position: absolute;
@@ -93,4 +95,15 @@
   height: 18px;
   color: #555;
   cursor: pointer;
+}
+
+@keyframes notification-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

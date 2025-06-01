@@ -16,6 +16,9 @@ export default function DashboardRoutePlanner() {
   const [endInput, setEndInput] = useState<InputAutocomplete | null>(null);
   const { addNotification } = useNotification();
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [routeName, setRouteName] = useState("");
+
   return (
     <div className="route-planner-wrapper">
       <Sidebar />
@@ -46,13 +49,62 @@ export default function DashboardRoutePlanner() {
             addNotification("Bitte zuerst eine Route berechnen.", "error");
             return;
           }
-          submitRoute(routeDetails)
-            .then((res) => console.log("Route gespeichert:", res))
-            .catch((err) => console.error("Fehler:", err));
+          setShowPopup(true);
         }}
       >
         Route speichern
       </button>
+
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h2>Route benennen</h2>
+            <input
+              type="text"
+              value={routeName}
+              onChange={(e) => setRouteName(e.target.value)}
+              placeholder="Name der Route"
+            />
+            <div className="popup-buttons">
+              <button onClick={() => setShowPopup(false)}>Abbrechen</button>
+              <button
+                onClick={() => {
+                  if (!routeName.trim()) {
+                    addNotification(
+                      "Bitte gib einen Namen für die Route ein.",
+                      "error"
+                    );
+                    return;
+                  }
+                  submitRoute(routeDetails!, routeName).then((result) => {
+                    switch (result) {
+                      case "success":
+                        addNotification(
+                          "Route erfolgreich gespeichert.",
+                          "success"
+                        );
+                        break;
+                      case "unauthenticated":
+                        addNotification("Du bist nicht angemeldet.", "error");
+                        break;
+                      case "error":
+                      default:
+                        addNotification(
+                          "Route konnte nicht gespeichert werden.",
+                          "error"
+                        );
+                        break;
+                    }
+                    setShowPopup(false);
+                  });
+                }}
+              >
+                Speichern
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
