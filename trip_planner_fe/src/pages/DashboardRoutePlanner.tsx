@@ -2,7 +2,7 @@ import Sidebar from "../components/sidebar";
 import Map from "../components/map";
 import Input from "../components/mapInput";
 import { useState } from "react";
-import { useNotification } from "../auth/notificationContext";
+import { useNotification } from "../context/notification/notificationContext.tsx";
 import Details from "../components/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
 

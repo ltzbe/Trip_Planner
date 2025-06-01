@@ -1,4 +1,4 @@
-import { useNotification } from "../auth/notificationContext";
+import { useNotification } from "../context/notification/notificationContext";
 import "../css/notificationCard.css";
 
 const LoginCard = () => {
