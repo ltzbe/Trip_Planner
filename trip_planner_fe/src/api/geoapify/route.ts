@@ -3,8 +3,9 @@ import maplibregl from "maplibre-gl";
 import { InputAutocomplete } from "../../types/inputComplete.ts";
 import { RouteDetails } from "../../types/routeDetails.ts";
 import {getPlacesByCoords} from "./places.ts";
-import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM} from "../../config/constants.ts"
+import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM, FUEL_MARKER} from "../../config/constants.ts"
 import {Settings} from "../../types/settings.ts";
+import {createFuelMarker, createHotelMarker} from "./markers.ts";
 
 const ROUTING_API_KEY = "7263a7cafcc4410db5377fda5a87d544"
 
@@ -168,7 +169,8 @@ function displayFuelMarkers(map: maplibregl.Map, waypoints:[number,number][]){
         const text = `${data.features[0].properties.name} (Tankstelle)`
 
         if (map && lon && lat) {
-            const marker = new maplibregl.Marker().setLngLat([lon, lat])
+            const marker = new maplibregl.Marker({ element: createFuelMarker() })
+              .setLngLat([lon, lat])
               .setPopup(new maplibregl.Popup().setText(
                 text
               )).addTo(map);
@@ -187,7 +189,8 @@ function displayHotelMarkers(map: maplibregl.Map, waypoints: [number,number][]){
             const text = `${data.features[i].properties.name} (Hotel)`
 
             if (map && lon && lat) {
-                const marker = new maplibregl.Marker().setLngLat([lon, lat])
+                const marker = new maplibregl.Marker({element: createHotelMarker()})
+                  .setLngLat([lon, lat])
                   .setPopup(new maplibregl.Popup().setText(
                     text
                   )).addTo(map);
