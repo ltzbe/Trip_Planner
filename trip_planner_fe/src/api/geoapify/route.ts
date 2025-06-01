@@ -2,7 +2,9 @@
 import maplibregl from "maplibre-gl";
 import { InputAutocomplete } from "../../types/inputComplete.ts";
 import { RouteDetails } from "../../types/routeDetails.ts";
-import {getPlaces, getPlacesByCoords} from "./places.ts";
+import {getPlacesByCoords} from "./places.ts";
+import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM} from "../../config/constants.ts"
+import {Settings} from "../../types/settings.ts";
 
 const ROUTING_API_KEY = "7263a7cafcc4410db5377fda5a87d544"
 
@@ -16,8 +18,10 @@ const getTokenFromCookie = () => {
 
 function displayMarker(map: maplibregl.Map, input: InputAutocomplete) {
     const text = input.properties.address_line1 + " " + input.properties.address_line2
+
     if (map && input.properties.lat && input.properties.lon) {
-        const marker = new maplibregl.Marker().setLngLat([input.properties.lon, input.properties.lat])
+        const marker = new maplibregl.Marker({color: "red"})
+            .setLngLat([input.properties.lon, input.properties.lat])
             .setPopup(new maplibregl.Popup().setText(
                 text
             )).addTo(map);
@@ -66,7 +70,8 @@ function displayRoute(map: maplibregl.Map,
     }
 }
 
-export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutocomplete, endInput: InputAutocomplete) => {
+export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutocomplete, endInput: InputAutocomplete, routeSettings: Settings) => {
+    const {isHotelsChecked, hotelThresholdKM, isFuelChecked, fuelThresholdKM} = routeSettings
 
     const response = await fetch(`https://api.geoapify.com/v1/routing?waypoints=${startInput.properties.lat},${startInput.properties.lon}|${endInput.properties.lat},${endInput.properties.lon}&mode=drive&apiKey=${ROUTING_API_KEY}`, {
         method: "GET",
@@ -76,11 +81,21 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
         const multiline = data.features[0].geometry.coordinates
         const coords: [number, number][] = multiline.flat()
 
-        const fuelWaypoints = getWaypoints(coords, 10, 300)
 
         clearMarkers()
         displayRoute(map, data, startInput, endInput);
-        displayFuelMarkers(map, fuelWaypoints)
+
+        if(isFuelChecked){
+            const threshold = fuelThresholdKM == null ? DEFAULT_FUEL_THRESHOLD_KM : fuelThresholdKM
+            const fuelWaypoints = getWaypoints(coords, 10, threshold)
+            displayFuelMarkers(map, fuelWaypoints)
+        }
+
+        if(isHotelsChecked){
+            const threshold = hotelThresholdKM == null ? DEFAULT_HOTEL_THRESHOLD_KM : hotelThresholdKM
+            const hotelWaypoints = getWaypoints(coords, 10, threshold)
+            displayHotelMarkers(map, hotelWaypoints)
+        }
 
         return data
     }
@@ -109,7 +124,6 @@ export const submitRoute = async (routeDetails: RouteDetails) => {
 }
 
 function getWaypoints(coords: [number, number][], n: number, threshold: number){
-    console.log("called")
     const waypoints = [];
     let accDistance = 0;
 
@@ -119,10 +133,8 @@ function getWaypoints(coords: [number, number][], n: number, threshold: number){
 
         const distance = haversineDistance(point1, point2)
         accDistance += distance
-        console.log(accDistance)
 
         if (accDistance >= threshold){
-            console.log(point2 + "hier")
             waypoints.push(point2)
             accDistance = 0;
         }
@@ -163,5 +175,24 @@ function displayFuelMarkers(map: maplibregl.Map, waypoints:[number,number][]){
             markers.push(marker);
         }
     })
+}
 
+function displayHotelMarkers(map: maplibregl.Map, waypoints: [number,number][]){
+    waypoints.map(async (waypoint) => {
+        const data = await getPlacesByCoords(waypoint, "house", 5)
+
+        for (let i = 0; i < data.features.length; i++){
+            const lon = data.features[i].geometry.coordinates[0]
+            const lat = data.features[i].geometry.coordinates[1]
+            const text = `${data.features[i].properties.name} (Hotel)`
+
+            if (map && lon && lat) {
+                const marker = new maplibregl.Marker().setLngLat([lon, lat])
+                  .setPopup(new maplibregl.Popup().setText(
+                    text
+                  )).addTo(map);
+                markers.push(marker);
+            }
+        }
+    })
 }

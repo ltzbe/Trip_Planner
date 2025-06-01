@@ -10,15 +10,12 @@ export const getPlaces = async (input: InputAutocomplete, category: string) => {
     category == "house" ? "accommodation.hotel,accommodation.apartment" :
     category == "fuel" ? "service.vehicle.fuel" :
     "activity"
-  console.log(categoriesFilter, "filter")
   const placeFilter = input.properties.lon + "," + input.properties.lat + "," + "5000";
 
   const response = await fetch(`${URL}categories=${categoriesFilter}&filter=circle:${placeFilter}&limit=5&apiKey=${GEO_API_KEY}`)
 
   if(response.ok){
-    const data = await response.json()
-    console.log(data)
-    return data
+    return await response.json()
   }
 }
 
@@ -29,17 +26,14 @@ export const getPlacesByCoords = async (coords: [number, number], category: stri
     category == "house" ? "accommodation.hotel,accommodation.apartment" :
     category == "fuel" ? "service.vehicle.fuel" :
     "activity"
-  console.log(coords)
-  console.log(categoriesFilter)
-  const placeFilter = coords[0] + "," + coords[1] + "," + "5000";
 
-  const response = await fetch(`${URL}categories=${categoriesFilter}&filter=circle:${placeFilter}&limit=${limit}&apiKey=${GEO_API_KEY}`)
+  const biasFilter = coords[0] + "," + coords[1]
+  const placeFilter = coords[0] + "," + coords[1] + "," + "50000";
+
+  const response = await fetch(`${URL}categories=${categoriesFilter}&filter=circle:${placeFilter}&bias=proximity:${biasFilter}&limit=${limit}&apiKey=${GEO_API_KEY}`)
 
   if(response.ok){
-    const data = await response.json()
-    console.log("data: ", data)
-    console.log("coords: ", data.features[0].geometry.coordinates)
-    return data
+    return await response.json()
   }
 
 }

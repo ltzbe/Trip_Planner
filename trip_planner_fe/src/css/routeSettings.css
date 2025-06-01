@@ -1,0 +1,49 @@
+.route-settings-container{
+    margin: 2vh 0;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.route-settings-container > h2 {
+    margin-bottom: 1vh;
+    margin-left: 0;
+}
+
+.route-settings-container > *{
+    margin-left: 2vw;
+}
+
+.route-settings-container > label > input[type="number"] {
+    margin-left: 1vw;
+    max-width: 80px;
+    padding: 0.5rem;
+    border-radius: 15px;
+    font-size: 1rem;
+    color: black;
+    background-color: white;
+    border-color: var(--accent-color);
+}
+
+.route-settings-container > label > input[type="number"]:focus {
+    border: 1px solid var(--button-color);
+    border-color: var(--button-color);
+}
+
+.route-settings-container > button {
+    width: 10vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: var(--button-color);
+    padding: 1em 2em;
+    border: none;
+    border-radius: .6rem;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+

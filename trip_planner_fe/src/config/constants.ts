@@ -1,0 +1,2 @@
+export const DEFAULT_FUEL_THRESHOLD_KM =  300
+export const DEFAULT_HOTEL_THRESHOLD_KM = 400
