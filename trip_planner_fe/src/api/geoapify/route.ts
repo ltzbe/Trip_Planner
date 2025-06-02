@@ -109,3 +109,30 @@ export const submitRoute = async (routeDetails: RouteDetails, routeName: string)
         return "error";
     }
 };
+
+export const loadRouteNames = async () => {
+    const token = getTokenFromCookie();
+    if (!token) {
+        return "unauthenticated";
+    }
+
+    try {
+        const response = await fetch("http://localhost:8080/routes/id", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            return "error";
+        }
+
+        return data;
+    } catch {
+        return "error";
+    }
+};
