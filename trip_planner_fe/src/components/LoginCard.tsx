@@ -4,13 +4,16 @@ import { useState } from "react";
 import { useAuth } from "../context/auth/authContext.tsx";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import "../css/LoginCard.css";
+
 import homeIcon from "../assets/home.png";
 import "../css/loader.css";
+
 
 const LoginCard = () => {
   const { addNotification } = useNotification();
   const location = useLocation();
   const isRegister = location.pathname === "/register";
+
   const isLogin = location.pathname === "/login";
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -53,6 +56,7 @@ const LoginCard = () => {
     }
 
     setLoading(true);
+
     const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
