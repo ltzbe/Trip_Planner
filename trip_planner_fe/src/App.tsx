@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./components/protectedRoute";
 import DashboardOverview from "./pages/DashboardOverview";
 import DashboardRoutePlanner from "./pages/DashboardRoutePlanner";
+import NotificationCard from "./components/notificationCard.tsx";
 import Places from "./pages/Places.tsx";
 import { MapProvider } from "./api/geoapify/mapContext.tsx";
 
@@ -51,6 +52,9 @@ function App() {
           />
           <Route path="/places" element={<Places/>} />
         </Routes>
+
+        <NotificationCard />
+
         {!hideNavbarAndFooter && <Footer />}
       </main>
     </div>

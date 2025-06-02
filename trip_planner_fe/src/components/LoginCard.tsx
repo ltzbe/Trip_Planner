@@ -1,10 +1,13 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../auth/authContext";
-import "../css/LoginCard.css"
+
+import { useAuth } from "../context/auth/authContext.tsx";
+import { useNotification } from "../context/notification/notificationContext.tsx";
+import "../css/LoginCard.css";
 import "../css/loader.css"
 
 const LoginCard = () => {
+  const { addNotification } = useNotification();
   const location = useLocation();
   const isRegister = location.pathname === "/register";
   const [loading, setLoading] = useState<boolean>(false)
@@ -29,9 +32,10 @@ const LoginCard = () => {
       login(data.token);
       setLoading(false)
       navigate("/dashboard-overview");
+      addNotification("Login erfolgreich", "success");
     } else {
       setLoading(false)
-      alert("Login fehlgeschlagen");
+      addNotification("Login fehlgeschlagen", "error");
     }
   };
 
@@ -49,9 +53,10 @@ const LoginCard = () => {
       login(data.token);
       setLoading(false);
       navigate("/dashboard-overview");
+      addNotification("Signup erfolgreich", "success");
     } else {
       setLoading(false);
-      alert("Login fehlgeschlagen");
+      addNotification("Signup fehlgeschlagen", "error");
     }
   };
 

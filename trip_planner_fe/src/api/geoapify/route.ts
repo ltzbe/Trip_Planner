@@ -12,7 +12,6 @@ const getTokenFromCookie = () => {
     return match ? decodeURIComponent(match[2]) : null;
 };
 
-
 function displayMarker(map: maplibregl.Map, input: InputAutocomplete) {
     const text = input.properties.address_line1 + " " + input.properties.address_line2
     if (map && input.properties.lat && input.properties.lon) {
@@ -80,24 +79,33 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
     }
 }
 
-export const submitRoute = async (routeDetails: RouteDetails) => {
-
+export const submitRoute = async (routeDetails: RouteDetails, routeName: string): Promise<"success" | "unauthenticated" | "error"> => {
     const token = getTokenFromCookie();
     if (!token) {
-        throw new Error("User is not authenticated");
-    } else {
-        const response = await fetch("http://localhost:8080/route", {
+        return "unauthenticated";
+    }
+
+    const body: { name: string; route: string } = {
+        name: routeName,
+        route: JSON.stringify(routeDetails)
+    };
+
+    try {
+        const response = await fetch("http://localhost:8080/routes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify(routeDetails)
+            body: JSON.stringify(body)
         });
 
         if (!response.ok) {
-            throw new Error("Failed to submit route");
+            return "error";
         }
-        return await response.json();
+
+        return "success";
+    } catch {
+        return "error";
     }
-}
+};
