@@ -12,8 +12,8 @@ export default function Places() {
         <>
         <Sidebar />
         <div className="places-wrapper">
-            <h2>Get Recommendations</h2>
-            <PlacesInput setInput={setInput}/>
+            <h1>Erhalte Vorschläge für deinen nächsten Reiseort</h1>
+            <PlacesInput setInput={setInput} input={input}/>
         </div>
         </>
 

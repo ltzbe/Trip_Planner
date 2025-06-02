@@ -14,6 +14,7 @@ export default function PlaceCard({placeDetails} : Props){
 
   useEffect(() => {
     getPicture(placeDetails.properties.address_line1).then(setPicture)
+    console.log(placeDetails)
   }, [placeDetails]);
 
 
@@ -37,8 +38,7 @@ export default function PlaceCard({placeDetails} : Props){
         </div>
         <div className="place-card-info">
             <h3>{placeDetails.properties.name}</h3>
-            <p className="place-type">Lorem Ipsum</p>
-            <p className="route-info">Lorem Ipsum</p>
+            <p>{placeDetails.properties.address_line2}</p>
         </div>
     </div>
   )
