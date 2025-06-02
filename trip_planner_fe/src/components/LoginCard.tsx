@@ -47,12 +47,15 @@ const LoginCard = () => {
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    setLoading(true);
+
     if (password != confirmPassword) {
       addNotification("Passwörter stimmen nicht überein", "error");
       return;
     }
 
     setLoading(true);
+
     const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
