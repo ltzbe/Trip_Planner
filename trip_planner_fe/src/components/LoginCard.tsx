@@ -5,18 +5,17 @@ import { useAuth } from "../context/auth/authContext.tsx";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import "../css/LoginCard.css";
 
+import homeIcon from "../assets/home.png";
 import "../css/loader.css";
 
-import homeIcon from "../assets/home.png";
 
 const LoginCard = () => {
   const { addNotification } = useNotification();
   const location = useLocation();
   const isRegister = location.pathname === "/register";
 
-  const [loading, setLoading] = useState<boolean>(false);
-
   const isLogin = location.pathname === "/login";
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -51,12 +50,12 @@ const LoginCard = () => {
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    setLoading(true);
-
     if (password != confirmPassword) {
       addNotification("Passwörter stimmen nicht überein", "error");
       return;
     }
+
+    setLoading(true);
 
     const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
