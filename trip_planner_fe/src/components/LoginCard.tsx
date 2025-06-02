@@ -4,19 +4,28 @@ import { useState } from "react";
 import { useAuth } from "../context/auth/authContext.tsx";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import "../css/LoginCard.css";
-import "../css/loader.css"
+
+import "../css/loader.css";
+
+import homeIcon from "../assets/home.png";
 
 const LoginCard = () => {
   const { addNotification } = useNotification();
   const location = useLocation();
   const isRegister = location.pathname === "/register";
-  const [loading, setLoading] = useState<boolean>(false)
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const isLogin = location.pathname === "/login";
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,18 +39,25 @@ const LoginCard = () => {
     if (response.ok) {
       const data = await response.json();
       login(data.token);
-      setLoading(false)
+      setLoading(false);
       navigate("/dashboard-overview");
       addNotification("Login erfolgreich", "success");
     } else {
-      setLoading(false)
+      setLoading(false);
       addNotification("Login fehlgeschlagen", "error");
     }
   };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true)
+
+    setLoading(true);
+
+    if (password != confirmPassword) {
+      addNotification("Passwörter stimmen nicht überein", "error");
+      return;
+    }
+
     const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -62,15 +78,18 @@ const LoginCard = () => {
 
   return (
     <div className="login-page-centered">
-      <Link to="/" className="login-button-back">
-        Zurück zu Startseite
-      </Link>
       <div className="login-card">
+        <Link to="/" className="login-button-back">
+          <img src={homeIcon} alt="Home" className="home-icon" />
+        </Link>
         <div className="login-left">
           <div className="login-form-container">
-            <h1 className="login-title">
-              {isRegister ? "Sign up" : "Sign in"}
-            </h1>
+            <div className="login-title-container">
+              <h1 className="login-title">
+                {isRegister ? "Sign up" : "Sign in"}
+              </h1>
+            </div>
+
             <p>
               {isRegister
                 ? "Already have an account? "
@@ -105,28 +124,89 @@ const LoginCard = () => {
               )}
 
               <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
-                required
-              />
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                  required
+                  style={{ flex: 1 }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    marginLeft: "8px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "1.2rem",
+                  }}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
+              </div>
+
+              {isRegister && (
+                <>
+                  <label>Confirm Password</label>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      name="confirmPassword"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Confirm password"
+                      required
+                      style={{ flex: 1 }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                      style={{
+                        marginLeft: "8px",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        fontSize: "1.2rem",
+                      }}
+                      aria-label={
+                        showConfirmPassword ? "Hide password" : "Show password"
+                      }
+                    >
+                      {showConfirmPassword ? "🙈" : "👁️"}
+                    </button>
+                  </div>
+                </>
+              )}
 
               <div className="options">
-                <label>
-                  <input type="checkbox" /> Remember me
+                <label className="custom-checkbox">
+                  <input type="checkbox" />
+                  <span className="checkmark"></span>
+                  Remember me
                 </label>
-                <Link to="/forgot-password">Forgot Password?</Link>
+                {isLogin && (
+                  <>
+                    <Link to="/forgot-password">Forgot Password?</Link>
+                  </>
+                )}
               </div>
 
               <div className="signin-button">
-                <button type="submit"
-                  >
-                    {loading ? <div className="loader"></div> :
-                    isRegister ? "Sign up" :
-                    "Sign in"}
+                <button type="submit">
+                  {loading ? (
+                    <div className="loader"></div>
+                  ) : isRegister ? (
+                    "Sign up"
+                  ) : (
+                    "Sign in"
+                  )}
                 </button>
               </div>
             </form>
