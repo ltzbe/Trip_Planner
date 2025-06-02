@@ -27,13 +27,18 @@ public class RouteService {
     }
 
     public List<String> getAllRouteNamesByUser(UserEntity user) {
-        UserEntity userId = userRepository.findByUsername(user.getUsername());
-        List<Route> routes = routeRepository.findByUserID(userId);
+        UserEntity username = userRepository.findByUsername(user.getUsername());
+        List<Route> routes = routeRepository.findByUserID(username);
         List<String> routeNames = new ArrayList<>();
         for (Route route : routes) {
             routeNames.add(route.getName());
         }
         return routeNames;
+    }
+
+    public Route getRouteByName(UserEntity user, String routeName) {
+        UserEntity username = userRepository.findByUsername(user.getUsername());
+        return routeRepository.findRouteByNameAndUserID(routeName, username);
     }
 
 }
