@@ -26,7 +26,7 @@ public class RouteService {
         routeRepository.save(route);
     }
 
-    public List<String> getAllRoutesByUser(UserEntity user) {
+    public List<String> getAllRouteNamesByUser(UserEntity user) {
         UserEntity userId = userRepository.findByUsername(user.getUsername());
         List<Route> routes = routeRepository.findByUserID(userId);
         List<String> routeNames = new ArrayList<>();

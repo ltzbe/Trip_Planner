@@ -45,7 +45,7 @@ public class RouteController {
     @GetMapping("/routes/id")
     public ResponseEntity<List<String>> getRouteNamesByUserId() {
         UserEntity user = jwtService.getUserFromToken(request.getHeader("Authorization"));
-        List<String> routeNames = routeService.getAllRoutesByUser(user);
+        List<String> routeNames = routeService.getAllRouteNamesByUser(user);
 
         return ResponseEntity.ok(routeNames);
     }
