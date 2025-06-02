@@ -50,6 +50,8 @@ const LoginCard = () => {
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    setLoading(true);
+
     if (password != confirmPassword) {
       addNotification("Passwörter stimmen nicht überein", "error");
       return;
