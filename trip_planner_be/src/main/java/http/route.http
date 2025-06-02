@@ -7,3 +7,8 @@ Content-Type: application/json
   "route": "nur Route, kein Name"
 }
 
+
+### Test GET /routes/id
+GET http://localhost:8080/routes/id
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb25hcyIsImlhdCI6MTc0ODg1NDMwNywiZXhwIjoxNzQ4ODU2MTA3fQ.gY93ZEqvu8g7Xcv77WzHSomaOe1LY4h-6M4XzLS7w1g
