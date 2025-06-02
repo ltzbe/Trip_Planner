@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loadRouteNames } from "../api/geoapify/route";
+import { loadRouteNames, getRouteByName } from "../api/geoapify/route";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import "../css/sidebar.css";
 import Logo from "../assets/tripplanr-logo.png";
@@ -36,10 +36,9 @@ const Sidebar = () => {
             ? routeNames.map((name, idx) => (
                 <li key={idx}>
                   <NavLink
-                    to={`/route/${encodeURIComponent(name)}`}
-                    className={({ isActive }) =>
-                      isActive ? "sidebar-links active" : "sidebar-links"
-                    }
+                    to="/dashboard-route-planner"
+                    onClick={() => getRouteByName(name)}
+                    className="sidebar-links"
                   >
                     {name}
                   </NavLink>
