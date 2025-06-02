@@ -5,15 +5,14 @@ import { useAuth } from "../context/auth/authContext.tsx";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import "../css/LoginCard.css";
 import homeIcon from "../assets/home.png";
-import "../css/loader.css"
-
+import "../css/loader.css";
 
 const LoginCard = () => {
   const { addNotification } = useNotification();
   const location = useLocation();
   const isRegister = location.pathname === "/register";
-  const isLogin= location.pathname === "/login";
-  const [loading, setLoading] = useState<boolean>(false)
+  const isLogin = location.pathname === "/login";
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -36,11 +35,11 @@ const LoginCard = () => {
     if (response.ok) {
       const data = await response.json();
       login(data.token);
-      setLoading(false)
+      setLoading(false);
       navigate("/dashboard-overview");
       addNotification("Login erfolgreich", "success");
     } else {
-      setLoading(false)
+      setLoading(false);
       addNotification("Login fehlgeschlagen", "error");
     }
   };
@@ -49,12 +48,11 @@ const LoginCard = () => {
     e.preventDefault();
 
     if (password != confirmPassword) {
-      addNotification("Passwörter stimmen nicht überein", 
-                      "error");
+      addNotification("Passwörter stimmen nicht überein", "error");
       return;
     }
 
-    setLoading(true)
+    setLoading(true);
     const response = await fetch("http://localhost:8080/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -77,8 +75,8 @@ const LoginCard = () => {
     <div className="login-page-centered">
       <div className="login-card">
         <Link to="/" className="login-button-back">
-                <img src={homeIcon} alt="Home" className="home-icon" />
-              </Link>
+          <img src={homeIcon} alt="Home" className="home-icon" />
+        </Link>
         <div className="login-left">
           <div className="login-form-container">
             <div className="login-title-container">
@@ -147,58 +145,63 @@ const LoginCard = () => {
                 </button>
               </div>
 
-
               {isRegister && (
-              <>
-              <label>Confirm Password</label>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm password"
-                  required
-                  style={{ flex: 1 }}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  style={{
-                    marginLeft: "8px",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: "1.2rem",
-                  }}
-                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
-                >
-                  {showConfirmPassword ? "🙈" : "👁️"}
-                </button>
-              </div>
-            </>
-          )}
-              
+                <>
+                  <label>Confirm Password</label>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      name="confirmPassword"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Confirm password"
+                      required
+                      style={{ flex: 1 }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                      style={{
+                        marginLeft: "8px",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        fontSize: "1.2rem",
+                      }}
+                      aria-label={
+                        showConfirmPassword ? "Hide password" : "Show password"
+                      }
+                    >
+                      {showConfirmPassword ? "🙈" : "👁️"}
+                    </button>
+                  </div>
+                </>
+              )}
 
               <div className="options">
                 <label className="custom-checkbox">
-                  <input type="checkbox" /> 
+                  <input type="checkbox" />
                   <span className="checkmark"></span>
                   Remember me
                 </label>
-              {isLogin && (
-                <>
-                <Link to="/forgot-password">Forgot Password?</Link>
-                </>
-              )}
+                {isLogin && (
+                  <>
+                    <Link to="/forgot-password">Forgot Password?</Link>
+                  </>
+                )}
               </div>
 
               <div className="signin-button">
-                <button type="submit"
-                  >
-                    {loading ? <div className="loader"></div> :
-                    isRegister ? "Sign up" :
-                    "Sign in"}
+                <button type="submit">
+                  {loading ? (
+                    <div className="loader"></div>
+                  ) : isRegister ? (
+                    "Sign up"
+                  ) : (
+                    "Sign in"
+                  )}
                 </button>
               </div>
             </form>
