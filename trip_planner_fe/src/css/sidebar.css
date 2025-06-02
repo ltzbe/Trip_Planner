@@ -4,8 +4,8 @@
   flex-direction: column;
   width: 170px;
   height: 100vh;
-  background-color: black;
-  color: white;
+  background-color: #1e2a38 ; /*2a3439, 1e2a38*/
+  color: black;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
   overflow: hidden;
@@ -24,7 +24,7 @@
 .sidebar-header {
   align-items: center;
   transition: width 0.3s ease;
-  border-bottom: 2px solid #444;
+  border-bottom: 2px solid #ccc;
 }
 
 .sidebar-header img {
@@ -35,57 +35,85 @@
 }
 
 .sidebar-section-title {
-  font-size: 1rem;
-  color: white;
-  padding: 10px;
-  border-bottom: 1px solid #444;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #40e0d0;
+  padding: 10px 10px 12px 20px;
+  border-bottom: 2px solid #ccc;
+  text-shadow: 0 1px 2px rgba(64, 224, 208, 0.5);
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  user-select: none;
 }
 
 .sidebar-menu {
   list-style: none;
   padding: 0;
-  color: white;
+  color: #333;
 }
 
 .sidebar-menu-title {
   font-size: 0.8rem;
   margin-bottom: 15px;
   margin-top: 20px;
-  color: white;
+  color: #333 ;
   text-decoration: none;
+  padding-left: 20px;
 }
 
 .sidebar-links {
   text-decoration: none;
-  color: white;
-  padding: 10px;
+  color: #E0E0E0 ;
+  padding: 10px 20px;
   display: block;
   transition: all 0.3s ease;
+  border-radius: 4px;
 }
 
 .sidebar-links.active {
   background-color: var(--accent-color);
-  color: var(--accent-color);
+  color: var(--text-light);
   font-weight: bold;
 }
 
 .sidebar-links:hover {
-  background-color: var(--accent-color);
+  background-color: var(--accent-color-light);
+  color: var(--accent-color);
   transform: scale(1.05);
+  border-radius: 4px;
 }
 
 .sidebar-footer {
   margin-top: auto;
   background-color: var(--button-color);
+  border-top: 1px solid var(--button-hover-color);
   transition: width 0.3s ease;
-  padding: 0.6rem;
+  padding: 0;
   display: flex;
-  text-decoration: none;
   align-items: center;
   justify-content: center;
+  color: var(--text-light);
+  border-radius: 0 0 4px 4px;
+  height: 50px;
 }
 
 .sidebar-footer-title {
   text-decoration: none;
-  color: white;
+  color: var(--text-light);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 4px 4px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 0 20px;
+}
+
+.sidebar-footer-title:hover {
+  background-color: var(--button-hover-color);
+  box-shadow: 0 0 10px var(--button-hover-color);
+  color: var(--text-light);
+  cursor: pointer;
 }

@@ -1,6 +1,5 @@
 import { NavLink, Link, useLocation } from "react-router-dom";
 import "../css/sidebar.css";
-
 import Logo from "../assets/tripplanr-logo.png";
 // import UserIcon from "../assets/user.png";
 
