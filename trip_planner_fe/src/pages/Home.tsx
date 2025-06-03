@@ -22,7 +22,7 @@ function Home() {
           <div className="hero-text">
             <h1>Plane deine nächste Reise mit Leichtigkeit</h1>
             <p>
-              Finde die schönsten und interresantesten Orte auf deinem Trip!
+              Finde die schönsten und interessantesten Orte auf deinem Trip!
             </p>
             {!token ? (
               <Link to="/login" className="hero-button">
@@ -111,40 +111,40 @@ function Home() {
           <div className="feature-card">
             <div className="first-content">
               <img src={GasIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+              <span>Tankstellen suchen!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Finde Tankstellen, die sich auf deiner Route befinden.</span>
             </div>
           </div>
 
           <div className="feature-card">
             <div className="first-content">
               <img src={PlateIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+              <span>Restaurants entdecken!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Sieh schnell, welche Restaurants sich auf deinem Weg befinden.</span>
             </div>
           </div>
 
           <div className="feature-card">
             <div className="first-content">
               <img src={RouteIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+              <span>Routen planen!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Der schnellste Weg von A nach B.</span>
             </div>
           </div>
 
           <div className="feature-card">
             <div className="first-content">
               <img src={BedIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+              <span>Schlafplätze finden!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Für größere Pausen finden wir sicher was für Dich.</span>
             </div>
           </div>
         </div>
