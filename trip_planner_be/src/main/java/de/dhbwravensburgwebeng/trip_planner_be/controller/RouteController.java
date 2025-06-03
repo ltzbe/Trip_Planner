@@ -49,4 +49,16 @@ public class RouteController {
 
         return ResponseEntity.ok(routeNames);
     }
+
+    @GetMapping("/routes/name")
+    public ResponseEntity<Route> getRouteNamesByUserName(@RequestParam String routeName) {
+        UserEntity user = jwtService.getUserFromToken(request.getHeader("Authorization"));
+        Route route = routeService.getRouteByName(user, routeName);
+
+        if (route == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(route);
+    }
 }

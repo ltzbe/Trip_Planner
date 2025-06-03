@@ -6,7 +6,7 @@ import RouteIcon from "../assets/route-icon.png";
 import BedIcon from "../assets/bed-icon.png";
 import PlateIcon from "../assets/plate-icon.png";
 import GasIcon from "../assets/gas-icon.png";
-import MacBook from "../assets/MacBookPicture.png";
+import MacBook from "../assets/MacBook-Mockup.png";
 import iphone from "../assets/iphone.png";
 
 function Home() {

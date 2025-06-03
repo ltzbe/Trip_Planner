@@ -200,6 +200,10 @@ html, body {
   margin: -7vw;
 }
 
+.macbook-icon {
+  width: 600px;
+}
+
 .iphone-icon {
   width: 15vw;
   max-width: 90px;

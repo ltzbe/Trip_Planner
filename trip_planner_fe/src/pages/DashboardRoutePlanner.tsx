@@ -76,7 +76,12 @@ export default function DashboardRoutePlanner() {
                     );
                     return;
                   }
-                  submitRoute(routeDetails!, routeName).then((result) => {
+                  submitRoute(
+                    routeDetails!,
+                    routeName,
+                    startInput!,
+                    endInput!
+                  ).then((result) => {
                     switch (result) {
                       case "success":
                         addNotification(

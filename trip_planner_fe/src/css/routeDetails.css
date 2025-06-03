@@ -1,11 +1,14 @@
 .route-details-container {
-    align-self: center;
-    background: white;
-    border: 0.2rem solid black;
-    border-radius: 0.5rem;
-    width: 75%;
-    margin: 3rem;
+    align-self: flex-start;
+    margin-left: 10%;
+    margin-top: 5vh;
+    background: #fdfdfd;
     padding: 1rem;
+    border-radius: 1rem;
+    border: 0.5vmin solid #05060f;
+    box-shadow: 0.4rem 0.4rem #05060f;
+    overflow: hidden;
+    color: black;
 
 }
 

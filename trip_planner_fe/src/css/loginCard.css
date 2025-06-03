@@ -96,6 +96,7 @@ input {
 .signin-button {
   align-self: center;
   margin-top: 10px;
+  min-width: 73px;
 }
 
 .signin-button button {
