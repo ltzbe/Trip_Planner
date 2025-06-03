@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { loadRouteNames, getRouteByName } from "../api/geoapify/route";
+import { getRouteByName } from "../api/geoapify/storedRoute";
+import { loadRouteNames } from "../api/geoapify/route";
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { useMap } from "../api/geoapify/mapContext";
 import "../css/sidebar.css";
 import Logo from "../assets/tripplanr-logo.png";
 // import UserIcon from "../assets/user.png";
 
 const Sidebar = () => {
+  const { map } = useMap();
+
   const location = useLocation();
   const backButtonTarget =
     location.pathname === "/dashboard-overview" ? "/" : "/dashboard-overview";
@@ -37,7 +41,7 @@ const Sidebar = () => {
                 <li key={idx}>
                   <NavLink
                     to="/dashboard-route-planner"
-                    onClick={() => getRouteByName(name)}
+                    onClick={() => getRouteByName(name, map!)}
                     className="sidebar-links"
                   >
                     {name}

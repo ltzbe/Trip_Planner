@@ -9,13 +9,12 @@ import { createFuelMarker, createHotelMarker } from "./markers.ts";
 
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_3
 
-let markers: maplibregl.Marker[] = []
+let markers: maplibregl.Marker[] = [];
 
 const getTokenFromCookie = () => {
     const match = document.cookie.match(new RegExp("(^| )token=([^;]+)"));
     return match ? decodeURIComponent(match[2]) : null;
 };
-
 
 function displayMarker(map: maplibregl.Map, input: InputAutocomplete) {
     const text = input.properties.address_line1 + " " + input.properties.address_line2
@@ -236,30 +235,4 @@ function displayHotelMarkers(map: maplibregl.Map, waypoints: [number, number][])
             }
         }
     })
-}
-export const getRouteByName = async (routeName: string) => {
-    const token = getTokenFromCookie();
-    if (!token) {
-        return "unauthenticated";
-    }
-
-    try {
-        const response = await fetch(`http://localhost:8080/routes/name?routeName=${encodeURIComponent(routeName)}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        });
-
-        const data = await response.json();
-        console.log(data);
-        if (!response.ok) {
-            return "error";
-        }
-
-        return data;
-    } catch {
-        return "error";
-    }
 }

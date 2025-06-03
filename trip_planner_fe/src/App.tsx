@@ -21,7 +21,7 @@ function App() {
     "/register",
     "/dashboard-overview",
     "/dashboard-route-planner",
-    "/places"
+    "/places",
   ].includes(location.pathname);
 
   return (
@@ -38,19 +38,32 @@ function App() {
             path="/dashboard-overview"
             element={
               <ProtectedRoute>
-                <DashboardOverview />
+                <MapProvider>
+                  <DashboardOverview />
+                </MapProvider>
               </ProtectedRoute>
             }
           />
           <Route
             path="/dashboard-route-planner"
             element={
-              <MapProvider>
-                <DashboardRoutePlanner />
-              </MapProvider>
+              <ProtectedRoute>
+                <MapProvider>
+                  <DashboardRoutePlanner />
+                </MapProvider>
+              </ProtectedRoute>
             }
           />
-          <Route path="/places" element={<Places/>} />
+          <Route
+            path="/places"
+            element={
+              <ProtectedRoute>
+                <MapProvider>
+                  <Places />
+                </MapProvider>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
 
         <NotificationCard />
