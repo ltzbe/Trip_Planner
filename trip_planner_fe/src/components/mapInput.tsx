@@ -10,6 +10,7 @@ import {useMap} from "../api/geoapify/mapContext.tsx";
 import {RouteDetails} from "../types/routeDetails.ts";
 import React, {useState} from "react";
 import {InputAutocomplete} from "../types/inputComplete.ts";
+import {useNotification} from "../context/notification/notificationContext.tsx";
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1
 
 type Props = {
@@ -28,23 +29,27 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
     fuelThresholdKM: null
   })
   const {map} = useMap()
+  const { addNotification } = useNotification();
 
   async function onPlaceSelectStart(value: InputAutocomplete) {
-    if(map && value.properties.lon && value.properties.lat){
-      map.jumpTo({center: [value.properties.lon, value.properties.lat], zoom: 10})
-      setStartInput(value)
-      if(endInput && value){
-        setRouteDetails( await handleGetRoute(map, value, endInput, settings)); //value since setStartInput is async and doesn't have value yet
-      }
-    }
+    if (!map || !value?.properties?.lon || !value?.properties?.lat) return;
+
+    map.jumpTo({center: [value.properties.lon, value.properties.lat], zoom: 10})
+    setStartInput(value)
+
+    if (!endInput) return
+    if (!validateSettings()) return
+
+    setRouteDetails( await handleGetRoute(map, value, endInput, settings));
   }
 
   async function onPlaceSelectEnd(value: InputAutocomplete){
     setEndInput(value)
-    if(startInput && map && value){
-      const routeDet = await handleGetRoute(map, startInput, value, settings)
-      setRouteDetails(routeDet)
-    }
+
+    if (!map || !value?.properties?.lon || !value?.properties?.lat || !startInput) return;
+    if (!validateSettings()) return
+
+    setRouteDetails( await handleGetRoute(map, startInput, value, settings));
   }
 
   function onSuggectionChange(value: GeoJSON.Feature) {
@@ -61,10 +66,22 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
   }
 
   async function handleRouteSettingsSubmit(){
-    if(map && startInput && endInput){
+    if(map && startInput && endInput && validateSettings()){
       const routeDetails = await handleGetRoute(map, startInput, endInput, settings)
       setRouteDetails(routeDetails)
     }
+  }
+
+  function validateSettings(){
+    if(settings.isHotelsChecked && settings.hotelThresholdKM && settings.hotelThresholdKM <= 0){
+      addNotification("Distanz zwischen Unterkünften muss mindestens 1 sein", "error")
+      return false
+    }
+    if(settings.isFuelChecked && settings.fuelThresholdKM && settings.fuelThresholdKM <= 0){
+      addNotification("Durchschnittliche Tankreichweite muss mindestens 1 sein", "error")
+      return false
+    }
+    return true
   }
 
 
@@ -107,15 +124,19 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
                  disabled={!settings.isHotelsChecked}
                  onChange={handleSettingsChange}
                  name="hotelThresholdKM"
+                 placeholder="300"
           />
         </label>
         <label>
           Tankstellen:
-          <input type="checkbox"
-                 checked={settings.isFuelChecked}
-                 onChange={handleSettingsChange}
-                 name="isFuelChecked"
-          />
+          <label className="switch">
+            <input type="checkbox"
+                   checked={settings.isFuelChecked}
+                   onChange={handleSettingsChange}
+                   name="isFuelChecked"
+            />
+            <span className="slider"></span>
+          </label>
         </label>
         <label>
           Durchschnittliche Tankreichweite
@@ -124,9 +145,10 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
                  disabled={!settings.isFuelChecked}
                  onChange={handleSettingsChange}
                  name="fuelThresholdKM"
+                 placeholder="300"
           />
         </label>
-        <button type="submit" onClick={handleRouteSettingsSubmit}>Submit</button>
+        <button type="submit" onClick={handleRouteSettingsSubmit}>Anwenden</button>
       </div>
     </>
   );
