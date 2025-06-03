@@ -4,13 +4,16 @@ import {
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 import "../css/addressInput.css";
-import "../css/routeSettings.css";
-import { handleGetRoute } from "../api/geoapify/route.ts";
-import { useMap } from "../api/geoapify/mapContext.tsx";
-import { RouteDetails } from "../types/routeDetails.ts";
-import React, { useState } from "react";
-import { InputAutocomplete } from "../types/inputComplete.ts";
-const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1;
+
+import "../css/routeSettings.css"
+import {handleGetRoute} from "../api/geoapify/route.ts";
+import {useMap} from "../api/geoapify/mapContext.tsx";
+import {RouteDetails} from "../types/routeDetails.ts";
+import React, {useState} from "react";
+import {InputAutocomplete} from "../types/inputComplete.ts";
+import {useNotification} from "../context/notification/notificationContext.tsx";
+import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM} from "../config/constants.ts";
+const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1
 
 type Props = {
   setRouteDetails: React.Dispatch<React.SetStateAction<RouteDetails | null>>;
@@ -31,28 +34,30 @@ const App = ({
     isHotelsChecked: false,
     hotelThresholdKM: null,
     isFuelChecked: false,
-    fuelThresholdKM: null,
-  });
-  const { map } = useMap();
+    fuelThresholdKM: null
+  })
+  const {map} = useMap()
+  const { addNotification } = useNotification();
 
   async function onPlaceSelectStart(value: InputAutocomplete) {
-    if (map && value.properties.lon && value.properties.lat) {
-      map.jumpTo({
-        center: [value.properties.lon, value.properties.lat],
-        zoom: 10,
-      });
-      setStartInput(value);
-      if (endInput && value) {
-        setRouteDetails(await handleGetRoute(map, value, endInput, settings)); //value since setStartInput is async and doesn't have value yet
-      }
-    }
+    if (!map || !value?.properties?.lon || !value?.properties?.lat) return;
+
+    map.jumpTo({center: [value.properties.lon, value.properties.lat], zoom: 10})
+    setStartInput(value)
+
+    if (!endInput) return
+    if (!validateSettings()) return
+
+    setRouteDetails( await handleGetRoute(map, value, endInput, settings));
   }
 
-  async function onPlaceSelectEnd(value: InputAutocomplete) {
-    setEndInput(value);
-    if (startInput && map && value) {
-      const routeDet = await handleGetRoute(map, startInput, value, settings);
-      setRouteDetails(routeDet);
+  async function onPlaceSelectEnd(value: InputAutocomplete){
+    setEndInput(value)
+
+    if (!map || !value?.properties?.lon || !value?.properties?.lat || !startInput) return;
+    if (!validateSettings()) return
+
+    setRouteDetails( await handleGetRoute(map, startInput, value, settings));
     }
   }
 
@@ -65,16 +70,23 @@ const App = ({
     }));
   };
 
-  async function handleRouteSettingsSubmit() {
-    if (map && startInput && endInput) {
-      const routeDetails = await handleGetRoute(
-        map,
-        startInput,
-        endInput,
-        settings
-      );
-      setRouteDetails(routeDetails);
+  async function handleRouteSettingsSubmit(){
+    if(map && startInput && endInput && validateSettings()){
+      const routeDetails = await handleGetRoute(map, startInput, endInput, settings)
+      setRouteDetails(routeDetails)
     }
+  }
+
+  function validateSettings(){
+    if(settings.isHotelsChecked && settings.hotelThresholdKM && settings.hotelThresholdKM <= 0){
+      addNotification("Distanz zwischen Unterkünften muss mindestens 1 sein", "error")
+      return false
+    }
+    if(settings.isFuelChecked && settings.fuelThresholdKM && settings.fuelThresholdKM <= 0){
+      addNotification("Durchschnittliche Tankreichweite muss mindestens 1 sein", "error")
+      return false
+    }
+    return true
   }
 
   return (
@@ -95,47 +107,49 @@ const App = ({
 
       <div className="route-settings-container">
         <h2>Route Settings:</h2>
-        <label>
+        <label className="settings-form-container">
           Unterkünfte:
-          <input
-            type="checkbox"
-            checked={settings.isHotelsChecked}
-            onChange={handleSettingsChange}
-            name="isHotelsChecked"
-          />
+          <label className="switch">
+            <input type="checkbox"
+                   checked={settings.isHotelsChecked}
+                   onChange={handleSettingsChange}
+                   name="isHotelsChecked"
+            />
+            <span className="slider"></span>
+          </label>
         </label>
         <label>
-          Kilometer von Unterkunft zu Unterkunft
-          <input
-            type="number"
-            min={50}
-            disabled={!settings.isHotelsChecked}
-            onChange={handleSettingsChange}
-            name="hotelThresholdKM"
+          Distanz zwischen Unterkünften in km
+          <input type="number"
+                 min={50}
+                 disabled={!settings.isHotelsChecked}
+                 onChange={handleSettingsChange}
+                 name="hotelThresholdKM"
+                 placeholder={`${DEFAULT_HOTEL_THRESHOLD_KM}`}
           />
+        </label>
+        <label className="settings-form-container">
+          Tankstellen
+          <label className="switch">
+            <input type="checkbox"
+                   checked={settings.isFuelChecked}
+                   onChange={handleSettingsChange}
+                   name="isFuelChecked"
+            />
+            <span className="slider"></span>
+          </label>
         </label>
         <label>
-          Tankstellen:
-          <input
-            type="checkbox"
-            checked={settings.isFuelChecked}
-            onChange={handleSettingsChange}
-            name="isFuelChecked"
+          Durchschnittliche Tankreichweite in km
+          <input type="number"
+                 min={50}
+                 disabled={!settings.isFuelChecked}
+                 onChange={handleSettingsChange}
+                 name="fuelThresholdKM"
+                 placeholder={`${DEFAULT_FUEL_THRESHOLD_KM}`}
           />
         </label>
-        <label>
-          Durchschnittliche Tankreichweite
-          <input
-            type="number"
-            min={50}
-            disabled={!settings.isFuelChecked}
-            onChange={handleSettingsChange}
-            name="fuelThresholdKM"
-          />
-        </label>
-        <button type="submit" onClick={handleRouteSettingsSubmit}>
-          Submit
-        </button>
+        <button type="submit" onClick={handleRouteSettingsSubmit}>Anwenden</button>
       </div>
     </>
   );
