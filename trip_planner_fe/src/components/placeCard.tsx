@@ -14,12 +14,10 @@ export default function PlaceCard({placeDetails} : Props){
 
   useEffect(() => {
     getPicture(placeDetails.properties.address_line1).then(setPicture)
-    console.log(placeDetails)
   }, [placeDetails]);
 
 
   if (!placeDetails?.properties?.name){
-    console.log("returns null")
     return null;
   }
 

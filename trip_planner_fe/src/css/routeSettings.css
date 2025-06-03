@@ -7,7 +7,7 @@
 }
 
 .route-settings-container > h2 {
-    margin-bottom: 1vh;
+    margin-bottom: 1.5vh;
     margin-left: 0;
 }
 
@@ -32,21 +32,27 @@
 }
 
 .route-settings-container > button {
+    margin-top: 2vh;
     width: 10vw;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    color: white;
-    background-color: var(--button-color);
-    padding: 1em 0;
-    border: none;
-    border-radius: .6rem;
     position: relative;
-    cursor: pointer;
     overflow: hidden;
+    background-color: var(--button-color);
+    color: white;
+    padding: 0.75vw 1vw;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
 }
 
-/* The switch - the box around the slider */
+.settings-form-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+
 .switch {
+    margin-left: 0.5em;
     font-size: 12px;
     position: relative;
     display: inline-block;
@@ -61,7 +67,6 @@
     height: 0;
 }
 
-/* The slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -84,12 +89,11 @@
 }
 
 .switch input:checked + .slider {
-    box-shadow: 0 0 15px rgba(9, 117, 241, 0.8);
-    border: 1.5px solid #0974f1;
+    background-color: var(--button-color);
 }
 
 .switch input:checked + .slider:before {
-    transform: translateX(1.5em);
+    transform: translateX(1.15em);
 }
 
 

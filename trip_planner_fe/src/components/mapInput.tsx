@@ -11,6 +11,7 @@ import {RouteDetails} from "../types/routeDetails.ts";
 import React, {useState} from "react";
 import {InputAutocomplete} from "../types/inputComplete.ts";
 import {useNotification} from "../context/notification/notificationContext.tsx";
+import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM} from "../config/constants.ts";
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1
 
 type Props = {
@@ -109,26 +110,29 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
 
       <div className="route-settings-container">
         <h2>Route Settings:</h2>
-        <label>
+        <label className="settings-form-container">
           Unterkünfte:
-          <input type="checkbox"
-                 checked={settings.isHotelsChecked}
-                 onChange={handleSettingsChange}
-                 name="isHotelsChecked"
-          />
+          <label className="switch">
+            <input type="checkbox"
+                   checked={settings.isHotelsChecked}
+                   onChange={handleSettingsChange}
+                   name="isHotelsChecked"
+            />
+            <span className="slider"></span>
+          </label>
         </label>
         <label>
-          Kilometer von Unterkunft zu Unterkunft
+          Distanz zwischen Unterkünften in km
           <input type="number"
                  min={50}
                  disabled={!settings.isHotelsChecked}
                  onChange={handleSettingsChange}
                  name="hotelThresholdKM"
-                 placeholder="300"
+                 placeholder={`${DEFAULT_HOTEL_THRESHOLD_KM}`}
           />
         </label>
-        <label>
-          Tankstellen:
+        <label className="settings-form-container">
+          Tankstellen
           <label className="switch">
             <input type="checkbox"
                    checked={settings.isFuelChecked}
@@ -139,13 +143,13 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
           </label>
         </label>
         <label>
-          Durchschnittliche Tankreichweite
+          Durchschnittliche Tankreichweite in km
           <input type="number"
                  min={50}
                  disabled={!settings.isFuelChecked}
                  onChange={handleSettingsChange}
                  name="fuelThresholdKM"
-                 placeholder="300"
+                 placeholder={`${DEFAULT_FUEL_THRESHOLD_KM}`}
           />
         </label>
         <button type="submit" onClick={handleRouteSettingsSubmit}>Anwenden</button>
