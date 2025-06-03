@@ -58,7 +58,6 @@ const App = ({
     if (!validateSettings()) return
 
     setRouteDetails( await handleGetRoute(map, startInput, value, settings));
-    }
   }
 
   const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
