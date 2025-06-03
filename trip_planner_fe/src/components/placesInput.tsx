@@ -35,6 +35,7 @@ const PlacesInput = ({setInput, input}: Props) => {
   const result = await Promise.all(
     CATEGORY_CONFIG.map(async (category) => {
       const data = await getPlaces(value, category.key);
+      console.log(data.features)
       return {
         key: category.key,
         label: category.label,
