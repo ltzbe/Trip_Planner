@@ -4,6 +4,7 @@ import {
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 import "../css/addressInput.css";
+
 import "../css/routeSettings.css"
 import {handleGetRoute} from "../api/geoapify/route.ts";
 import {useMap} from "../api/geoapify/mapContext.tsx";
@@ -19,10 +20,16 @@ type Props = {
   startInput: InputAutocomplete | null;
   setStartInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>;
   endInput: InputAutocomplete | null;
-  setEndInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>
+  setEndInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>;
 };
 
-const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput} : Props) => {
+const App = ({
+  setRouteDetails,
+  startInput,
+  setStartInput,
+  endInput,
+  setEndInput,
+}: Props) => {
   const [settings, setSettings] = useState({
     isHotelsChecked: false,
     hotelThresholdKM: null,
@@ -51,20 +58,17 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
     if (!validateSettings()) return
 
     setRouteDetails( await handleGetRoute(map, startInput, value, settings));
+    }
   }
 
-  function onSuggectionChange(value: GeoJSON.Feature) {
-    console.log(value);
-  }
-
-  const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+  const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
     setSettings((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : Number(value),
+      [name]: type === "checkbox" ? checked : Number(value),
     }));
-  }
+  };
 
   async function handleRouteSettingsSubmit(){
     if(map && startInput && endInput && validateSettings()){
@@ -85,25 +89,18 @@ const App = ({setRouteDetails, startInput, setStartInput, endInput, setEndInput}
     return true
   }
 
-
   return (
     <>
       <div className="input-container">
         <GeoapifyContext apiKey={GEO_API_KEY}>
           <div className="address-input-wrapper">
             <h2>Start</h2>
-            <GeoapifyGeocoderAutocomplete
-              placeSelect={onPlaceSelectStart}
-              suggestionsChange={onSuggectionChange}
-            />
+            <GeoapifyGeocoderAutocomplete placeSelect={onPlaceSelectStart} />
           </div>
 
           <div className="address-input-wrapper">
             <h2>Ziel</h2>
-            <GeoapifyGeocoderAutocomplete
-              placeSelect={onPlaceSelectEnd}
-              suggestionsChange={onSuggectionChange}
-            />
+            <GeoapifyGeocoderAutocomplete placeSelect={onPlaceSelectEnd} />
           </div>
         </GeoapifyContext>
       </div>

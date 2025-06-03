@@ -88,10 +88,14 @@
   height: 600px;
 }
 
+.macbook-icon {
+  width: 600px;
+}
+
 .iphone-icon {
   position: relative;
-  left: 450px;
-  top: -280px;
+  left: 460px;
+  top: -255px;
   width: 110px;
 }
 
