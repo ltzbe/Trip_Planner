@@ -6,15 +6,16 @@
     flex-direction: column;
 }
 
-.places-wrapper > h2 {
+.places-wrapper > h1 {
     align-self: center;
+    text-align: center;
     margin: 1rem auto;
 }
 
 .category-heading{
     margin-top: 3rem;
     margin-bottom: 1rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .place-cards {
@@ -77,3 +78,11 @@
     color: #555;
 }
 
+.place-loader{
+    align-self: center;
+    margin-top: 5vh;
+}
+
+.place-loader > p {
+    margin-top: 1vh;
+}

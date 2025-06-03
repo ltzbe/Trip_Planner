@@ -3,11 +3,11 @@ import maplibregl from "maplibre-gl";
 import { InputAutocomplete } from "../../types/inputComplete.ts";
 import { RouteDetails } from "../../types/routeDetails.ts";
 import {getPlacesByCoords} from "./places.ts";
-import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM, FUEL_MARKER} from "../../config/constants.ts"
+import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM} from "../../config/constants.ts"
 import {Settings} from "../../types/settings.ts";
 import {createFuelMarker, createHotelMarker} from "./markers.ts";
 
-const ROUTING_API_KEY = "7263a7cafcc4410db5377fda5a87d544"
+const GEO_API_KEY = import .meta.env.VITE_GEO_API_KEY_3
 
 let markers: maplibregl.Marker[] = []
 
@@ -74,7 +74,7 @@ function displayRoute(map: maplibregl.Map,
 export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutocomplete, endInput: InputAutocomplete, routeSettings: Settings) => {
     const {isHotelsChecked, hotelThresholdKM, isFuelChecked, fuelThresholdKM} = routeSettings
 
-    const response = await fetch(`https://api.geoapify.com/v1/routing?waypoints=${startInput.properties.lat},${startInput.properties.lon}|${endInput.properties.lat},${endInput.properties.lon}&mode=drive&apiKey=${ROUTING_API_KEY}`, {
+    const response = await fetch(`https://api.geoapify.com/v1/routing?waypoints=${startInput.properties.lat},${startInput.properties.lon}|${endInput.properties.lat},${endInput.properties.lon}&mode=drive&apiKey=${GEO_API_KEY}`, {
         method: "GET",
     })
     if (response.ok) {
@@ -102,27 +102,63 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
     }
 }
 
-export const submitRoute = async (routeDetails: RouteDetails) => {
-
+export const submitRoute = async (routeDetails: RouteDetails, routeName: string): Promise<"success" | "unauthenticated" | "error"> => {
     const token = getTokenFromCookie();
     if (!token) {
-        throw new Error("User is not authenticated");
-    } else {
-        const response = await fetch("http://localhost:8080/route", {
+        return "unauthenticated";
+    }
+
+    const body: { name: string; route: string } = {
+        name: routeName,
+        route: JSON.stringify(routeDetails)
+    };
+
+    try {
+        const response = await fetch("http://localhost:8080/routes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify(routeDetails)
+            body: JSON.stringify(body)
         });
 
         if (!response.ok) {
-            throw new Error("Failed to submit route");
+            return "error";
         }
-        return await response.json();
+
+        return "success";
+    } catch {
+        return "error";
     }
-}
+};
+
+export const loadRouteNames = async () => {
+    const token = getTokenFromCookie();
+    if (!token) {
+        return "unauthenticated";
+    }
+
+    try {
+        const response = await fetch("http://localhost:8080/routes/id", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            return "error";
+        }
+
+        return data;
+    } catch {
+        return "error";
+    }
+};
 
 function getWaypoints(coords: [number, number][], n: number, threshold: number){
     const waypoints = [];

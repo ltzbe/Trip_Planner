@@ -22,5 +22,6 @@ public class Route {
     private String name;
 
     @NotNull
+    @Lob
     private String route;
 }

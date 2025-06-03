@@ -1,11 +1,14 @@
 package de.dhbwravensburgwebeng.trip_planner_be.service;
 
+import de.dhbwravensburgwebeng.trip_planner_be.model.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import de.dhbwravensburgwebeng.trip_planner_be.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -19,12 +22,14 @@ import java.util.function.Function;
 @Service
 public class JWTService {
 
+    private final UserRepository userRepository;
     private String secretkey = "";
 
-    public JWTService() throws NoSuchAlgorithmException {
+    public JWTService(UserRepository userRepository) throws NoSuchAlgorithmException {
         KeyGenerator keygen = KeyGenerator.getInstance("HmacSHA256");
         SecretKey sk = keygen.generateKey();
         secretkey = Base64.getEncoder().encodeToString(sk.getEncoded());
+        this.userRepository = userRepository;
     }
 
     public String generateToken(String username) {
@@ -78,5 +83,16 @@ public class JWTService {
 
     private Date extractExpiration(String token) {
         return extractClaims(token, Claims::getExpiration);
+    }
+
+    public UserEntity getUserFromToken( String authHeader) {
+        String username = null;
+        String jwt = null;
+        if (authHeader != null && authHeader.startsWith("Bearer")) {
+            jwt = authHeader.substring(7);
+            username = extractUsername(jwt);
+        }
+
+        return userRepository.findByUsername(username);
     }
 }
