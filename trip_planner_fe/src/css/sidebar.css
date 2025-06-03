@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 170px;
   height: 100vh;
-  background-color: #1e2a38 ; /*2a3439, 1e2a38*/
+  background-color: #1e2a38; /*2a3439, 1e2a38*/
   color: black;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
@@ -57,24 +57,18 @@
   font-size: 0.8rem;
   margin-bottom: 15px;
   margin-top: 20px;
-  color: #333 ;
+  color: #333;
   text-decoration: none;
   padding-left: 20px;
 }
 
 .sidebar-links {
   text-decoration: none;
-  color: #E0E0E0 ;
+  color: #e0e0e0;
   padding: 10px 20px;
   display: block;
   transition: all 0.3s ease;
   border-radius: 4px;
-}
-
-.sidebar-links.active {
-  background-color: var(--accent-color);
-  color: var(--text-light);
-  font-weight: bold;
 }
 
 .sidebar-links:hover {

@@ -21,6 +21,10 @@ public class Route {
     @NotNull
     private String name;
 
+    private String startPoint;
+
+    private String endPoint;
+
     @NotNull
     @Lob
     private String route;
