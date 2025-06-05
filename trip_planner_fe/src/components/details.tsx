@@ -1,31 +1,30 @@
 import "../css/routeDetails.css";
-import { RouteDetails } from "../types/routeDetails.ts";
-import { InputAutocomplete } from "../types/inputComplete.ts";
+import {RouteFeature} from "../types/routeDetails.ts";
 
 type Props = {
-  routeDetails: RouteDetails | null;
-  startInput: InputAutocomplete | null;
-  endInput: InputAutocomplete | null;
+  route: RouteFeature | null;
+  startName: string | null;
+  endName: string | null;
 };
 
-const Details = ({ routeDetails, startInput, endInput }: Props) => {
+const Details = ({ route, startName, endName }: Props) => {
   return (
-    routeDetails &&
-    startInput &&
-    endInput && (
+    route &&
+    startName &&
+    endName && (
       <div className="route-details-container">
         <h2>Deine Route</h2>
         <div className="details-content">
-          <p>Start: {startInput.properties.address_line1}</p>
-          <p>Ende: {endInput.properties.address_line1}</p>
+          <p>Start: {startName}</p>
+          <p>Ende: {endName}</p>
           <p>
             Länge der Strecke:{" "}
-            {(routeDetails.features[0].properties.distance / 1000).toFixed(2)}{" "}
+            {(route.properties.distance / 1000).toFixed(2)}{" "}
             km
           </p>
           <p>
             Erwartete Fahrtdauer:{" "}
-            {(routeDetails.features[0].properties.time / 3600).toFixed(1)} h
+            {(route.properties.time / 3600).toFixed(1)} h
           </p>
         </div>
       </div>

@@ -7,14 +7,15 @@ import Details from "../components/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
 
 import "../css/dashboardRoutePlanner.css";
-import { RouteDetails } from "../types/routeDetails.ts";
+import { RouteFeature} from "../types/routeDetails.ts";
 import { InputAutocomplete } from "../types/inputComplete.ts";
 
 export default function DashboardRoutePlanner() {
-  const [routeDetails, setRouteDetails] = useState<RouteDetails | null>(null);
+  const [route, setRoute] = useState<RouteFeature | null>(null);
   const [startInput, setStartInput] = useState<InputAutocomplete | null>(null);
   const [endInput, setEndInput] = useState<InputAutocomplete | null>(null);
   const { addNotification } = useNotification();
+
 
   const [showPopup, setShowPopup] = useState(false);
   const [routeName, setRouteName] = useState("");
@@ -25,18 +26,18 @@ export default function DashboardRoutePlanner() {
       <div className="route-overview-container">
         <h1>Plane deine Route!</h1>
         <Input
-          setRouteDetails={setRouteDetails}
+          setRoute={setRoute}
           startInput={startInput}
           setStartInput={setStartInput}
           endInput={endInput}
           setEndInput={setEndInput}
         />
         <Map />
-        {routeDetails && startInput && endInput && (
+        {route && startInput?.properties?.address_line1 && endInput?.properties?.address_line1 && (
           <Details
-            routeDetails={routeDetails}
-            startInput={startInput}
-            endInput={endInput}
+            route={route}
+            startName={startInput.properties.address_line1}
+            endName={endInput.properties.address_line1}
           />
         )}
       </div>
@@ -45,7 +46,7 @@ export default function DashboardRoutePlanner() {
         className="route-planner-submit-route-button"
         onClick={(e) => {
           e.preventDefault();
-          if (!routeDetails) {
+          if (!route) {
             addNotification("Bitte zuerst eine Route berechnen.", "error");
             return;
           }
@@ -69,7 +70,7 @@ export default function DashboardRoutePlanner() {
               <button onClick={() => setShowPopup(false)}>Abbrechen</button>
               <button
                 onClick={() => {
-                  if (!routeName.trim()) {
+                  if (!routeName.trim() || !route) {
                     addNotification(
                       "Bitte gib einen Namen für die Route ein.",
                       "error"
@@ -77,7 +78,7 @@ export default function DashboardRoutePlanner() {
                     return;
                   }
                   submitRoute(
-                    routeDetails!,
+                    route,
                     routeName,
                     startInput!,
                     endInput!
