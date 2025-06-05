@@ -7,7 +7,7 @@ import Details from "../components/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
 
 import "../css/dashboardRoutePlanner.css";
-import { RouteFeature} from "../types/routeDetails.ts";
+import { RouteFeature } from "../types/routeDetails.ts";
 import { InputAutocomplete } from "../types/inputComplete.ts";
 
 export default function DashboardRoutePlanner() {
@@ -41,12 +41,15 @@ export default function DashboardRoutePlanner() {
             endInput={endInput}
             setEndInput={setEndInput}
           />
-        {route && startInput?.properties?.address_line1 && endInput?.properties?.address_line1 && (
-          <Details
-            route={route}
-            startName={startInput.properties.address_line1}
-            endName={endInput.properties.address_line1}
-          />)}
+          {route &&
+            startInput?.properties?.address_line1 &&
+            endInput?.properties?.address_line1 && (
+              <Details
+                route={route}
+                startName={startInput.properties.address_line1}
+                endName={endInput.properties.address_line1}
+              />
+            )}
         </div>
         <Map />
       </div>
@@ -77,7 +80,14 @@ export default function DashboardRoutePlanner() {
               placeholder="Name der Route"
             />
             <div className="popup-buttons">
-              <button onClick={() => setShowPopup(false)}>Abbrechen</button>
+              <button
+                onClick={() => {
+                  setRouteName("");
+                  setShowPopup(false);
+                }}
+              >
+                Abbrechen
+              </button>
               <button
                 onClick={() => {
                   if (!routeName.trim() || !route) {
@@ -87,32 +97,29 @@ export default function DashboardRoutePlanner() {
                     );
                     return;
                   }
-                  submitRoute(
-                    route,
-                    routeName,
-                    startInput!,
-                    endInput!
-                  ).then((result) => {
-                    switch (result) {
-                      case "success":
-                        addNotification(
-                          "Route erfolgreich gespeichert.",
-                          "success"
-                        );
-                        break;
-                      case "unauthenticated":
-                        addNotification("Du bist nicht angemeldet.", "error");
-                        break;
-                      case "error":
-                      default:
-                        addNotification(
-                          "Route konnte nicht gespeichert werden.",
-                          "error"
-                        );
-                        break;
+                  submitRoute(route, routeName, startInput!, endInput!).then(
+                    (result) => {
+                      switch (result) {
+                        case "success":
+                          addNotification(
+                            "Route erfolgreich gespeichert.",
+                            "success"
+                          );
+                          break;
+                        case "unauthenticated":
+                          addNotification("Du bist nicht angemeldet.", "error");
+                          break;
+                        case "error":
+                        default:
+                          addNotification(
+                            "Route konnte nicht gespeichert werden.",
+                            "error"
+                          );
+                          break;
+                      }
+                      setShowPopup(false);
                     }
-                    setShowPopup(false);
-                  });
+                  );
                 }}
               >
                 Speichern
