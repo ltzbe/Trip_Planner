@@ -112,7 +112,16 @@
 
 .navbar-login-btn:hover,
 .navbar-logout-btn:hover {
-  /* color: #3c4a48; */
   background-color: var(--button-hover-color);
   transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar-center {
+    display: none;
+  }
+
+  .navbar-right {
+    display: none;
+  }
 }
