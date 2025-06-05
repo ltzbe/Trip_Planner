@@ -8,7 +8,7 @@ import "../css/addressInput.css";
 import "../css/routeSettings.css";
 import { handleGetRoute } from "../api/geoapify/route.ts";
 import { useMap } from "../api/geoapify/mapContext.tsx";
-import { RouteDetails } from "../types/routeDetails.ts";
+import { RouteFeature } from "../types/routeDetails.ts";
 import React, { useState } from "react";
 import { InputAutocomplete } from "../types/inputComplete.ts";
 import { useNotification } from "../context/notification/notificationContext.tsx";
@@ -19,7 +19,7 @@ import {
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1;
 
 type Props = {
-  setRouteDetails: React.Dispatch<React.SetStateAction<RouteDetails | null>>;
+  setRoute: React.Dispatch<React.SetStateAction<RouteFeature | null>>;
   startInput: InputAutocomplete | null;
   setStartInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>;
   endInput: InputAutocomplete | null;
@@ -27,7 +27,7 @@ type Props = {
 };
 
 const MapInput = ({
-  setRouteDetails,
+  setRoute,
   startInput,
   setStartInput,
   endInput,
@@ -54,7 +54,7 @@ const MapInput = ({
     if (!endInput) return;
     if (!validateSettings()) return;
 
-    setRouteDetails(await handleGetRoute(map, value, endInput, settings));
+    setRoute( await handleGetRoute(map, value, endInput, settings));
   }
 
   async function onPlaceSelectEnd(value: InputAutocomplete) {
@@ -69,7 +69,7 @@ const MapInput = ({
       return;
     if (!validateSettings()) return;
 
-    setRouteDetails(await handleGetRoute(map, startInput, value, settings));
+    setRoute( await handleGetRoute(map, startInput, value, settings));
   }
 
   const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,7 +89,7 @@ const MapInput = ({
         endInput,
         settings
       );
-      setRouteDetails(routeDetails);
+      setRoute(routeDetails);
     }
   }
 

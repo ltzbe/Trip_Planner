@@ -1,7 +1,7 @@
 // for routing
 import maplibregl from "maplibre-gl";
 import { InputAutocomplete } from "../../types/inputComplete.ts";
-import { RouteDetails } from "../../types/routeDetails.ts";
+import {RouteDetails, RouteFeature} from "../../types/routeDetails.ts";
 import { getPlacesByCoords } from "./places.ts";
 import { DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM } from "../../config/constants.ts"
 import { Settings } from "../../types/settings.ts";
@@ -97,11 +97,13 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
             displayHotelMarkers(map, hotelWaypoints)
         }
 
-        return data
+        console.log(data)
+        console.log(data.features[0])
+        return data.features[0]
     }
 }
 
-export const submitRoute = async (routeDetails: RouteDetails, routeName: string, startInput: InputAutocomplete, endInput: InputAutocomplete): Promise<"success" | "unauthenticated" | "error"> => {
+export const submitRoute = async (route: RouteFeature, routeName: string, startInput: InputAutocomplete, endInput: InputAutocomplete): Promise<"success" | "unauthenticated" | "error"> => {
     const token = getTokenFromCookie();
     if (!token) {
         return "unauthenticated";
@@ -111,7 +113,7 @@ export const submitRoute = async (routeDetails: RouteDetails, routeName: string,
         name: routeName,
         startPoint: startInput.properties.address_line1 + ", " + startInput.properties.address_line2,
         endPoint: endInput.properties.address_line1 + ", " + endInput.properties.address_line2,
-        route: JSON.stringify(routeDetails)
+        route: JSON.stringify(route)
     };
 
     try {
