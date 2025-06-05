@@ -17,6 +17,7 @@
     "@fontsource/source-sans-pro": "^5.2.5",
     "@geoapify/geocoder-autocomplete": "^2.1.0",
     "@geoapify/react-geocoder-autocomplete": "^2.0.1",
+    "gsap": "^3.13.0",
     "maplibre-gl": "^5.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

@@ -1,88 +1,117 @@
-.places-wrapper{
-    display: flex;
-    padding: 2rem;
-    margin-left: 220px;
-    margin-right: 5vw;
-    flex-direction: column;
+.places-wrapper {
+  display: flex;
+  padding: 2rem;
+  margin-left: 220px;
+  margin-right: 5vw;
+  flex-direction: column;
+  color: #fff;
 }
 
 .places-wrapper > h1 {
-    align-self: center;
-    text-align: center;
-    margin: 1rem auto;
+  align-self: center;
+  text-align: center;
+  margin: 1rem auto;
+  color: white;
 }
 
-.category-heading{
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
+.input-container {
+  margin: 0 auto;
+}
+
+.places-wrapper input {
+  width: 220px;
+  height: 44px;
+  background-color: rgb(13, 13, 14);
+  color: #eeeeee;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  border: 1px solid grey;
+  font-size: 1rem;
+  transition: border-color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    background 0.2s cubic-bezier(0.25, 0.01, 0.25, 1) 0s;
+}
+
+.places-wrapper input:hover,
+.places-wrapper input:focus,
+.places-wrapper:hover input {
+  outline: none;
+  border-color: #eeeeee;
+}
+
+.category-heading {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
 }
 
 .place-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .place-card {
-    width: 250px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    transition: transform 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
+  width: 220px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #161f29;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 1.5rem;
 }
 
 .place-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .place-card-image {
-    width: 100%;
-    height: 150px;
-    overflow: hidden;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
 }
 
 .place-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
 }
 
 .place-card-info {
-    padding: 16px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #aaa;
 }
 
 .place-card-info h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #333;
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
 }
 
 .place-type {
-    font-size: 0.95rem;
-    color: #777;
-    text-transform: capitalize;
+  font-size: 0.95rem;
+  color: #777;
+  text-transform: capitalize;
 }
 
 .route-info {
-    font-size: 0.85rem;
-    color: #555;
+  font-size: 0.85rem;
+  color: #555;
 }
 
-.place-loader{
-    align-self: center;
-    margin-top: 5vh;
+.place-loader {
+  align-self: center;
+  margin-top: 5vh;
 }
 
 .place-loader > p {
-    margin-top: 1vh;
+  margin-top: 1vh;
 }

@@ -5,7 +5,6 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import { useMap } from "../api/geoapify/mapContext";
 import "../css/sidebar.css";
 import Logo from "../assets/tripplanr-logo.png";
-// import UserIcon from "../assets/user.png";
 
 const Sidebar = () => {
   const { map } = useMap();
@@ -33,7 +32,7 @@ const Sidebar = () => {
       <div className="sidebar-header">
         <img src={Logo} alt="logo" className="sidebar-logo" />
       </div>
-      <div className="sidebar-menu">
+      <div className="sidebar-link-menu">
         <p className="sidebar-section-title">Favoriten</p>
         <ul>
           {routeNames.length > 0
@@ -51,9 +50,21 @@ const Sidebar = () => {
             : null}
         </ul>
       </div>
+      <div className="sidebar-service-menu">
+        <p className="sidebar-section-title">Service</p>
+        <NavLink to="/" className="sidebar-links">
+          🏠 Home
+        </NavLink>
+        <NavLink to="/dashboard-route-planner" className="sidebar-links">
+          🗺️ Route-Planner
+        </NavLink>
+        <NavLink to="/places" className="sidebar-links">
+          📍 Places
+        </NavLink>
+      </div>
       <div className="sidebar-footer">
         <Link to={backButtonTarget} className="sidebar-footer-title">
-          ← Verlassen
+          ← Zurück
         </Link>
       </div>
     </nav>

@@ -11,9 +11,9 @@ function SpinnerLoader() {
         <div className="dot-spinner__dot"></div>
         <div className="dot-spinner__dot"></div>
       </div>
-      <p>Loading...</p>
+      <p style={{ color: "#fff" }}>Loading...</p>
     </>
-  )
+  );
 }
 
-export default SpinnerLoader
+export default SpinnerLoader;

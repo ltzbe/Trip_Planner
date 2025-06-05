@@ -1,99 +1,107 @@
-.route-settings-container{
-    margin: 2vh 0;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
+.route-settings-container {
+  margin: 2vh 0;
+  align-self: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 80%;
 }
 
 .route-settings-container > h2 {
-    margin-bottom: 1.5vh;
-    margin-left: 0;
+  margin-bottom: 1.5vh;
+  margin-left: 0;
 }
 
-.route-settings-container > *{
-    margin-left: 2vw;
+.route-settings-container > * {
+  margin-left: 2vw;
 }
 
 .route-settings-container > label > input[type="number"] {
-    margin-left: 1vw;
-    max-width: 80px;
-    padding: 0.5rem;
-    border-radius: 15px;
-    font-size: 1rem;
-    color: black;
-    background-color: white;
-    border-color: var(--accent-color);
+  margin-left: 1vw;
+  max-width: 80px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid grey;
+  font-size: 1rem;
+  color: #eeeeee;
+  background-color: var(--card-color);
 }
 
 .route-settings-container > label > input[type="number"]:focus {
-    border: 1px solid var(--button-color);
-    border-color: var(--button-color);
+  border: 1px solid #fff;
+}
+
+.route-settings-container > label > input[type="number"]:focus-visible {
+  outline: none;
 }
 
 .route-settings-container > button {
-    margin-top: 2vh;
-    width: 10vw;
-    position: relative;
-    overflow: hidden;
-    background-color: var(--button-color);
-    color: white;
-    padding: 0.75vw 1vw;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+  margin-top: 2vh;
+  width: 10vw;
+  position: relative;
+  overflow: hidden;
+  background: var(--button-color-modern);
+  color: white;
+  font-size: 1rem;
+  padding: 0.75vw 1vw;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease;
 }
 
-.settings-form-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
+.route-settings-container > button:hover {
+  transform: scale(1.03);
 }
 
+.settings-form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
 
 .switch {
-    margin-left: 0.5em;
-    font-size: 12px;
-    position: relative;
-    display: inline-block;
-    width: 2.5em;
-    height: 1.5em;
+  margin-left: 0.5em;
+  font-size: 12px;
+  position: relative;
+  display: inline-block;
+  width: 2.5em;
+  height: 1.5em;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    border: 1px solid #414141;
-    border-radius: 25px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  border: 1px solid #414141;
+  border-radius: 25px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 1em;
-    width: 1em;
-    left: 0.15em;
-    bottom: 0.15em;
-    background-color: white;
-    border-radius: inherit;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  position: absolute;
+  content: "";
+  height: 1em;
+  width: 1em;
+  left: 0.15em;
+  bottom: 0.15em;
+  background-color: white;
+  border-radius: inherit;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .switch input:checked + .slider {
-    background-color: var(--button-color);
+  background-color: #ff5100;
 }
 
 .switch input:checked + .slider:before {
-    transform: translateX(1.15em);
+  transform: translateX(1.15em);
 }
-
-

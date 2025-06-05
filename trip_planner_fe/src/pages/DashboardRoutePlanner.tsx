@@ -1,7 +1,7 @@
 import Sidebar from "../components/sidebar";
 import Map from "../components/map";
 import Input from "../components/mapInput";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import Details from "../components/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
@@ -16,22 +16,32 @@ export default function DashboardRoutePlanner() {
   const [endInput, setEndInput] = useState<InputAutocomplete | null>(null);
   const { addNotification } = useNotification();
 
-
   const [showPopup, setShowPopup] = useState(false);
   const [routeName, setRouteName] = useState("");
+  const popupInputRef = useRef<HTMLInputElement>(null);
+  const { addNotification } = useNotification();
+
+  useEffect(() => {
+    if (showPopup) {
+      document.body.classList.add("popup-open");
+      popupInputRef.current?.focus();
+    } else {
+      document.body.classList.remove("popup-open");
+    }
+  }, [showPopup]);
 
   return (
     <div className="route-planner-wrapper">
       <Sidebar />
       <div className="route-overview-container">
-        <h1>Plane deine Route!</h1>
-        <Input
-          setRoute={setRoute}
-          startInput={startInput}
-          setStartInput={setStartInput}
-          endInput={endInput}
-          setEndInput={setEndInput}
-        />
+        <h1 className="route-container-title">Plane deine Route!</h1>
+        <div className="route-top-wrapper">
+          <Input
+            setRoute={setRoute}
+            startInput={startInput}
+            setStartInput={setStartInput}
+            endInput={endInput}
+            setEndInput={setEndInput}
         <Map />
         {route && startInput?.properties?.address_line1 && endInput?.properties?.address_line1 && (
           <Details
@@ -39,7 +49,8 @@ export default function DashboardRoutePlanner() {
             startName={startInput.properties.address_line1}
             endName={endInput.properties.address_line1}
           />
-        )}
+        </div>
+        <Map />
       </div>
 
       <button
@@ -61,6 +72,7 @@ export default function DashboardRoutePlanner() {
           <div className="popup-content">
             <h2>Route benennen</h2>
             <input
+              ref={popupInputRef}
               type="text"
               value={routeName}
               onChange={(e) => setRouteName(e.target.value)}
