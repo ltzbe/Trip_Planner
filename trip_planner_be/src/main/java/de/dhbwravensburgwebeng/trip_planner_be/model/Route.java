@@ -14,7 +14,7 @@ public class Route {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "users_id")
     private UserEntity userID;
 

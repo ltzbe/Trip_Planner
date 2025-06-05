@@ -5,7 +5,6 @@ import de.dhbwravensburgwebeng.trip_planner_be.model.UserEntity;
 import de.dhbwravensburgwebeng.trip_planner_be.repositories.RouteRepository;
 import de.dhbwravensburgwebeng.trip_planner_be.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +38,10 @@ public class RouteService {
     public Route getRouteByName(UserEntity user, String routeName) {
         UserEntity username = userRepository.findByUsername(user.getUsername());
         return routeRepository.findRouteByNameAndUserID(routeName, username);
+    }
+
+    public void deleteRoute(Route route) {
+        routeRepository.delete(route);
     }
 
 }
