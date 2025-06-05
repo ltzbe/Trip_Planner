@@ -6,4 +6,5 @@
   --button-color-modern: linear-gradient(120deg, #ff5100, #e52e71);
   --button-hover-color: rgba(203, 72, 72, 1);
   --card-color: rgb(33, 32, 36);
+  --card-color-light: rgb(53, 51, 59);
 }
