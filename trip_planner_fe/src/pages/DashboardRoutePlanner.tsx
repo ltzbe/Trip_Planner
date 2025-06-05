@@ -1,7 +1,7 @@
 import Sidebar from "../components/sidebar";
 import Map from "../components/map";
 import Input from "../components/mapInput";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import Details from "../components/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
@@ -19,26 +19,36 @@ export default function DashboardRoutePlanner() {
   const [showPopup, setShowPopup] = useState(false);
   const [routeName, setRouteName] = useState("");
 
+  useEffect(() => {
+    if (showPopup) {
+      document.body.classList.add("popup-open");
+    } else {
+      document.body.classList.remove("popup-open");
+    }
+  }, [showPopup]);
+
   return (
     <div className="route-planner-wrapper">
       <Sidebar />
       <div className="route-overview-container">
-        <h1>Plane deine Route!</h1>
-        <Input
-          setRouteDetails={setRouteDetails}
-          startInput={startInput}
-          setStartInput={setStartInput}
-          endInput={endInput}
-          setEndInput={setEndInput}
-        />
-        <Map />
-        {routeDetails && startInput && endInput && (
-          <Details
-            routeDetails={routeDetails}
+        <h1 className="route-container-title">Plane deine Route!</h1>
+        <div className="route-top-wrapper">
+          <Input
+            setRouteDetails={setRouteDetails}
             startInput={startInput}
+            setStartInput={setStartInput}
             endInput={endInput}
+            setEndInput={setEndInput}
           />
-        )}
+          {routeDetails && startInput && endInput && (
+            <Details
+              routeDetails={routeDetails}
+              startInput={startInput}
+              endInput={endInput}
+            />
+          )}
+        </div>
+        <Map />
       </div>
 
       <button

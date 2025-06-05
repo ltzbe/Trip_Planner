@@ -4,6 +4,7 @@
   flex-direction: column;
   margin-left: 170px;
   margin-right: auto;
+  color: #eeeeee;
 }
 
 .overview-item-title {
@@ -25,7 +26,6 @@
   margin-top: 2rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  background-color: #eeeeee;
   justify-content: center;
   align-items: flex-start;
 }
@@ -54,19 +54,23 @@
 }
 
 .coming-soon * {
-  filter: blur(2px);
+  filter: blur(10px);
   pointer-events: none;
 }
 
 .coming-soon::after {
   content: "Coming Soon";
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  text-align: center;
 }
 
 .overview-item-icon-container {
@@ -90,4 +94,83 @@
 
 .overview-item:hover {
   transform: scale(1.05);
+}
+
+.boost-card {
+  background-color: #161f29;
+  border-radius: 1rem;
+  padding: 2rem;
+  color: #fff;
+  width: 20vw;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* box-shadow: 0 0 40px rgba(0, 0, 0, 0.5); */
+  font-family: sans-serif;
+  transition: all 0.3s ease;
+}
+
+.boost-icon {
+  font-size: 2rem;
+}
+
+.boost-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.boost-text {
+  color: #aaa;
+  margin-bottom: 0rem;
+  line-height: 1.4;
+}
+
+.boost-button {
+  background: linear-gradient(120deg, #ff5100, #e52e71);
+  color: white;
+  border: none;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.boost-button:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .boost-card {
+    width: 90vw;
+    height: auto;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .boost-card {
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .boost-title {
+    font-size: 1.1rem;
+  }
+
+  .boost-text {
+    font-size: 0.85rem;
+  }
+
+  .boost-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
 }

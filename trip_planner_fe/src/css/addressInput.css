@@ -1,28 +1,68 @@
-.input-container {
-  width: 100%;
+.route-input-wrapper {
+  align-self: flex-start;
+  gap: 3rem;
+  margin-left: 170px;
+  background-color: #161f29;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  color: #fff;
   display: flex;
+  height: 30vh;
+  gap: 2rem;
   flex-direction: row;
-  align-self: center;
-  justify-content: space-between;
+  transition: all 0.3s ease;
 }
 
-.address-input-wrapper {
+.input-container {
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  width: 30%;
-  margin: 1rem auto;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
-.address-input-wrapper input {
-  width: 94.5%;
-  padding: 0.5rem;
-  border-radius: 15px;
+.input-field input {
+  width: 220px;
+  height: 44px;
+  background-color: #1014387f;
+  color: #eeeeee;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  border: 2px solid transparent;
   font-size: 1rem;
-  color: black;
-  background-color: white;
-  border-color: var(--accent-color);
+  transition: border-color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    background 0.2s cubic-bezier(0.25, 0.01, 0.25, 1) 0s;
 }
 
-.geocode.container {
-  margin: 0;
+.input-field input:hover,
+.input-field input:focus,
+.input-field:hover input {
+  outline: none;
+  border-color: #eeeeee;
+}
+
+.geoapify-autocomplete-items {
+  color: black;
+  border-radius: 8px;
+}
+
+.geoapify-close-button svg {
+  color: #eeeeee;
+}
+
+.geocoder-container {
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .route-input-wrapper {
+    flex-direction: column;
+  }
+
+  .input-container,
+  .route-settings-container {
+    width: 100%;
+  }
 }

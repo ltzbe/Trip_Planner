@@ -16,15 +16,21 @@ const Details = ({ routeDetails, startInput, endInput }: Props) => {
       <div className="route-details-container">
         <h2>Deine Route</h2>
         <div className="details-content">
-          <p>Start: {startInput.properties.address_line1}</p>
-          <p>Ende: {endInput.properties.address_line1}</p>
           <p>
-            Länge der Strecke:{" "}
+            <span className="details-content-title">Start:</span>{" "}
+            {startInput.properties.address_line1}
+          </p>
+          <p>
+            <span className="details-content-title">Ende: </span>
+            {endInput.properties.address_line1}
+          </p>
+          <p>
+            <span className="details-content-title">Länge der Strecke:</span>{" "}
             {(routeDetails.features[0].properties.distance / 1000).toFixed(2)}{" "}
             km
           </p>
           <p>
-            Erwartete Fahrtdauer:{" "}
+            <span className="details-content-title">Erwartete Fahrtdauer:</span>{" "}
             {(routeDetails.features[0].properties.time / 3600).toFixed(1)} h
           </p>
         </div>

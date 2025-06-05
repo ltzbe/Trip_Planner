@@ -1,14 +1,14 @@
 .route-overview-container {
   display: flex;
-  padding: 2rem;
-  margin-left: 220px;
-  margin-right: 50px;
+  padding: 1rem;
   flex-direction: column;
+  color: #eeeeee;
 }
 
-.route-overview-container h1 {
+.route-container-title {
   align-self: center;
-  margin-bottom: 3rem;
+  margin-left: 170px;
+  margin-bottom: 2rem;
 }
 
 .route-planner-submit-route-button {
@@ -16,12 +16,23 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: var(--button-color);
+  background: var(--button-color-modern);
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.route-planner-submit-route-button:hover {
+  transform: scale(1.03);
+}
+
+.route-top-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .popup-overlay {
@@ -30,17 +41,22 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
+body.popup-open {
+  overflow: hidden;
+}
+
 .popup-content {
-  background-color: white;
+  background-color: #161f29;
+  color: white;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   width: 90%;
   max-width: 400px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
@@ -50,12 +66,17 @@
   animation: popup-fadein 0.2s ease-out;
 }
 
-.popup-content input[type="text"] {
-  padding: 0.5rem;
+.popup-content > input[type="text"] {
+  height: 44px;
+  background-color: #4a4d6a;
+  color: #eeeeee;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  border: 2px solid transparent;
   font-size: 1rem;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  transition: border-color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    background 0.2s cubic-bezier(0.25, 0.01, 0.25, 1) 0s;
 }
 
 .popup-buttons {
@@ -73,13 +94,20 @@
 }
 
 .popup-buttons button:first-of-type {
-  background-color: #ccc;
-  color: #333;
+  border-radius: 8px;
 }
 
 .popup-buttons button:last-of-type {
-  background-color: var(--button-color);
+  position: relative;
+  overflow: hidden;
+  background: var(--button-color-modern);
   color: white;
+  padding: 0.75vw 1vw;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  transition: transform 0.3s ease;
 }
 
 @keyframes popup-fadein {

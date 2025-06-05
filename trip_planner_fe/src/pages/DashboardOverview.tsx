@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import "../css/dashboardOverview.css";
 
-import RouteIcon from "../assets/route-icon.png";
+// import RouteIcon from "../assets/route-icon.png";
 
 function DashboardOverview() {
   return (
@@ -14,54 +14,51 @@ function DashboardOverview() {
         </div>
 
         <div className="overview-item-wrapper">
-          <Link to="/dashboard-route-planner" className="overview-item">
-            <div className="overview-item-icon-container">
-              <img
-                src={RouteIcon}
-                alt="placeholder"
-                className="overview-item-icon"
-              />
-            </div>
-            <div className="overview-item-text">
-              <p>Plane deinen nächsten Trip ganz unkompliziert!</p>
-            </div>
-          </Link>
+          <div className="boost-card">
+            <div className="boost-icon">📍</div>
+            <h3 className="boost-title">Route Planner</h3>
+            <p className="boost-text">
+              Plane deinen nächsten Trip ganz unkompliziert!
+            </p>
+            <Link to="/dashboard-route-planner" className="boost-button">
+              Zum Planner
+            </Link>
+          </div>
 
-          <Link to="/places" className="overview-item">
-            <div className="overview-item-icon-container">
-              <img
-                src={RouteIcon}
-                alt="placeholder"
-                className="overview-item-icon"
-              />
-            </div>
-            <div className="overview-item-text">
-              <p>Infos für jeden Ort</p>
-            </div>
-          </Link>
+          <div className="boost-card">
+            <div className="boost-icon">🚀</div>
+            <h3 className="boost-title">Places</h3>
+            <p className="boost-text">
+              Finde die besten Restaurants, Sehenswürdigkeiten und vieles mehr!
+            </p>
+            <Link to="/places" className="boost-button">
+              Jetzt upgraden
+            </Link>
+          </div>
 
-          <div
-            className="overview-item coming-soon"
-            onClick={(e) => e.preventDefault()}
-          >
-            <div className="overview-item-icon">
-              <img src="#" alt="placeholder" />
-            </div>
-            <div className="overview-item-text">
-              <p>Hallo</p>
-            </div>
+          <div className="boost-card coming-soon">
+            <div className="boost-icon">🚀</div>
+            <h3 className="boost-title">Route Planner</h3>
+            <p className="boost-text">
+              Plane deinen nächsten Trip ganz unkompliziert!
+            </p>
+            <Link to="/dashboard-route-planner" className="boost-button">
+              Jetzt upgraden
+            </Link>
           </div>
 
           <div
-            className="overview-item coming-soon"
+            className="boost-card coming-soon"
             onClick={(e) => e.preventDefault()}
           >
-            <div className="overview-item-icon">
-              <img src="#" alt="placeholder" />
-            </div>
-            <div className="overview-item-text">
-              <p>Hallo</p>
-            </div>
+            <div className="boost-icon">🚀</div>
+            <h3 className="boost-title">Route Planner</h3>
+            <p className="boost-text">
+              Plane deinen nächsten Trip ganz unkompliziert!
+            </p>
+            <Link to="/dashboard-route-planner" className="boost-button">
+              Jetzt upgraden
+            </Link>
           </div>
         </div>
       </div>
