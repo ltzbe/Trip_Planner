@@ -14,8 +14,6 @@ export default function DashboardRoutePlanner() {
   const [route, setRoute] = useState<RouteFeature | null>(null);
   const [startInput, setStartInput] = useState<InputAutocomplete | null>(null);
   const [endInput, setEndInput] = useState<InputAutocomplete | null>(null);
-  const { addNotification } = useNotification();
-
   const [showPopup, setShowPopup] = useState(false);
   const [routeName, setRouteName] = useState("");
   const popupInputRef = useRef<HTMLInputElement>(null);
@@ -42,13 +40,13 @@ export default function DashboardRoutePlanner() {
             setStartInput={setStartInput}
             endInput={endInput}
             setEndInput={setEndInput}
-        <Map />
+          />
         {route && startInput?.properties?.address_line1 && endInput?.properties?.address_line1 && (
           <Details
             route={route}
             startName={startInput.properties.address_line1}
             endName={endInput.properties.address_line1}
-          />
+          />)}
         </div>
         <Map />
       </div>
