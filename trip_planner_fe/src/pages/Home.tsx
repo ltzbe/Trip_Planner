@@ -56,103 +56,51 @@ function Home() {
           <h1>Unsere Funktionen</h1>
         </div>
         <div className="feature-card-wrapper">
-          {/* <div className="feature-cards">
-            <div className="feature-card-icon">
-              <img
-                src={RouteIcon}
-                alt="Route-Icon"
-                className="card-icons route-icon"
-              />
-            </div>
-            <div className="feature-card-text">
-              <p>Plane deinen unvergesslichen Trip</p>
-            </div>
-          </div>
-
-          <div className="feature-cards">
-            <div className="feature-card-icon">
-              <img
-                src={BedIcon}
-                alt="Route-Icon"
-                className="card-icons bed-icon"
-              />
-            </div>
-            <div className="feature-card-text">
-              <p>Lasse dir Hotels auf deinem Weg anzeigen</p>
-            </div>
-          </div>
-
-          <div className="feature-cards">
-            <div className="feature-card-icon">
-              <img
-                src={PlateIcon}
-                alt="Route-Icon"
-                className="card-icons plate-icon"
-              />
-            </div>
-            <div className="feature-card-text">
-              <p>Finde die besten Restaurants</p>
-            </div>
-          </div>
-
-          <div className="feature-cards">
-            <div className="feature-card-icon">
-              <img
-                src={GasIcon}
-                alt="Route-Icon"
-                className="card-icons gas-icon"
-              />
-            </div>
-            <div className="feature-card-text">
-              <p>Lass deinen Tank niemals leer werden</p>
-            </div>
-          </div> */}
-
           <div className="feature-card">
             <div className="first-content">
               <img src={GasIcon} alt="Gas Icon" className="gas-icon" />
               <span>Tankstellen finden!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Lass dir deinen Trip nicht von einem leeren Tank vermiesen.</span>
             </div>
           </div>
 
           <div className="feature-card">
             <div className="first-content">
               <img src={PlateIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+              <span>Restaurants entdecken!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Hunger ist menschlich. Plane, wann du auf deinem Trip schnabulierst.</span>
             </div>
           </div>
 
           <div className="feature-card">
             <div className="first-content">
               <img src={RouteIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+              <span>Routen planen!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Du gibst uns Ziel und Start. Wir geben die beste Route.</span>
             </div>
           </div>
 
           <div className="feature-card">
             <div className="first-content">
               <img src={BedIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+              <span>Schlafplatz sichern!</span>
             </div>
             <div className="second-content">
-              <span>Second</span>
+              <span>Wirst du müde musst du schlafen. Wir suchen für dich nach Schlafplätzen.</span>
             </div>
           </div>
         </div>
 
         <div className="dashboard-preview-wrapper">
           <div className="dashboard-preview-icons">
-            <img src={MacBook} alt="MacBook" className="macbook-icon" />
-            <img src={iphone} alt="Phone" className="iphone-icon" />
+            { <img src={MacBook} alt="MacBook" className="macbook-icon" /> }
+            { <img src={iphone} alt="Phone" className="iphone-icon" /> }
           </div>
           <div className="dashboard-preview-text">
             <h2>
