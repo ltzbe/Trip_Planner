@@ -99,7 +99,7 @@ function loadWaypointsStoredRoute(parsedRoute: RouteFeature, map: maplibregl.Map
     displayWaypointsStoredRoute(waypoints, map, startPoint, endPoint);
 }
 
-function displayWaypointsStoredRoute(waypoints: any, map: maplibregl.Map, startPoint: string, endPoint: string) {
+function displayWaypointsStoredRoute(waypoints:  {location:[number, number] }[], map: maplibregl.Map, startPoint: string, endPoint: string) {
     clearMarkers();
 
     if (map && waypoints[0].location[0] && waypoints[0].location[1]) {
@@ -125,5 +125,32 @@ function displayWaypointsStoredRoute(waypoints: any, map: maplibregl.Map, startP
             )).addTo(map);
         markers.push(marker);
 
+    }
+
+}
+
+export const deleteRoute = async (routeName: string) => {
+    const token = getTokenFromCookie();
+    if (!token) {
+        return "unauthenticated";
+    }
+
+    try {
+
+        const response = await fetch(`http://localhost:8080/routes/name?routeName=${encodeURIComponent(routeName)}`, {
+          method: "DELETE",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+          }
+        });
+
+        if (response.ok){
+            return "success"
+        }
+    }
+    catch (e) {
+        console.log(e)
+        return "error"
     }
 }
