@@ -35,26 +35,6 @@
   outline: none;
 }
 
-.route-settings-container > button {
-  margin-top: 2vh;
-  width: 10vw;
-  position: relative;
-  overflow: hidden;
-  background: var(--button-color-modern);
-  color: white;
-  font-size: 1rem;
-  padding: 0.75vw 1vw;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  align-self: center;
-  transition: transform 0.3s ease;
-}
-
-.route-settings-container > button:hover {
-  transform: scale(1.03);
-}
-
 .settings-form-container {
   display: flex;
   flex-direction: row;

@@ -41,6 +41,11 @@ const MapInput = ({
   });
   const { map } = useMap();
   const { addNotification } = useNotification();
+  const [dropdownState, setDropdownState] = useState({
+    open: false,
+    tankstellenExpanded: false,
+    unterkunftExpanded: false,
+  });
 
   async function onPlaceSelectStart(value: InputAutocomplete) {
     if (!map || !value?.properties?.lon || !value?.properties?.lat) return;
@@ -54,7 +59,7 @@ const MapInput = ({
     if (!endInput) return;
     if (!validateSettings()) return;
 
-    setRoute( await handleGetRoute(map, value, endInput, settings));
+    setRoute(await handleGetRoute(map, value, endInput, settings));
   }
 
   async function onPlaceSelectEnd(value: InputAutocomplete) {
@@ -69,7 +74,7 @@ const MapInput = ({
       return;
     if (!validateSettings()) return;
 
-    setRoute( await handleGetRoute(map, startInput, value, settings));
+    setRoute(await handleGetRoute(map, startInput, value, settings));
   }
 
   const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,64 +142,120 @@ const MapInput = ({
             </div>
           </div>
         </GeoapifyContext>
-      </div>
 
-      <div className="route-settings-container">
-        <h2>Route Settings:</h2>
-        <label className="settings-form-container">
-          Unterkünfte:
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={settings.isHotelsChecked}
-              onChange={handleSettingsChange}
-              name="isHotelsChecked"
-            />
-            <span className="slider"></span>
-          </label>
-        </label>
-        <label className="settings-form-label">
-          Distanz zwischen Unterkünften in km:
-          <input
-            type="number"
-            min={50}
-            disabled={!settings.isHotelsChecked}
-            onChange={handleSettingsChange}
-            onKeyDown={(e) => {
-              if (!/[0-9]|Backspace|ArrowLeft|ArrowRight/.test(e.key)) {
-                e.preventDefault();
+        <div className="settings-and-submit">
+          <div className="settings-dropdown-wrapper">
+            <button
+              className="dropdown-menu-button"
+              onClick={() =>
+                setDropdownState((prev) => ({ ...prev, open: !prev.open }))
               }
-            }}
-            name="hotelThresholdKM"
-            placeholder={`${DEFAULT_HOTEL_THRESHOLD_KM}`}
-          />
-        </label>
-        <label className="settings-form-container">
-          Tankstellen:
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={settings.isFuelChecked}
-              onChange={handleSettingsChange}
-              name="isFuelChecked"
-            />
-            <span className="slider"></span>
-          </label>
-        </label>
-        <label>
-          Durchschnittliche Tankreichweite in km:
-          <input
-            type="number"
-            min={50}
-            disabled={!settings.isFuelChecked}
-            onChange={handleSettingsChange}
-            name="fuelThresholdKM"
-            placeholder={`${DEFAULT_FUEL_THRESHOLD_KM}`}
-          />
-        </label>
-        <button type="submit" onClick={handleRouteSettingsSubmit}>
-          Anwenden
-        </button>
+            >
+              ⚙️ Settings
+            </button>
+            {dropdownState.open && (
+              <div className="dropdown-menu">
+                <div className="dropdown-item">
+                  <div className="dropdown-label">
+                    <p>⛽️ Tankstellen:</p>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={settings.isFuelChecked}
+                        onChange={(e) => {
+                          handleSettingsChange(e);
+                          setDropdownState((prev) => ({
+                            ...prev,
+                            tankstellenExpanded: e.target.checked,
+                          }));
+                        }}
+                        name="isFuelChecked"
+                      />
+                      <span className="slider"></span>
+                    </label>
+                  </div>
+                  {dropdownState.tankstellenExpanded && (
+                    <div className="dropdown-sub">
+                      <div className="dropdown-sub-item">
+                        <p>Durchschnittliche Tankreichweite in km</p>
+                        <input
+                          type="number"
+                          min={50}
+                          disabled={!settings.isFuelChecked}
+                          onChange={handleSettingsChange}
+                          onKeyDown={(e) => {
+                            if (
+                              !/[0-9]|Backspace|ArrowLeft|ArrowRight/.test(
+                                e.key
+                              )
+                            ) {
+                              e.preventDefault();
+                            }
+                          }}
+                          name="hotelThresholdKM"
+                          placeholder={`${DEFAULT_FUEL_THRESHOLD_KM}`}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="dropdown-item">
+                  <div className="dropdown-label">
+                    <p>🛏️ Unterkunft:</p>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={settings.isHotelsChecked}
+                        onChange={(e) => {
+                          handleSettingsChange(e);
+                          setDropdownState((prev) => ({
+                            ...prev,
+                            unterkunftExpanded: e.target.checked,
+                          }));
+                        }}
+                        name="isHotelsChecked"
+                      />
+                      <span className="slider"></span>
+                    </label>
+                  </div>
+
+                  {dropdownState.unterkunftExpanded && (
+                    <div className="dropdown-sub">
+                      <div className="dropdown-sub-item">
+                        <p>Distanz in km</p>
+                        <input
+                          type="number"
+                          min={50}
+                          disabled={!settings.isHotelsChecked}
+                          onChange={handleSettingsChange}
+                          onKeyDown={(e) => {
+                            if (
+                              !/[0-9]|Backspace|ArrowLeft|ArrowRight/.test(
+                                e.key
+                              )
+                            ) {
+                              e.preventDefault();
+                            }
+                          }}
+                          name="hotelThresholdKM"
+                          placeholder={`${DEFAULT_HOTEL_THRESHOLD_KM}`}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="route-input-submit-button"
+            onClick={handleRouteSettingsSubmit}
+          >
+            Anwenden
+          </button>
+        </div>
       </div>
     </div>
   );

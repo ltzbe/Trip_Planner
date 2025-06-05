@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  flex: 1;
+  min-width: 300px;
   background-color: var(--card-color);
   border-radius: 1rem;
   padding: 1rem;
