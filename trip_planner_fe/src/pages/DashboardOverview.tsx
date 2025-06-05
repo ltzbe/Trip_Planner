@@ -15,7 +15,7 @@ function DashboardOverview() {
 
         <div className="overview-item-wrapper">
           <div className="boost-card">
-            <div className="boost-icon">📍</div>
+            <div className="boost-icon">🗺️</div>
             <h3 className="boost-title">Route Planner</h3>
             <p className="boost-text">
               Plane deinen nächsten Trip ganz unkompliziert!
@@ -26,13 +26,13 @@ function DashboardOverview() {
           </div>
 
           <div className="boost-card">
-            <div className="boost-icon">🚀</div>
+            <div className="boost-icon">📍</div>
             <h3 className="boost-title">Places</h3>
             <p className="boost-text">
               Finde die besten Restaurants, Sehenswürdigkeiten und vieles mehr!
             </p>
             <Link to="/places" className="boost-button">
-              Jetzt upgraden
+              Jetzt entdecken
             </Link>
           </div>
 

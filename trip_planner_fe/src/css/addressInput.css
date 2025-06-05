@@ -2,13 +2,11 @@
   align-self: flex-start;
   gap: 3rem;
   margin-left: 170px;
-  background-color: #161f29;
+  background-color: var(--card-color);
   border-radius: 1rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   color: #fff;
   display: flex;
-  height: 30vh;
   gap: 2rem;
   flex-direction: row;
   transition: all 0.3s ease;
@@ -25,11 +23,11 @@
 .input-field input {
   width: 220px;
   height: 44px;
-  background-color: #1014387f;
+  background-color: var(--card-color);
   color: #eeeeee;
   border-radius: 0.5rem;
   padding: 0 1rem;
-  border: 2px solid transparent;
+  border: 1px solid grey;
   font-size: 1rem;
   transition: border-color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
     color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
@@ -40,16 +38,22 @@
 .input-field input:focus,
 .input-field:hover input {
   outline: none;
-  border-color: #eeeeee;
+  border-color: #fff;
 }
 
 .geoapify-autocomplete-items {
-  color: black;
+  background-color: rgb(46, 45, 50);
+  color: white;
   border-radius: 8px;
+  border: 1px solid grey;
+}
+
+.geoapify-autocomplete-items .secondary-part {
+  color: white;
 }
 
 .geoapify-close-button svg {
-  color: #eeeeee;
+  color: #fff;
 }
 
 .geocoder-container {

@@ -1,7 +1,7 @@
 import Sidebar from "../components/sidebar";
 import Map from "../components/map";
 import Input from "../components/mapInput";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import Details from "../components/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
@@ -14,14 +14,15 @@ export default function DashboardRoutePlanner() {
   const [routeDetails, setRouteDetails] = useState<RouteDetails | null>(null);
   const [startInput, setStartInput] = useState<InputAutocomplete | null>(null);
   const [endInput, setEndInput] = useState<InputAutocomplete | null>(null);
-  const { addNotification } = useNotification();
-
   const [showPopup, setShowPopup] = useState(false);
   const [routeName, setRouteName] = useState("");
+  const popupInputRef = useRef<HTMLInputElement>(null);
+  const { addNotification } = useNotification();
 
   useEffect(() => {
     if (showPopup) {
       document.body.classList.add("popup-open");
+      popupInputRef.current?.focus();
     } else {
       document.body.classList.remove("popup-open");
     }
@@ -70,6 +71,7 @@ export default function DashboardRoutePlanner() {
           <div className="popup-content">
             <h2>Route benennen</h2>
             <input
+              ref={popupInputRef}
               type="text"
               value={routeName}
               onChange={(e) => setRouteName(e.target.value)}

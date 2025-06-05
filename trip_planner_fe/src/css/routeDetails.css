@@ -4,13 +4,13 @@
   align-items: center;
   gap: 3rem;
   flex: 1;
-  height: 30vh;
-  background-color: #161f29;
+  background-color: var(--card-color);
   border-radius: 1rem;
   padding: 1rem;
   color: #fff;
   gap: 2rem;
   transition: all 0.3s ease;
+  animation: fadein 0.3s ease-out;
 }
 
 .route-details-container h2 {
@@ -44,4 +44,15 @@
   text-align: right;
   color: #e0e0e0;
   margin-left: 1rem;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

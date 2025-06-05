@@ -21,14 +21,14 @@
   max-width: 80px;
   padding: 0.5rem;
   border-radius: 8px;
-  border: 2px solid transparent;
+  border: 1px solid grey;
   font-size: 1rem;
   color: #eeeeee;
-  background-color: #1014387f;
+  background-color: var(--card-color);
 }
 
 .route-settings-container > label > input[type="number"]:focus {
-  border: 2px solid #eeeeee;
+  border: 1px solid #fff;
 }
 
 .route-settings-container > label > input[type="number"]:focus-visible {
@@ -42,6 +42,7 @@
   overflow: hidden;
   background: var(--button-color-modern);
   color: white;
+  font-size: 1rem;
   padding: 0.75vw 1vw;
   border-radius: 8px;
   border: none;
@@ -98,7 +99,7 @@
 }
 
 .switch input:checked + .slider {
-  background: linear-gradient(90deg, #4f8cff 0%, #34e89e 100%);
+  background-color: #ff5100;
 }
 
 .switch input:checked + .slider:before {

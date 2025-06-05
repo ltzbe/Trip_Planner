@@ -1,11 +1,11 @@
 :root {
   font-family: "League Spartan", sans-serif;
-  /* line-height: 1.5; */
   font-weight: 400;
   font-size: 1rem;
 
   color-scheme: light dark;
-  background-color: #0d1218;
+  /* background-color: #0d1218; */
+  background-color: rgb(18, 17, 19);
   color: rgba(0, 0, 0, 0.87);
 
   font-synthesis: none;

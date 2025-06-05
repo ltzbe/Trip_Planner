@@ -4,21 +4,11 @@
   flex-direction: column;
   width: 170px;
   height: 100vh;
-  background-color: #161f29; /*2a3439, 1e2a38*/
+  background-color: var(--card-color);
   color: black;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
   overflow: hidden;
-}
-
-.sidebar-toggle {
-  margin-left: auto;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 5px 10px;
 }
 
 .sidebar-header {
@@ -28,52 +18,38 @@
 }
 
 .sidebar-header img {
-  width: 100px;
+  width: 120px;
   display: block;
   margin: 0 auto;
-  padding: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .sidebar-section-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #40e0d0;
-  padding: 10px 10px 12px 20px;
-  border-bottom: 2px solid #ccc;
-  text-shadow: 0 1px 2px rgba(64, 224, 208, 0.5);
+  color: grey;
+  font-size: 0.8rem;
+  padding: 1rem 0 10px 8px;
   letter-spacing: 1px;
-  margin-bottom: 15px;
-  text-transform: uppercase;
   user-select: none;
 }
 
-.sidebar-menu {
-  list-style: none;
-  padding: 0;
-  color: #333;
-}
-
-.sidebar-menu-title {
-  font-size: 0.8rem;
-  margin-bottom: 15px;
-  margin-top: 20px;
-  color: #333;
-  text-decoration: none;
-  padding-left: 20px;
+.sidebar-link-menu {
+  margin-bottom: 3rem;
 }
 
 .sidebar-links {
   text-decoration: none;
-  color: #e0e0e0;
+  color: #fff;
   padding: 10px 20px;
   display: block;
   transition: all 0.3s ease;
-  border-radius: 4px;
+}
+.sidebar-links > img {
+  width: 15px;
 }
 
 .sidebar-links:hover {
-  background-color: var(--accent-color-light);
-  color: var(--accent-color);
+  background-color: var(--button-color);
   transform: scale(1.05);
   border-radius: 4px;
 }
@@ -89,7 +65,7 @@
   justify-content: center;
   color: var(--text-light);
   border-radius: 0 0 4px 4px;
-  height: 50px;
+  height: 40px;
 }
 
 .sidebar-footer-title {
@@ -102,7 +78,7 @@
   justify-content: center;
   border-radius: 0 0 4px 4px;
   transition: all 0.3s ease, box-shadow 0.3s ease;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .sidebar-footer-title:hover {
