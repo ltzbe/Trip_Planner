@@ -29,12 +29,11 @@
 }
 
 .route-top-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 0.5fr;
-  grid-template-rows: 1fr;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
+  justify-self: flex-start;
 }
 
 .popup-overlay {
