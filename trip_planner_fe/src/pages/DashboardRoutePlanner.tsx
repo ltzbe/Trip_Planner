@@ -1,6 +1,6 @@
 import Sidebar from "../components/sidebar";
 import Map from "../components/map";
-import Input from "../components/mapInput";
+import MapInput from "../components/mapInput";
 import { useState, useEffect, useRef } from "react";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import Details from "../components/details.tsx";
@@ -9,6 +9,7 @@ import { submitRoute } from "../api/geoapify/route.ts";
 import "../css/dashboardRoutePlanner.css";
 import { RouteFeature } from "../types/routeDetails.ts";
 import { InputAutocomplete } from "../types/inputComplete.ts";
+import DayCard from "../components/dayCard.tsx";
 
 export default function DashboardRoutePlanner() {
   const [route, setRoute] = useState<RouteFeature | null>(null);
@@ -18,6 +19,7 @@ export default function DashboardRoutePlanner() {
   const [routeName, setRouteName] = useState("");
   const popupInputRef = useRef<HTMLInputElement>(null);
   const { addNotification } = useNotification();
+  const [hotelsData, setHotelsData] = useState<RouteFeature[][]>([])
 
   useEffect(() => {
     if (showPopup) {
@@ -34,13 +36,15 @@ export default function DashboardRoutePlanner() {
       <div className="route-overview-container">
         <h1 className="route-container-title">Plane deine Route!</h1>
         <div className="route-top-wrapper">
-          <Input
+          <MapInput
             setRoute={setRoute}
             startInput={startInput}
             setStartInput={setStartInput}
             endInput={endInput}
             setEndInput={setEndInput}
+            setHotelsData={setHotelsData}
           />
+
           {route &&
             startInput?.properties?.address_line1 &&
             endInput?.properties?.address_line1 && (
@@ -50,8 +54,20 @@ export default function DashboardRoutePlanner() {
                 endName={endInput.properties.address_line1}
               />
             )}
+
         </div>
+
         <Map />
+
+        {hotelsData &&  (
+          <div className="daycard-container">
+            {(hotelsData ?? []).map((hotels, index) => (
+              <DayCard hotels={hotels} index={index} key={index} />
+            ))}
+          </div>
+
+
+        )}
       </div>
 
       <button
@@ -67,6 +83,7 @@ export default function DashboardRoutePlanner() {
       >
         Route speichern
       </button>
+
 
       {showPopup && (
         <div className="popup-overlay">

@@ -23,7 +23,8 @@ type Props = {
   startInput: InputAutocomplete | null;
   setStartInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>;
   endInput: InputAutocomplete | null;
-  setEndInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>;
+  setEndInput: React.Dispatch<React.SetStateAction<InputAutocomplete | null>>
+  setHotelsData: React.Dispatch<React.SetStateAction<RouteFeature[][]>>
 };
 
 const MapInput = ({
@@ -32,6 +33,7 @@ const MapInput = ({
   setStartInput,
   endInput,
   setEndInput,
+  setHotelsData
 }: Props) => {
   const [settings, setSettings] = useState({
     isHotelsChecked: false,
@@ -59,7 +61,10 @@ const MapInput = ({
     if (!endInput) return;
     if (!validateSettings()) return;
 
-    setRoute(await handleGetRoute(map, value, endInput, settings));
+    const result = await handleGetRoute(map, value, endInput, settings);
+    const route = result?.data;
+    setRoute(route);
+    setHotelsData(result?.hotelsData ?? []);
   }
 
   async function onPlaceSelectEnd(value: InputAutocomplete) {
@@ -74,7 +79,10 @@ const MapInput = ({
       return;
     if (!validateSettings()) return;
 
-    setRoute(await handleGetRoute(map, startInput, value, settings));
+    const result = await handleGetRoute(map, startInput, value, settings);
+    const route = result?.data;
+    setRoute(route);
+    setHotelsData(result?.hotelsData ?? []);
   }
 
   const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,13 +96,11 @@ const MapInput = ({
 
   async function handleRouteSettingsSubmit() {
     if (map && startInput && endInput && validateSettings()) {
-      const routeDetails = await handleGetRoute(
-        map,
-        startInput,
-        endInput,
-        settings
-      );
+      const result = await handleGetRoute(map, startInput, endInput, settings);
+      const routeDetails = await result?.data;
       setRoute(routeDetails);
+
+      setHotelsData(result?.hotelsData ?? []);
     }
   }
 

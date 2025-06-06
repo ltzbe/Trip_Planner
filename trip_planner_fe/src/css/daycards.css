@@ -1,0 +1,60 @@
+.daycard-container{
+    margin: 0 0 0 170px;
+    display: flex;
+    flex-direction: column;
+}
+
+.daycard {
+    display: flex;
+    margin: 2em;
+    flex-direction: column;
+    padding: 2vw;
+    border-radius: 1.5em;
+    background-color: var(--card-color);
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+}
+
+.daycard > h2{
+    align-self: flex-start;
+    margin-bottom: 0.5em;
+}
+
+.hotel-card{
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-color-light);
+
+}
+
+.hotel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.hotel-card h4 {
+    margin: 0;
+    font-weight: bold;
+    color: white;
+}
+
+.hotel-card p {
+    margin: 4px 0;
+    color: #ccc;
+}
+
+.hotel-distance {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.hotel-card a {
+    display: inline-block;
+    margin-top: 0.5vh;
+    font-size: 0.9rem;
+    color: #76a9ff;
+    text-decoration: underline;
+}
