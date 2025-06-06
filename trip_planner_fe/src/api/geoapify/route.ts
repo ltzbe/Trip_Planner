@@ -22,9 +22,15 @@ function displayMarker(map: maplibregl.Map, input: InputAutocomplete) {
     if (map && input.properties.lat && input.properties.lon) {
         const marker = new maplibregl.Marker({ color: "red" })
             .setLngLat([input.properties.lon, input.properties.lat])
-            .setPopup(new maplibregl.Popup().setText(
-                text
-            )).addTo(map);
+            .setPopup(new maplibregl.Popup().setHTML(`
+                <div style="
+                  color: black;
+                ">
+                  ${text}
+                </div>
+            `
+            ))
+            .addTo(map);
         markers.push(marker);
     }
 }
