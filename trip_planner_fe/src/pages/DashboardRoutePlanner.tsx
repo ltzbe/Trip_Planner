@@ -1,6 +1,6 @@
 import Sidebar from "../components/sidebar";
 import Map from "../components/map";
-import Input from "../components/mapInput";
+import MapInput from "../components/mapInput";
 import { useState, useEffect, useRef } from "react";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import Details from "../components/details.tsx";
@@ -46,7 +46,7 @@ export default function DashboardRoutePlanner() {
       <div className="route-overview-container">
         <h1 className="route-container-title">Plane deine Route!</h1>
         <div className="route-top-wrapper">
-          <Input
+          <MapInput
             setRoute={setRoute}
             startInput={startInput}
             setStartInput={setStartInput}
