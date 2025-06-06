@@ -32,8 +32,14 @@ public class RouteController {
             username = jwtService.extractUsername(jwt);
         }
 
-        routeService.createRoute(route, username);
-        return ResponseEntity.ok().build();
+        boolean isValid = routeService.createRoute(route, username);
+
+        if (isValid) {
+            return ResponseEntity.ok().build();
+        }
+        else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/routes/id")

@@ -19,10 +19,17 @@ public class RouteService {
         this.userRepository = userRepository;
     }
 
-    public void createRoute( Route route, String name ) {
+    public boolean createRoute( Route route, String name ) {
         UserEntity user = userRepository.findByUsername(name);
-        route.setUserID(user);
-        routeRepository.save(route);
+        Route routeExists = routeRepository.findRouteByName(route.getName());
+        if (routeExists == null) {
+            route.setUserID(user);
+            routeRepository.save(route);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public List<String> getAllRouteNamesByUser(UserEntity user) {

@@ -11,4 +11,6 @@ public interface RouteRepository extends JpaRepository<Route, Long>{
     List<Route> findByUserID(UserEntity userID);
 
     Route findRouteByNameAndUserID(String routeName, UserEntity userId);
+
+    Route findRouteByName(String name);
 }
