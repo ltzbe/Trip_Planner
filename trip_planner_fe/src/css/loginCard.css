@@ -17,6 +17,13 @@
   overflow: hidden;
 }
 
+.login-card label {
+  color: black;
+}
+
+.login-card p {
+  color: black;
+}
 .login-left,
 .login-right {
   flex: 1;
@@ -24,11 +31,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--button-color-modern);
 }
 
 .login-left {
-  background: rgba(17,17,17);
+  
   color: white;
 }
 
@@ -51,7 +57,7 @@
 .login-title {
   text-align: center;
   width: 100%;
-  color: white;
+  color: black;
   margin: 1rem;
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -118,6 +124,7 @@ form {
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  color: black;
 }
 
 .custom-checkbox {
@@ -185,9 +192,8 @@ form {
 }
 
 .login-right {
-  background: var();
+  background: var(--accent-color);
   color: white;
-  background-color: var(--button-color-modern);
   position: relative;
 }
 

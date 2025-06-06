@@ -5,7 +5,7 @@ import { useAuth } from "../context/auth/authContext.tsx";
 import { useNotification } from "../context/notification/notificationContext.tsx";
 import "../css/LoginCard.css";
 
-import homeIcon from "../assets/home.png";
+import homeIcon from "../assets/home_icon.png";
 import "../css/loader.css";
 
 
@@ -216,12 +216,6 @@ const LoginCard = () => {
 
         <div className="login-right">
           <div className="features">
-            <h2>Lorem Ipsum</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et
-            </p>
           </div>
         </div>
       </div>
