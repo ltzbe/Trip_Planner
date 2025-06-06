@@ -96,7 +96,7 @@
   transform: scale(1.05);
 }
 
-.boost-card {
+.overview-card {
   background-color: var(--card-color);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -109,23 +109,23 @@
   transition: all 0.3s ease;
 }
 
-.boost-icon {
+.overview-icon {
   font-size: 2rem;
 }
 
-.boost-title {
+.overview-title {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-.boost-text {
+.overview-text {
   color: #aaa;
   margin-bottom: 0rem;
   line-height: 1.4;
 }
 
-.boost-button {
+.overview-button {
   background: linear-gradient(120deg, #ff5100, #e52e71);
   color: white;
   border: none;
@@ -139,13 +139,13 @@
   transition: all 0.3s ease;
 }
 
-.boost-button:hover {
+.overview-button:hover {
   cursor: pointer;
   transform: scale(1.03);
 }
 
 @media (max-width: 768px) {
-  .boost-card {
+  .overview-card {
     width: 90vw;
     height: auto;
     padding: 1.5rem;
@@ -153,21 +153,21 @@
 }
 
 @media (max-width: 480px) {
-  .boost-card {
+  .overview-card {
     width: 100%;
     padding: 1rem;
     font-size: 0.9rem;
   }
 
-  .boost-title {
+  .overview-title {
     font-size: 1.1rem;
   }
 
-  .boost-text {
+  .overview-text {
     font-size: 0.85rem;
   }
 
-  .boost-button {
+  .overview-button {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }

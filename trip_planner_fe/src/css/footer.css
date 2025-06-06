@@ -1,24 +1,23 @@
 .footer {
-    background-color: #282c34;
-    color: white;
-    margin-top: 200px;
-    padding: 20px 0;
-    text-align: center;
-    box-sizing: border-box;
-    overflow-x: hidden;
+  background-color: #282c34;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .footer-logo {
-    height: 5vh;
-    border-radius: 50%;
-    display: block;
-    margin: 0 auto;
+  height: 30px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 /*media*/
 
 @media (max-width: 768px) {
-    .footer-logo {
-        height: 4vh;
-    }
+  .footer-logo {
+    height: 4vh;
+  }
 }
