@@ -9,6 +9,7 @@ import { submitRoute } from "../api/geoapify/route.ts";
 import "../css/dashboardRoutePlanner.css";
 import { RouteFeature } from "../types/routeDetails.ts";
 import { InputAutocomplete } from "../types/inputComplete.ts";
+import DayCard from "../components/dayCard.tsx";
 
 export default function DashboardRoutePlanner() {
   const [route, setRoute] = useState<RouteFeature | null>(null);
@@ -18,6 +19,7 @@ export default function DashboardRoutePlanner() {
   const [routeName, setRouteName] = useState("");
   const popupInputRef = useRef<HTMLInputElement>(null);
   const { addNotification } = useNotification();
+  const [hotelsData, setHotelsData] = useState<RouteFeature[][]>([])
 
   useEffect(() => {
     if (showPopup) {
@@ -27,6 +29,16 @@ export default function DashboardRoutePlanner() {
       document.body.classList.remove("popup-open");
     }
   }, [showPopup]);
+
+  useEffect(() => {
+    console.log("Hotels data updated:", hotelsData);
+    console.log("Array instance:", true);
+    console.log("Array length:", hotelsData?.length);
+  }, [hotelsData]);
+
+  if(hotelsData){
+    console.log("HotelsData:", hotelsData)
+  }
 
   return (
     <div className="route-planner-wrapper">
@@ -40,6 +52,7 @@ export default function DashboardRoutePlanner() {
             setStartInput={setStartInput}
             endInput={endInput}
             setEndInput={setEndInput}
+            setHotelsData={setHotelsData}
           />
           {route &&
             startInput?.properties?.address_line1 &&
@@ -50,6 +63,13 @@ export default function DashboardRoutePlanner() {
                 endName={endInput.properties.address_line1}
               />
             )}
+          {hotelsData && (
+            <div className="daycard-container">
+              {(hotelsData ?? []).map((hotels, index) => (
+                <DayCard hotels={hotels} index={index} key={index} />
+              ))}
+            </div>
+          )}
         </div>
         <Map />
       </div>
@@ -67,6 +87,7 @@ export default function DashboardRoutePlanner() {
       >
         Route speichern
       </button>
+
 
       {showPopup && (
         <div className="popup-overlay">

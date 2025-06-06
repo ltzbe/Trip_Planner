@@ -2,10 +2,10 @@
 import maplibregl from "maplibre-gl";
 import { InputAutocomplete } from "../../types/inputComplete.ts";
 import {RouteDetails, RouteFeature} from "../../types/routeDetails.ts";
-import { getPlacesByCoords } from "./places.ts";
-import { DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM } from "../../config/constants.ts"
-import { Settings } from "../../types/settings.ts";
-import { createFuelMarker, createHotelMarker } from "./markers.ts";
+import {getPlacesByCoords} from "./places.ts";
+import {DEFAULT_FUEL_THRESHOLD_KM, DEFAULT_HOTEL_THRESHOLD_KM } from "../../config/constants.ts"
+import {Settings} from "../../types/settings.ts";
+import {createFuelMarker, createHotelMarker} from "./markers.ts";
 
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_3
 
@@ -77,6 +77,7 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
         method: "GET",
     })
     if (response.ok) {
+        let hotelsData: RouteFeature[][] = []
         const data = await response.json()
         const multiline = data.features[0].geometry.coordinates
         const coords: [number, number][] = multiline.flat()
@@ -94,12 +95,12 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
         if (isHotelsChecked) {
             const threshold = hotelThresholdKM == null ? DEFAULT_HOTEL_THRESHOLD_KM : hotelThresholdKM
             const hotelWaypoints = getWaypoints(coords, 10, threshold)
-            displayHotelMarkers(map, hotelWaypoints)
+            hotelsData = displayHotelMarkers(map, hotelWaypoints)
         }
 
         console.log(data)
         console.log(data.features[0])
-        return data.features[0]
+        return {data: data.features[0], hotelsData: hotelsData}
     }
 }
 
@@ -218,11 +219,13 @@ function displayFuelMarkers(map: maplibregl.Map, waypoints: [number, number][]) 
     })
 }
 
-function displayHotelMarkers(map: maplibregl.Map, waypoints: [number, number][]) {
+function displayHotelMarkers(map: maplibregl.Map, waypoints: [number,number][]){
+    const hotelsData: RouteFeature[][] | null = [];
     waypoints.map(async (waypoint) => {
         const data = await getPlacesByCoords(waypoint, "house", 5)
 
         for (let i = 0; i < data.features.length; i++) {
+            hotelsData.push([])
             const lon = data.features[i].geometry.coordinates[0]
             const lat = data.features[i].geometry.coordinates[1]
             const text = `${data.features[i].properties.name} (Hotel)`
@@ -234,7 +237,9 @@ function displayHotelMarkers(map: maplibregl.Map, waypoints: [number, number][])
                         text
                     )).addTo(map);
                 markers.push(marker);
+                hotelsData[i].push(data.features[i])
             }
         }
     })
+    return hotelsData
 }
