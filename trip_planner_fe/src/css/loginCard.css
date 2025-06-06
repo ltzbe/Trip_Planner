@@ -15,7 +15,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   overflow: hidden;
-  background-color: white;
 }
 
 .login-left,
@@ -25,10 +24,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: var(--button-color-modern);
 }
 
 .login-left {
-  background: #f7f9fb;
+  background: rgba(17,17,17);
+  color: white;
 }
 
 .home-icon {
@@ -38,7 +39,6 @@
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border-radius: 6px;
-  filter: brightness(0) saturate(100%);
   margin-left: 1rem;
   margin-top: 1rem;
 }
@@ -51,7 +51,7 @@
 .login-title {
   text-align: center;
   width: 100%;
-  color: var(--accent-color);
+  color: white;
   margin: 1rem;
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -104,7 +104,6 @@ form {
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -186,8 +185,9 @@ form {
 }
 
 .login-right {
-  background: var(--accent-color);
+  background: var();
   color: white;
+  background-color: var(--button-color-modern);
   position: relative;
 }
 
