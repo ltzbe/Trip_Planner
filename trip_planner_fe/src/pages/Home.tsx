@@ -7,13 +7,12 @@ import BedIcon from "../assets/bed-icon.png";
 import PlateIcon from "../assets/plate-icon.png";
 import GasIcon from "../assets/gas-icon.png";
 import MacBook from "../assets/MacBook-Mockup.png";
-import iphone from "../assets/iphone.png";
 
 function Home() {
   const { token } = useAuth();
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#eeeeee" }}>
       <main>
         <div className="hero">
           <div className="hero-icon-container">
@@ -57,50 +56,65 @@ function Home() {
         </div>
         <div className="feature-card-wrapper">
           <div className="feature-card">
-            <div className="first-content">
-              <img src={GasIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Tankstellen finden!</span>
+            <div className="feature-icon">
+              <img
+                src={RouteIcon}
+                alt="feature-card-icon"
+                className="feature-icon"
+              />
             </div>
-            <div className="second-content">
-              <span>Lass dir deinen Trip nicht von einem leeren Tank vermiesen.</span>
+            <h3 className="feature-card-title">Routen planen!</h3>
+            <p className="feature-card-text">
+              Du gibst uns Ziel und Start. Wir geben die beste Route.
+            </p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <img
+                src={GasIcon}
+                alt="feature-card-icon"
+                className="feature-icon"
+              />
             </div>
+            <h3 className="feature-card-title">Tankstellen finden!</h3>
+            <p className="feature-card-text">
+              Lass dir deinen Trip nicht von einem leeren Tank vermiesen.
+            </p>
           </div>
 
           <div className="feature-card">
-            <div className="first-content">
-              <img src={PlateIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Restaurants entdecken!</span>
+            <div className="feature-icon">
+              <img
+                src={PlateIcon}
+                alt="feature-card-icon"
+                className="feature-icon"
+              />
             </div>
-            <div className="second-content">
-              <span>Hunger ist menschlich. Plane, wann du auf deinem Trip schnabulierst.</span>
-            </div>
+            <h3 className="feature-card-title">Restaurants entdecken!</h3>
+            <p className="feature-card-text">
+              Hunger ist menschlich. Plane, wann du auf deinem Trip
+              schnabulierst.
+            </p>
           </div>
 
           <div className="feature-card">
-            <div className="first-content">
-              <img src={RouteIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Routen planen!</span>
+            <div className="feature-icon">
+              <img
+                src={BedIcon}
+                alt="feature-card-icon"
+                className="feature-icon"
+              />
             </div>
-            <div className="second-content">
-              <span>Du gibst uns Ziel und Start. Wir geben die beste Route.</span>
-            </div>
-          </div>
-
-          <div className="feature-card">
-            <div className="first-content">
-              <img src={BedIcon} alt="Gas Icon" className="gas-icon" />
-              <span>Schlafplatz sichern!</span>
-            </div>
-            <div className="second-content">
-              <span>Wirst du müde musst du schlafen. Wir suchen für dich nach Schlafplätzen.</span>
-            </div>
+            <h3 className="feature-card-title">Schlafplatz sichern!</h3>
+            <p className="feature-card-text">
+              Wirst du müde musst du schlafen. Wir suchen für dich nach
+              Schlafplätzen.
+            </p>
           </div>
         </div>
-
         <div className="dashboard-preview-wrapper">
           <div className="dashboard-preview-icons">
-            { <img src={MacBook} alt="MacBook" className="macbook-icon" /> }
-            { <img src={iphone} alt="Phone" className="iphone-icon" /> }
+            {<img src={MacBook} alt="MacBook" className="macbook-icon" />}
           </div>
           <div className="dashboard-preview-text">
             <h2>
@@ -113,6 +127,10 @@ function Home() {
           </div>
         </div>
       </main>
+      <div
+        className="preview-footer-divider"
+        style={{ backgroundColor: "#eeeeee", height: "200px" }}
+      ></div>
     </div>
   );
 }
