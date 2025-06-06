@@ -40,7 +40,10 @@
   text-decoration: none;
   color: #fff;
   padding: 10px 20px;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   transition: all 0.3s ease;
 }
 
@@ -85,4 +88,25 @@
   color: var(--text-light);
   cursor: pointer;
   transform: scale(1.03);
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: none;
+  position: absolute;
+  right: 10%;
+  vertical-align: center;
+}
+
+.sidebar-link-menu li:hover  .remove-btn{
+  display: block;
+}
+
+.remove-btn :hover{
+  transform: scale(1.03);
+  /*box-shadow: 0 0 3px white;*/
+  background-color: #161f29;
 }
