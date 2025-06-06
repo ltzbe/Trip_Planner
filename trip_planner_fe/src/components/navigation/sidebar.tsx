@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import {deleteRoute, getRouteByName} from "../api/geoapify/storedRoute";
-import { loadRouteNames } from "../api/geoapify/route";
+import {deleteRoute, getRouteByName} from "../../api/geoapify/storedRoute.ts";
+import { loadRouteNames } from "../../api/geoapify/route.ts";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { useMap } from "../api/geoapify/mapContext";
-import "../css/sidebar.css";
-import Logo from "../assets/tripplanr-logo.png";
-import {useNotification} from "../context/notification/notificationContext.tsx";
-import YNPopup from "./ynPopup.tsx";
+import { useMap } from "../../context/map/mapContext.tsx";
+import "../../css/navigation/sidebar.css";
+import Logo from "../../assets/tripplanr-logo.png";
+import {useNotification} from "../../context/notification/notificationContext.tsx";
+import YNPopup from "../ynPopup.tsx";
 
 const Sidebar = () => {
   const { map } = useMap();

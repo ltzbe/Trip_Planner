@@ -1,6 +1,6 @@
-import { RouteFeature } from "../types/routeDetails.ts";
+import { RouteFeature } from "../../types/routeDetails.ts";
 import { HotelCard } from "./hotelCard.tsx";
-import "../css/daycards.css";
+import "../../css/dashboard/daycards.css";
 import { useState } from "react";
 import { WeatherViewer } from "./weatherViewer.tsx";
 

@@ -1,15 +1,15 @@
-import Sidebar from "../components/sidebar";
-import Map from "../components/map";
-import MapInput from "../components/mapInput";
+import Sidebar from "../components/navigation/sidebar.tsx";
+import Map from "../components/dashboard/map.tsx";
+import MapInput from "../components/dashboard/mapInput.tsx";
 import { useState, useEffect, useRef } from "react";
 import { useNotification } from "../context/notification/notificationContext.tsx";
-import Details from "../components/details.tsx";
+import Details from "../components/dashboard/details.tsx";
 import { submitRoute } from "../api/geoapify/route.ts";
 
-import "../css/dashboardRoutePlanner.css";
+import "../css/dashboard/dashboardRoutePlanner.css";
 import { RouteFeature } from "../types/routeDetails.ts";
 import { InputAutocomplete } from "../types/inputComplete.ts";
-import DayCard from "../components/dayCard.tsx";
+import DayCard from "../components/dashboard/dayCard.tsx";
 
 export default function DashboardRoutePlanner() {
   const [route, setRoute] = useState<RouteFeature | null>(null);

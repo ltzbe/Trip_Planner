@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./css/App.css";
 import "./css/variables.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "./components/navigation/navbar.tsx";
+import Footer from "./components/navigation/footer.tsx";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services.tsx";
@@ -13,7 +13,7 @@ import DashboardOverview from "./pages/DashboardOverview";
 import DashboardRoutePlanner from "./pages/DashboardRoutePlanner";
 import NotificationCard from "./components/notificationCard.tsx";
 import Places from "./pages/Places.tsx";
-import { MapProvider } from "./api/geoapify/mapContext.tsx";
+import { MapProvider } from "./context/map/mapContext.tsx";
 
 function App() {
   const location = useLocation();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getWeatherByCity } from "../api/openweather/weather";
+import { getWeatherByCity } from "../../api/openweather/weather.ts";
 
 type Props = {
   cityName: string;

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import "../css/places.css"
-import {getPicture} from "../api/wikimedia/placeImage.ts";
-import {RouteFeature} from "../types/routeDetails.ts";
+import "../../css/dashboard/places.css"
+import {getPicture} from "../../api/wikimedia/placeImage.ts";
+import {RouteFeature} from "../../types/routeDetails.ts";
 
 const PLACEHOLDER_IMG = "https://picsum.photos/id/237/200/300"
 type Props = {
