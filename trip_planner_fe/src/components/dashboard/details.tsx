@@ -1,5 +1,5 @@
-import "../css/routeDetails.css";
-import {RouteFeature} from "../types/routeDetails.ts";
+import "../../css/dashboard/routeDetails.css";
+import {RouteFeature} from "../../types/routeDetails.ts";
 
 type Props = {
   route: RouteFeature | null;

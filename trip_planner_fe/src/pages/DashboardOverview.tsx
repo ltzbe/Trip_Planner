@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Sidebar from "../components/sidebar";
-import "../css/dashboardOverview.css";
+import Sidebar from "../components/navigation/sidebar.tsx";
+import "../css/dashboard/dashboardOverview.css";
 
 // import RouteIcon from "../assets/route-icon.png";
 

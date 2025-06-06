@@ -3,15 +3,15 @@ import {
   GeoapifyContext,
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
-import "../css/addressInput.css";
-import "../css/loader.css";
+import "../../css/dashboard/mapInput.css";
+import "../../css/loader.css";
 
 import React, { useState } from "react";
-import { InputAutocomplete } from "../types/inputComplete.ts";
-import { getPlaces } from "../api/geoapify/places.ts";
+import { InputAutocomplete } from "../../types/inputComplete.ts";
+import { getPlaces } from "../../api/geoapify/places.ts";
 import PlaceCard from "./placeCard.tsx";
-import { RouteFeature } from "../types/routeDetails.ts";
-import SpinnerLoader from "./spinnerLoader.tsx";
+import { RouteFeature } from "../../types/routeDetails.ts";
+import SpinnerLoader from "../spinnerLoader.tsx";
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_2;
 
 const CATEGORY_CONFIG = [

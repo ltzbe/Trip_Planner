@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import "../css/footer.css";
-import logo from "../assets/tripplanr-logo.png"
+import "../../css/navigation/footer.css";
+import logo from "../../assets/tripplanr-logo.png"
 const Footer = () => {
   return (
     <footer className="footer">

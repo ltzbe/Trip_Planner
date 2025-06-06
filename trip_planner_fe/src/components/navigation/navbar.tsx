@@ -1,8 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../css/navbar.css";
-import Logo from "../assets/tripplanr-logo.png";
-import { useAuth } from "../context/auth/authContext";
+import "../../css/navigation/navbar.css";
+import Logo from "../../assets/tripplanr-logo.png";
+import { useAuth } from "../../context/auth/authContext.tsx";
 
 const Navbar = () => {
   const { token, logout } = useAuth();

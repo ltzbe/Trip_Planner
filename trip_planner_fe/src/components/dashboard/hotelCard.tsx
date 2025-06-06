@@ -1,4 +1,4 @@
-import {RouteFeature} from "../types/routeDetails.ts";
+import {RouteFeature} from "../../types/routeDetails.ts";
 
 
 interface HotelCardProps {

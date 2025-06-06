@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import "../css/map.css";
-import { useMap } from "../api/geoapify/mapContext.tsx";
+import "../../css/dashboard/map.css";
+import { useMap } from "../../context/map/mapContext.tsx";
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1;
 
 type MapProps = {

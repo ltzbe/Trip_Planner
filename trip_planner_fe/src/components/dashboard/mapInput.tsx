@@ -3,19 +3,19 @@ import {
   GeoapifyContext,
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
-import "../css/addressInput.css";
+import "../../css/dashboard/mapInput.css";
 
-import "../css/routeSettings.css";
-import { handleGetRoute } from "../api/geoapify/route.ts";
-import { useMap } from "../api/geoapify/mapContext.tsx";
-import { RouteFeature } from "../types/routeDetails.ts";
+import "../../css/dashboard/routeSettings.css";
+import { handleGetRoute } from "../../api/geoapify/route.ts";
+import { useMap } from "../../context/map/mapContext.tsx";
+import { RouteFeature } from "../../types/routeDetails.ts";
 import React, { useState } from "react";
-import { InputAutocomplete } from "../types/inputComplete.ts";
-import { useNotification } from "../context/notification/notificationContext.tsx";
+import { InputAutocomplete } from "../../types/inputComplete.ts";
+import { useNotification } from "../../context/notification/notificationContext.tsx";
 import {
   DEFAULT_FUEL_THRESHOLD_KM,
   DEFAULT_HOTEL_THRESHOLD_KM,
-} from "../config/constants.ts";
+} from "../../config/constants.ts";
 const GEO_API_KEY = import.meta.env.VITE_GEO_API_KEY_1;
 
 type Props = {
