@@ -63,10 +63,8 @@ const MapInput = ({
 
     const result = await handleGetRoute(map, value, endInput, settings);
     const route = result?.data;
-    const hotelsData = result?.hotelsData
     setRoute(route);
-
-    setHotelsData([...(hotelsData ?? [])]);
+    setHotelsData(result?.hotelsData ?? []);
   }
 
   async function onPlaceSelectEnd(value: InputAutocomplete) {
@@ -83,10 +81,8 @@ const MapInput = ({
 
     const result = await handleGetRoute(map, startInput, value, settings);
     const route = result?.data;
-    const hotelsData = result?.hotelsData
     setRoute(route);
-
-    setHotelsData([...(hotelsData ?? [])]);
+    setHotelsData(result?.hotelsData ?? []);
   }
 
   const handleSettingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,14 +97,10 @@ const MapInput = ({
   async function handleRouteSettingsSubmit() {
     if (map && startInput && endInput && validateSettings()) {
       const result = await handleGetRoute(map, startInput, endInput, settings);
-      const routeDetails = result?.data;
-      const hotelsHere = result?.hotelsData
-      if(hotelsHere == undefined){
-        return "error"
-      }
+      const routeDetails = await result?.data;
       setRoute(routeDetails);
-      console.log(hotelsHere, "hotels here")
-      setHotelsData(hotelsHere);
+
+      setHotelsData(result?.hotelsData ?? []);
     }
   }
 

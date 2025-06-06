@@ -9,18 +9,17 @@ interface HotelCardProps {
 export const HotelCard: React.FC<HotelCardProps> = ({ feature }) => {
 
   return (
-    <div className="hotel-card">
-      <h3>{feature.properties.name}</h3>
-      <p>{feature.properties.address_line1}</p>
+    <div className="hotel-card" >
+      <h4>{feature.properties.name}</h4>
+      <p>{feature.properties.address_line2}</p>
+      <p className="feature.properties-distance">📍 {(feature.properties.distance / 1000).toFixed(1)} km von Route</p>
+      <a
+        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(feature.properties.name + ' ' + feature.properties.address_line2)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Bewertungen auf GoogleMaps
+      </a>
     </div>
   )
 };
-
-// export default function HotelCard (hotelDetail: RouteFeature){
-//   return (
-//     <div className="hotel-card">
-//       <h3>{hotelDetail.properties.name}</h3>
-//       <p>{hotelDetail.properties.address_line1}</p>
-//     </div>
-//   )
-// }

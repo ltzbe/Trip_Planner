@@ -30,16 +30,6 @@ export default function DashboardRoutePlanner() {
     }
   }, [showPopup]);
 
-  useEffect(() => {
-    console.log("Hotels data updated:", hotelsData);
-    console.log("Array instance:", true);
-    console.log("Array length:", hotelsData?.length);
-  }, [hotelsData]);
-
-  if(hotelsData){
-    console.log("HotelsData:", hotelsData)
-  }
-
   return (
     <div className="route-planner-wrapper">
       <Sidebar />
@@ -54,6 +44,7 @@ export default function DashboardRoutePlanner() {
             setEndInput={setEndInput}
             setHotelsData={setHotelsData}
           />
+
           {route &&
             startInput?.properties?.address_line1 &&
             endInput?.properties?.address_line1 && (
@@ -63,15 +54,20 @@ export default function DashboardRoutePlanner() {
                 endName={endInput.properties.address_line1}
               />
             )}
-          {hotelsData && (
-            <div className="daycard-container">
-              {(hotelsData ?? []).map((hotels, index) => (
-                <DayCard hotels={hotels} index={index} key={index} />
-              ))}
-            </div>
-          )}
+
         </div>
+
         <Map />
+
+        {hotelsData &&  (
+          <div className="daycard-container">
+            {(hotelsData ?? []).map((hotels, index) => (
+              <DayCard hotels={hotels} index={index} key={index} />
+            ))}
+          </div>
+
+
+        )}
       </div>
 
       <button

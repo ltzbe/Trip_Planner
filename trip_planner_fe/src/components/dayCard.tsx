@@ -1,5 +1,7 @@
 import {RouteFeature} from "../types/routeDetails.ts";
 import {HotelCard} from "./hotelCard.tsx";
+import "../css/daycards.css"
+import {useState} from "react";
 
 type Props = {
   hotels: RouteFeature[],
@@ -7,15 +9,28 @@ type Props = {
 }
 
 export default function DayCard({hotels, index}: Props){
-  console.log(hotels, "hotels wird gecalled")
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return(
     <div className="daycard">
-      <h2>Tag {index}</h2>
+      <h2 onClick={() => setIsOpen(!isOpen)} className="collapsible-toggle">
+        Tag {index + 1} {isOpen ? '▲' : '▼'}
+      </h2>
       <div className="daycard-content">
-        {hotels.map((hotelDetail: RouteFeature, index: number) => (
-          <HotelCard feature={hotelDetail}  key={index} />
-        ))}
+
+        {isOpen && (
+          <>
+            <h3>Vorgeschlagene Hotels:</h3>
+
+            <div className="hotel-list">
+              {hotels.map((hotelDetail: RouteFeature, i: number) => (
+                <HotelCard feature={hotelDetail}  key={i+1} />
+              ))}
+            </div>
+          </>
+          )
+        }
+
       </div>
     </div>
   )

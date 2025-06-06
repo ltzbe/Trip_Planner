@@ -93,9 +93,9 @@ export const handleGetRoute = async (map: maplibregl.Map, startInput: InputAutoc
         }
 
         if (isHotelsChecked) {
-            const threshold = hotelThresholdKM == null ? DEFAULT_HOTEL_THRESHOLD_KM : hotelThresholdKM
-            const hotelWaypoints = getWaypoints(coords, 10, threshold)
-            hotelsData = displayHotelMarkers(map, hotelWaypoints)
+            const threshold = hotelThresholdKM == null ? DEFAULT_HOTEL_THRESHOLD_KM : hotelThresholdKM;
+            const hotelWaypoints = getWaypoints(coords, 10, threshold);
+            hotelsData = await displayHotelMarkers(map, hotelWaypoints); // ⬅️ async call!
         }
 
         console.log(data)
@@ -219,27 +219,31 @@ function displayFuelMarkers(map: maplibregl.Map, waypoints: [number, number][]) 
     })
 }
 
-function displayHotelMarkers(map: maplibregl.Map, waypoints: [number,number][]){
-    const hotelsData: RouteFeature[][] | null = [];
-    waypoints.map(async (waypoint) => {
-        const data = await getPlacesByCoords(waypoint, "house", 5)
+async function displayHotelMarkers(map: maplibregl.Map, waypoints: [number, number][]) {
+    const hotelsData: RouteFeature[][] = [];
+
+    for (const waypoint of waypoints) {
+        const data = await getPlacesByCoords(waypoint, "house", 5);
+        const hotelsForThisWaypoint: RouteFeature[] = [];
 
         for (let i = 0; i < data.features.length; i++) {
-            hotelsData.push([])
-            const lon = data.features[i].geometry.coordinates[0]
-            const lat = data.features[i].geometry.coordinates[1]
-            const text = `${data.features[i].properties.name} (Hotel)`
+            const lon = data.features[i].geometry.coordinates[0];
+            const lat = data.features[i].geometry.coordinates[1];
+            const text = `${data.features[i].properties.name} (Hotel)`;
 
             if (map && lon && lat) {
                 const marker = new maplibregl.Marker({ element: createHotelMarker() })
-                    .setLngLat([lon, lat])
-                    .setPopup(new maplibregl.Popup().setText(
-                        text
-                    )).addTo(map);
+                  .setLngLat([lon, lat])
+                  .setPopup(new maplibregl.Popup().setText(text))
+                  .addTo(map);
                 markers.push(marker);
-                hotelsData[i].push(data.features[i])
             }
+
+            hotelsForThisWaypoint.push(data.features[i]);
         }
-    })
-    return hotelsData
+
+        hotelsData.push(hotelsForThisWaypoint);
+    }
+
+    return hotelsData;
 }
