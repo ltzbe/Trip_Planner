@@ -4,12 +4,14 @@ import de.dhbwravensburgwebeng.trip_planner_be.model.Route;
 import de.dhbwravensburgwebeng.trip_planner_be.model.UserEntity;
 import de.dhbwravensburgwebeng.trip_planner_be.service.JWTService;
 import de.dhbwravensburgwebeng.trip_planner_be.service.RouteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Route Management", description = "Operations related to storing and fetching routes")
 public class RouteController {
     private final RouteService routeService;
     private final HttpServletRequest request;

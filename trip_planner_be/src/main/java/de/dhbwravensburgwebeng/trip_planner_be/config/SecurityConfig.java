@@ -1,7 +1,6 @@
 package de.dhbwravensburgwebeng.trip_planner_be.config;
 
 import de.dhbwravensburgwebeng.trip_planner_be.service.MyUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

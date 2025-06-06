@@ -36,11 +36,6 @@ public class UserController {
         return new AuthResponse(token, username);
     }
 
-    @GetMapping("/test")
-    public AuthResponse test(){
-        return new AuthResponse("testtoken", "test");
-    }
-
 //    @DeleteMapping("/user/id")
 //    public ResponseEntity<UserEntity> deleteUser(@RequestParam Long id) {
 //        if (userRepository.existsById(id)) {
@@ -48,14 +43,6 @@ public class UserController {
 //            return new ResponseEntity<>(HttpStatus.OK);
 //        }
 //        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-//
-//    @PutMapping("/user/id")
-//    public UserEntity updateUser(@RequestParam Long id, @RequestBody @Validated UserEntity user) {
-//        user.setId(id);
-//        user.setTimestamp(new Date().getTime());
-//        userRepository.save(user);
-//        return user;
 //    }
 //
 //    @GetMapping("/user/id")
