@@ -1,9 +1,11 @@
 .loader {
-  border: 0.2rem solid #f3f3f3;
+  border: 0.2rem solid #e0e0e0;
+  border-top: 0.2rem solid #34d8f9;
   border-radius: 50%;
   height: 0.825em;
   width: 0.825em;
   animation: spin 2s linear infinite;
+  position: absolute;
   align-self: center;
 }
 
