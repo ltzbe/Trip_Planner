@@ -2,6 +2,7 @@ import {RouteFeature} from "../types/routeDetails.ts";
 import {HotelCard} from "./hotelCard.tsx";
 import "../css/daycards.css"
 import {useState} from "react";
+import {WeatherViewer} from "./weatherViewer.tsx";
 
 type Props = {
   hotels: RouteFeature[],
@@ -16,6 +17,10 @@ export default function DayCard({hotels, index}: Props){
       <h2 onClick={() => setIsOpen(!isOpen)} className="collapsible-toggle">
         Tag {index + 1} {isOpen ? '▲' : '▼'}
       </h2>
+      <WeatherViewer cityName={hotels[0].properties.city_name}
+                     stateCode={hotels[0].properties.state_code}
+                     countryCode={hotels[0].properties.country_code}/>
+
       <div className="daycard-content">
 
         {isOpen && (
